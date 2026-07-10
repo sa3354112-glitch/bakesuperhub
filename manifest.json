@@ -1,3 +1,5 @@
+
+
 {
   "name": "Bake Super Hub",
   "short_name": "BakeHub",
@@ -8,18 +10,18 @@
   "description": "Food, Grocery, Bakery & More",
   "icons": [
     {
-      "src": "app-icon-192.png",
+      "src": "/bakesuperhub/app-icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "app-icon-512.png",
+      "src": "/bakesuperhub/app-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    }  
+    }
   ],
-      "scope": "/bakesuperhub/",
-  "id": "/bakesuperhub/" 
-
+  "scope": "/bakesuperhub/",
+  "id": "/bakesuperhub/"
+}
