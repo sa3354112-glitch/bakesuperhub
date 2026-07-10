@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order - Bake Super Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #0A0A0A; 
+      color: white; 
+      padding: 20px;
+    }
+    .container { max-width: 500px; margin: 0 auto; }
+    h1 { color: #FFA500; text-align: center; margin-bottom: 30px; }
+    .step { 
+      background: #1a1a1a; 
+      padding: 20px; 
+      margin: 15px 0; 
+      border-radius: 10px;
+      border-left: 4px solid #444;
+    }
+    .step.active { border-left: 4px solid #FFA500; }
+    .step.done { border-left: 4px solid #00ff00; }
+    .step h3 { margin-bottom: 10px; }
+    .time { color: #888; font-size: 14px; }
+    .rider { 
+      background: #FFA500; 
+      color: black; 
+      padding: 15px; 
+      border-radius: 10px; 
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🍰 Live Order Tracking</h1>
+    
+    <div class="step done">
+      <h3>✅ Order Confirmed</h3>
+      <div class="time">3:30 PM</div>
+      <p>Your order has been confirmed</p>
+    </div>
+    
+    <div class="step active">
+      <h3>👨‍🍳 Preparing Your Order</h3>
+      <div class="time">3:32 PM</div>
+      <p>Bake Super Hub is preparing your fresh items</p>
+    </div>
+    
+    <div class="step">
+      <h3>🛵 Out for Delivery</h3>
+      <div class="time">Est. 3:50 PM</div>
+      <p>Will be assigned soon</p>
+    </div>
+    
+    <div class="step">
+      <h3>📍 Delivered</h3>
+      <div class="time">Est. 4:10 PM</div>
+      <p>Order will be delivered to your address</p>
+    </div>
+
+    <div class="rider">
+      <h3>🚴 Delivery Partner</h3>
+      <p><strong>Rahul Kumar</strong></p>
+      <p>📞 +91 98765 43210</p>
+    </div>
+  </div>
+</body>
+</html>
