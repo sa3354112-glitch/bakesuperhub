@@ -9,7 +9,7 @@
     {
     "src": "https://raw.githubusercontent.com/sa3354112-glitch/bakesuperhub/main/app-icon-512.png",
     "sizes": "512x512",
-      "type": "image/png"
-    }
+      "type": "image/png", 
+        "purpose": "any maskable"
   ]
 }
