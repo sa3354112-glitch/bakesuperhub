@@ -7,8 +7,8 @@
   "theme_color": "#FFA500",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/sa3354112-glitch/bakesuperhub/main/Screenshot_20260710_161121.jpg",
-      "sizes": "192x192",
+    "src": "https://raw.githubusercontent.com/sa3354112-glitch/bakesuperhub/main/app-icon-512.png",
+    "sizes": "512x512",
       "type": "image/png"
     }
   ]
