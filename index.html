@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake Super Hub - Bijnor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #000; color: #fff; }
+        .orange { color: #FFA500; }
+        .banner { background: linear-gradient(90deg, #FFA500, #FF8C00); color: #000; text-align: center; padding: 8px; font-size: 13px; font-weight: 600; }
+        .header { padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
+        .cart-icon { position: relative; font-size: 24px; cursor: pointer; }
+        .cart-count { position: absolute; top: -8px; right: -8px; background: #FFA500; color: #000; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .hero { padding: 60px 16px; text-align: left; }
+        .hero h1 { font-size: 38px; line-height: 1.2; margin-bottom: 16px; font-family: 'Georgia', serif; }
+        .hero p { color: #aaa; margin-bottom: 24px; font-size: 15px; }
+        .btn { background: linear-gradient(90deg, #FFA500, #FF8C00); color: #000; border: none; padding: 14px 28px; border-radius: 30px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 16px; box-shadow: 0 4px 15px rgba(255,165,0,0.3); }
+        .btn-outline { background: rgba(255,165,0,0.1); border: 2px solid #FFA500; color: #FFA500; margin-left: 12px; }
+        .stats { display: flex; justify-content: space-around; padding: 40px 16px; text-align: center; }
+        .stats h3 { color: #FFA500; font-size: 28px; }
+        .stats p { color: #888; font-size: 14px; }
+        .tabs { display: flex; gap: 8px; padding: 0 16px 16px; overflow-x: auto; }
+        .tab { background: #1a1a1a; padding: 8px 16px; border-radius: 20px; white-space: nowrap; cursor: pointer; }
+        .tab.active { background: #FFA500; color: #000; font-weight: bold; }
+        .products { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 16px 40px; }
+        .card { background: #1a1a1a; border-radius: 12px; padding: 12px; }
+        .card img { width: 100%; height: 100px; background: #333; border-radius: 8px; margin-bottom: 8px; object-fit: cover; }
+        .card h3 { font-size: 14px; margin-bottom: 4px; }
+        .card p { font-size: 12px; color: #888; margin-bottom: 8px; }
+        .card-foot { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-weight: bold; color: #FFA500; }
+        .add-btn { background: #FFA500; color: #000; border: none; padding: 6px 12px; border-radius: 6px; font-weight: bold; }
+        .cart-drawer { position: fixed; bottom: -100%; left: 0; right: 0; background: #111; border-radius: 20px 20px 0 0; padding: 20px; transition: 0.3s; z-index: 200; max-height: 80vh; overflow-y: auto; }
+        .cart-drawer.open { bottom: 0; }
+        .whatsapp-float { position: fixed; bottom: 20px; left: 20px; background: #25D366; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 150; text-decoration: none; }
+        .page { display: none; padding: 16px; }
+        .page.active { display: block; }
+        .input { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: #fff; margin-bottom: 12px; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 199; display: none; }
+        .overlay.open { display: block; }
+    </style>
+</head>
+<body>
+    <div class="banner">🚚 Free Delivery on Orders Above ₹499 | Bake Fresh. Delivered Fast.</div>
+    <div class="header">
+        <div class="logo">
+            <img src="app-icon-192.png" alt="Bake Super Hub">
+        </div>
+        <div style="display:flex; gap: 16px; align-items: center;">
+            <div style="font-size: 22px;">🔍</div>
+            <div class="cart-icon" onclick="toggleCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
+            <div style="font-size: 22px;">☰</div>
+        </div>
+    </div>
+
+    <div id="homePage" class="page active">
+        <div class="hero">
+            <h1>Fresh Baked<br><span class="orange">Perfection</span><br>Delivered Daily</h1>
+            <p>Premium bakery products, healthy snacks, and packaged foods made with love. From artisan breads to gourmet cakes - we bring Bake Super Hub quality to your doorstep.</p>
+            <button class="btn">🛍️ Shop Now</button>
+            <button class="btn btn-outline" onclick="window.open('https://wa.me/919106557703')">💬 WhatsApp Order</button>
+        </div>
+        
+        <div class="stats">
+            <div><h3>50+</h3><p>Products</p></div>
+            <div><h3>100+</h3><p>Happy Customers</p></div>
+            <div><h3>4.5★</h3><p>Rating</p></div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="filterCat('all',this)">All</div>
+            <div class="tab" onclick="filterCat('cake',this)">Cakes</div>
+            <div class="tab" onclick="filterCat('snack',this)">Snacks</div>
+            <div class="tab" onclick="filterCat('bread',this)">Breads</div>
+            <div class="tab" onclick="filterCat('makhana',this)">Makhana</div>
+        </div>
+        <div class="products" id="productList"></div>
+    </div>
+
+    <!-- CHECKOUT PAGE -->
+    <div id="checkoutPage" class="page">
+        <h2 style="margin-bottom:16px;">Checkout</h2>
+        <input class="input" id="cName" placeholder="Full Name *" />
+        <input class="input" id="cPhone" placeholder="Phone Number *" maxlength="10" />
+        <textarea class="input" id="cAddress" placeholder="Full Address with Pincode *" rows="3"></textarea>
+        <input class="input" id="cLandmark" placeholder="Landmark" />
+        <select class="input" id="cPayment">
+            <option>Cash on Delivery</option>
+            <option>UPI Payment</option>
+        </select>
+        <button class="btn" style="width:100%;margin-top:8px;" onclick="placeOrder()">Place Order | ₹<span id="checkoutTotal">0</span></button>
+    </div>
+
+    <!-- CART DRAWER -->
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <h3>Your Cart</h3>
+        <div id="cartItems"></div>
+        <div style="margin-top:16px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:#aaa;"><span>Subtotal</span><span>₹<span id="subTotal">0</span></span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:#aaa;"><span>Delivery</span><span>₹<span id="delCharge">0</span></span></div>
+            <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:bold;"><span>Total</span><span>₹<span id="grandTotal">0</span></span></div>
+        </div>
+        <button class="btn" style="width:100%;margin-top:12px;" onclick="goCheckout()">Checkout</button>
+    </div>
+
+    <a href="https://wa.me/919106557703" class="whatsapp-float">💬</a>
+
+<script>
+const WHATSAPP = "919106557703";
+const PRODUCTS = [
+    {id:1,name:"Chocolate Cake",cat:"cake",price:350,wt:"500g",img:"https://placehold.co/200x200/333/FFF?text=Cake"},
+    {id:2,name:"Vanilla Cake",cat:"cake",price:300,wt:"500g",img:"https://placehold.co/200x200/333/FFF?text=Cake"},
+    {id:3,name:"Haldi Makhana",cat:"makhana",price:59,wt:"100g",img:"https://placehold.co/200x200/333/FFF?text=Makhana"},
+    {id:4,name:"Kala Namak Makhana",cat:"makhana",price:59,wt:"100g",img:"https://placehold.co/200x200/333/FFF?text=Makhana"},
+    {id:5,name:"Garlic Bread",cat:"bread",price:120,wt:"250g",img:"https://placehold.co/200x200/333/FFF?text=Bread"},
+    {id:6,name:"Cheese Burger",cat:"snack",price:80,wt:"1 pc",img:"https://placehold.co/200x200/333/FFF?text=Burger"}
+];
+let cart = JSON.parse(localStorage.getItem('bsh_cart') || '[]');
+let orders = JSON.parse(localStorage.getItem('bsh_orders') || '[]');
+let orderCounter = parseInt(localStorage.getItem('bsh_counter') || '100');
+
+renderProducts();
+updateCart();
+
+function renderProducts(filter='all') {
+    const list = document.getElementById('productList');
+    list.innerHTML = PRODUCTS.filter(p => filter==='all' || p.cat===filter).map(p => `
+        <div class="card">
+            <img src="${p.img}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>${p.wt}</p>
+            <div class="card-foot">
+                <span class="price">₹${p.price}</span>
+                <button class="add-btn" onclick="addCart(${p.id})">ADD</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function filterCat(cat,el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    renderProducts(cat);
+}
+
+function addCart(id) {
+    const p = PRODUCTS.find(x => x.id === id);
+    const item = cart.find(x => x.id === id);
+    if(item) item.qty++;
+    else cart.push({...p, qty: 1});
+    saveCart(); updateCart();
+}
+
+function updateCart() {
+    localStorage.setItem('bsh_cart', JSON.stringify(cart));
+    document.getElementById('cartCount').innerText = cart.reduce((a,b) => a+b.qty, 0);
+    const cartItems = document.getElementById('cartItems');
+    if(cart.length === 0) {
+        cartItems.innerHTML = '<p style="text-align:center;color:#888;padding:20px;">Cart is empty</p>';
+    } else {
+        cartItems.innerHTML = cart.map(i => `
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #222;align-items:center;">
+                <div><b>${i.name}</b><br><small>₹${i.price}</small></div>
+                <div>
+                    <button onclick="changeQty(${i.id},-1)" style="background:#FFA500;color:#000;border:none;width:24px;height:24px;border-radius:4px;">-</button>
+                    <span style="margin:0 8px;">${i.qty}</span>
+                    <button onclick="changeQty(${i.id},1)" style="background:#FFA500;color:#000;border:none;width:24px;height:24px;border-radius:4px;">+</button>
+                </div>
+            </div>
+        `).join('');
+    }
+    const sub = cart.reduce((a,b) => a + b.price*b.qty, 0);
+    const del = sub >= 499 || sub === 0 ? 0 : 40;
+    document.getElementById('subTotal').innerText = sub;
+    document.getElementById('delCharge').innerText = del;
+    document.getElementById('grandTotal').innerText = sub + del;
+    document.getElementById('checkoutTotal').innerText = sub + del;
+}
+
+function changeQty(id, d) {
+    const item = cart.find(x => x.id === id);
+    item.qty += d;
+    if(item.qty <= 0) cart = cart.filter(x => x.id !== id);
+    saveCart(); updateCart();
+}
+
+function saveCart() { localStorage.setItem('bsh_cart', JSON.stringify(cart)); }
+function toggleCart() { 
+    document.getElementById('cartDrawer').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+}
+
+function goCheckout() {
+    if(cart.length === 0) return alert('Cart empty!');
+    toggleCart(); 
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('checkoutPage').classList.add('active');
+}
+
+function placeOrder() {
+    const name = document.getElementById('cName').value;
+    const phone = document.getElementById('cPhone').value;
+    const addr = document.getElementById('cAddress').value;
+    if(!name || !phone || !addr) return alert('Please fill all details');
+    if(phone.length !== 10) return alert('Enter 10 digit phone');
+    
+    orderCounter++;
+    const orderId = 'BHS' + orderCounter;
+    const sub = cart.reduce((a,b) => a + b.price*b.qty, 0);
+    const del = sub >= 499 ? 0 : 40;
+    const total = sub + del;
+    
+    const order = {
+        id: orderId, name, phone, 
+        address: addr + ' ' + document.getElementById('cLandmark').value,
+        items: [...cart], total, 
+        payment: document.getElementById('cPayment').value,
+        status: 'Placed', time: new Date().toLocaleString()
+    };
+    orders.push(order);
+    localStorage.setItem('bsh_orders', JSON.stringify(orders));
+    localStorage.setItem('bsh_counter', orderCounter);
+    
+    const waText = `New Order ${orderId}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${addr}%0AItems: ${cart.map(i=>i.name+' x'+i.qty).join(', ')}%0ATotal: ₹${total}%0APayment: ${order.payment}`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${waText}`);
+    
+    cart = []; saveCart(); updateCart();
+    alert('Order Placed! Order ID: ' + orderId);
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('homePage').classList.add('active');
+}
+</script>
+</body>
+</html>
