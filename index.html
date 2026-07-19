@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bake Super Hub - Nagina No.1 Bakery - Zomato Style</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0a0a0a;color:#fff;padding-bottom:80px}
+.banner{background:#FFA500;color:#000;text-align:center;padding:8px;font-weight:bold;font-size:11px}
+.header{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;background:#0a0a0a;position:sticky;top:0;z-index:100;border-bottom:1px solid #222}
+.logo{display:flex;align-items:center;gap:8px;font-weight:bold;cursor:pointer}
+.logo img{width:36px;height:36px;border-radius:50%}
+.cart-btn{position:relative;font-size:22px;cursor:pointer}
+.cart-count{position:absolute;top:-8px;right:-8px;background:#FFA500;color:#000;width:18px;height:18px;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.menu-btn{font-size:22px;cursor:pointer}
+.menu-drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:#111;transition:.3s;z-index:300;padding:20px}
+.menu-drawer.open{right:0}
+.menu-item{padding:14px 0;border-bottom:1px solid #222;cursor:pointer}
+.hero{padding:30px 16px}
+.btn{ background:#FFA500; color:#000; border:none; padding:12px 20px; border-radius:24px; font-weight:bold; cursor:pointer; }
+.products{display:flex;flex-direction:column;gap:14px;padding:16px}
+.card{background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #222}
+.card img{width:100%;height:160px;object-fit:cover}
+.card-body{padding:12px}
+.qty-box{display:flex;align-items:center;gap:8px;background:#222;border:1px solid #FFA500;border-radius:20px;padding:4px 8px}
+.qty-btn{background:#FFA500;border:none;width:26px;height:26px;border-radius:50%;font-weight:bold;cursor:pointer}
+.page{display:none}.page.active{display:block}
+.cart-drawer{position:fixed;bottom:-100%;left:0;right:0;background:#151515;border-radius:20px 20px 0 0;padding:16px;transition:.3s;z-index:250;max-height:80vh;overflow-y:auto;border-top:2px solid #FFA500}
+.cart-drawer.open{bottom:0}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none}.overlay.open{display:block}
+.input{width:100%;padding:14px;background:#1a1a1a;border:1px solid #333;border-radius:10px;color:#fff;margin-bottom:12px;font-size:14px}
+.track-step{padding:12px 0 12px 30px;border-left:3px solid #333;margin-left:12px;position:relative}
+.track-step.active{border-color:#FFA500}.track-step.done{border-color:#25D366}
+.track-step::before{content:'';position:absolute;left:-8px;top:14px;width:14px;height:14px;border-radius:50%;background:#333}
+.track-step.active::before{background:#FFA500}.track-step.done::before{background:#25D366}
+.zomato-card{background:#1a1a1a;border:1px solid #FFA500;border-radius:14px;padding:14px;margin-top:12px}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#151515;border-top:1px solid #222;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;z-index:150}
+</style>
+</head>
+<body>
+<div class="banner">🍔 Burger/Pizza 3+ = FREE Delivery | 🧁 Bakery ₹499+ = FREE Delivery</div>
+<div class="header">
+<div class="logo" id="logoBtn"><img src="app-icon-192.png" onerror="this.style.display='none'">Bake Super Hub</div>
+<div style="display:flex;gap:16px;align-items:center"><div class="cart-btn" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div><div class="menu-btn" onclick="openMenu()">☰</div></div>
+</div>
+<div class="overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<div class="menu-drawer" id="menuDrawer"><div style="display:flex;justify-content:space-between;margin-bottom:20px"><b style="color:#FFA500">Bake Super Hub</b><span onclick="closeMenu()" style="cursor:pointer">✕</span></div><div class="menu-item" onclick="showPage('homePage');closeMenu()">🏠 Home</div><div class="menu-item" onclick="showPage('trackPage');closeMenu()">📍 Track Order - Zomato Style</div><div class="menu-item" onclick="window.open('https://wa.me/919106557703')">💬 WhatsApp: 9106557703</div></div>
+
+<div id="homePage" class="page active">
+<div class="hero"><h1 style="font-size:32px;line-height:1.2">Fresh Baked<br><span style="color:#FFA500">Nagina's No.1</span> Bakery</h1><p style="color:#aaa;font-size:13px;margin:10px 0">Burger Rs 39, Pizza Rs 99, Cakes - 30 Mins Delivery in Nagina</p></div>
+<div class="products" id="productList"></div>
+<div style="text-align:center;color:#333;padding:20px;font-size:11px">Logo pe 5 baar tap = Admin Panel (Owner Only)</div>
+</div>
+
+<div id="trackPage" class="page"><div style="padding:16px"><h2 style="text-align:center">📦 Live Tracking - Zomato Style</h2><input class="input" id="trackInput" placeholder="Order ID e.g. BHS101" style="margin-top:16px"><button class="btn" style="width:100%" onclick="doTrack()">Track Now 🔍</button><div id="trackResult"></div><div id="myOrders" style="margin-top:20px"></div></div></div>
+
+<div id="checkoutPage" class="page"><div style="padding:16px"><h2>Delivery Details - Zomato Style</h2><p style="color:#888;font-size:12px;margin-bottom:14px">Enter your name, phone, address for delivery</p><input class="input" id="cName" placeholder="Your Full Name *"><input class="input" id="cPhone" placeholder="10 Digit Mobile Number *" type="tel" maxlength="10"><textarea class="input" id="cAddress" placeholder="Full Delivery Address with Landmark, Nagina *" rows="3"></textarea><select class="input" id="cPayment"><option>Cash on Delivery - COD</option><option>UPI Payment</option></select><div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:12px 0"><div style="display:flex;justify-content:space-between;font-size:13px;color:#aaa"><span>Subtotal</span><span>₹<span id="cSub">0</span></span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:#aaa;margin-top:4px"><span>Delivery Charge</span><span>₹<span id="cDel">0</span></span></div><div style="display:flex;justify-content:space-between;font-weight:bold;margin-top:6px"><span>Total to Pay</span><span>₹<span id="cTotal">0</span></span></div></div><button class="btn" style="width:100%;padding:16px;font-size:16px" onclick="placeOrderNow()">✅ Place Order Now</button></div></div>
+
+<div id="successPage" class="page" style="text-align:center;padding:40px 20px"><h1 style="font-size:50px">✅</h1><h2 style="margin-top:10px">Order Placed Successfully!</h2><p style="margin:12px 0">Your Order ID is:</p><h1 id="orderIdText" style="color:#FFA500;font-size:32px;letter-spacing:2px"></h1><p style="color:#888;font-size:12px;margin-top:6px">Please note this ID - You can track with this ID</p><div class="zomato-card"><p>🔥 Your order is confirmed! We are preparing it fresh!</p><p style="font-size:12px;color:#aaa;margin-top:6px">Delivery in 30 mins - Live tracking started</p></div><button class="btn" style="margin-top:20px;width:100%" onclick="showPage('trackPage')">📍 Track Live Status - Zomato Style</button><a id="waBtn" style="display:block;margin-top:12px;background:#25D366;color:#fff;padding:14px;border-radius:24px;text-decoration:none;font-weight:bold">💬 Send Order Details on WhatsApp</a><button class="btn" style="margin-top:12px;width:100%;background:transparent;border:1px solid #333;color:#fff" onclick="showPage('homePage')">Continue Shopping</button></div>
+
+<div id="adminPage" class="page"><div style="padding:16px"><h2 style="text-align:center">🔐 Admin Panel - Owner Only</h2><div id="adminLogin"><input class="input" type="password" id="adminPass" placeholder="Enter Admin Password" style="margin-top:20px"><button class="btn" style="width:100%" onclick="adminLogin()">Login</button></div><div id="adminPanel" style="display:none"><h3 style="color:#FFA500;margin:20px 0">➕ Add Product</h3><input class="input" id="newName" placeholder="Name"><input class="input" id="newPrice" type="number" placeholder="Price"><select class="input" id="newType"><option value="bakery">Bakery - 499+ FREE</option><option value="fastfood">Fast Food - 3+ FREE</option></select><input class="input" id="newImg" placeholder="Image URL"><button class="btn" style="width:100%" onclick="addProduct()">Add Product</button><h3 style="color:#FFA500;margin:20px 0 10px">📦 Products</h3><div id="adminProductList"></div><h3 style="color:#FFA500;margin:20px 0 10px">📋 Orders - Change Status</h3><div id="adminOrders"></div><button class="btn" style="width:100%;margin-top:20px;background:transparent;border:1px solid #FFA500;color:#FFA500" onclick="logoutAdmin()">Logout</button></div></div></div>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer"><div style="display:flex;justify-content:space-between;align-items:center"><h3>Your Cart 🛒</h3><span onclick="closeCart()" style="cursor:pointer;font-size:20px">✕</span></div><div id="deliveryMsg" style="color:#FFA500;font-size:11px;text-align:center;margin:10px 0;background:#222;padding:8px;border-radius:8px"></div><div id="cartItems"></div><div style="border-top:1px solid #222;margin-top:12px;padding-top:10px"><div style="display:flex;justify-content:space-between;color:#aaa;font-size:13px"><span>Subtotal</span><span>₹<span id="subTotal">0</span></span></div><div style="display:flex;justify-content:space-between;color:#aaa;font-size:13px;margin-top:4px"><span>Delivery</span><span>₹<span id="delCharge">0</span></span></div><div style="display:flex;justify-content:space-between;font-weight:bold;font-size:18px;margin-top:6px"><span>Total</span><span>₹<span id="grandTotal">0</span></span></div></div><button class="btn" style="width:100%;margin-top:14px;padding:14px" onclick="goCheckout()">Proceed to Checkout ➡️</button></div>
+
+<div class="bottom-bar" id="bottomBar" style="display:none"><div><span style="color:#888;font-size:12px" id="bottomQty">0 items</span><br><b>₹<span id="bottomTotal">0</span></b></div><button class="btn" onclick="openCart()">View Cart 🛒</button></div>
+
+<script>
+let PRODUCTS = JSON.parse(localStorage.getItem('bsh_products')||'null') || [
+{id:101,name:"Nagina Special Burger",type:"fastfood",price:39,img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",desc:"Aloo tikki - Rs 39"},
+{id:102,name:"Nagina Special Pizza",type:"fastfood",price:99,img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600",desc:"7 inch double cheese"},
+{id:1,name:"Red Velvet Cake",type:"bakery",price:699,img:"https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400",desc:"Fresh cake"},
+{id:2,name:"Chocolate Cake",type:"bakery",price:599,img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400",desc:"Rich chocolate"},
+{id:3,name:"Berry Cookies",type:"bakery",price:199,img:"https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400",desc:"Soft cookies"}
+];
+let cart = JSON.parse(localStorage.getItem('bsh_cart')||'[]');
+let orders = JSON.parse(localStorage.getItem('bsh_orders')||'[]');
+let counter = parseInt(localStorage.getItem('bsh_counter')||'100');
+let logoClicks=0;
+document.getElementById('logoBtn').addEventListener('click',()=>{logoClicks++;if(logoClicks>=5){showPage('adminPage');logoClicks=0;}setTimeout(()=>logoClicks=0,3000);});
+
+function saveProducts(){localStorage.setItem('bsh_products',JSON.stringify(PRODUCTS));}
+function renderProducts(){
+  const list=document.getElementById('productList');
+  list.innerHTML=PRODUCTS.map(p=>{
+    const item=cart.find(c=>c.id===p.id);
+    const qty=item?item.qty:0;
+    return `<div class="card"><img src="${p.img}"><div class="card-body"><div style="display:flex;justify-content:space-between"><div><h3 style="font-size:15px">${p.name}</h3><p style="font-size:11px;color:#888">${p.desc}</p><p style="font-size:10px;color:#FFA500;margin-top:4px">${p.type==='fastfood'?'🍔 3+ FREE Delivery':'🧁 ₹499+ FREE Delivery'}</p></div><div style="text-align:right"><div style="color:#FFA500;font-weight:bold;font-size:18px">₹${p.price}</div></div></div><div style="margin-top:10px;display:flex;justify-content:flex-end">${qty===0?`<button class="btn" style="padding:8px 16px;font-size:13px" onclick="addToCart(${p.id})">Add +</button>`:`<div class="qty-box"><button class="qty-btn" onclick="decQty(${p.id})">-</button><b style="color:#FFA500">${qty}</b><button class="qty-btn" onclick="incQty(${p.id})">+</button></div>`}</div></div></div>`;
+  }).join('');
+}
+function addToCart(id){const p=PRODUCTS.find(x=>x.id===id);let it=cart.find(x=>x.id===id);if(it)it.qty++;else cart.push({...p,qty:1});saveCart();updateCart();renderProducts();}
+function incQty(id){addToCart(id);}
+function decQty(id){let it=cart.find(x=>x.id===id);if(!it)return;it.qty--;if(it.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart();updateCart();renderProducts();}
+function saveCart(){localStorage.setItem('bsh_cart',JSON.stringify(cart));}
+function updateCart(){
+  const totalQty=cart.reduce((a,b)=>a+b.qty,0);
+  const sub=cart.reduce((a,b)=>a+b.price*b.qty,0);
+  document.getElementById('cartCount').innerText=totalQty;
+  if(totalQty>0){document.getElementById('bottomBar').style.display='flex';document.getElementById('bottomQty').innerText=totalQty+' items';document.getElementById('bottomTotal').innerText=sub;}
+  else document.getElementById('bottomBar').style.display='none';
+  const el=document.getElementById('cartItems');
+  if(cart.length===0)el.innerHTML='<p style="text-align:center;color:#888;padding:20px">Cart empty - Add products by tapping Add +</p>';
+  else el.innerHTML=cart.map(i=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span style="font-size:13px">${i.name} x${i.qty}</span><span style="font-size:13px">₹${i.price*i.qty}</span></div>`).join('');
+  let del=0;let fq=cart.filter(i=>i.type==='fastfood').reduce((a,b)=>a+b.qty,0);let fe=fq>0;let bt=cart.filter(i=>i.type==='bakery').reduce((a,b)=>a+b.price*b.qty,0);let be=bt>0;
+  if(fe&&fq<3)del+=30;if(be&&bt<499)del+=40;
+  document.getElementById('subTotal').innerText=sub;document.getElementById('delCharge').innerText=del;document.getElementById('grandTotal').innerText=sub+del;
+  document.getElementById('cSub').innerText=sub;document.getElementById('cDel').innerText=del;document.getElementById('cTotal').innerText=sub+del;
+  document.getElementById('checkoutTotal').innerText=sub+del;
+  const msg=document.getElementById('deliveryMsg');
+  if(sub===0)msg.innerHTML='';else if(fe&&fq<3&&be&&bt<499)msg.innerHTML=`🍔 Add ${3-fq} more FastFood + 🧁 Add ₹${499-bt} more = FREE Delivery`;else if(fe&&fq<3)msg.innerHTML=`🍔 Add ${3-fq} more Burger/Pizza = FREE Delivery - Add now!`;else if(be&&bt<499)msg.innerHTML=`🧁 Add ₹${499-bt} more = FREE Delivery`;else msg.innerHTML='✅ FREE Delivery Unlocked! 🎉';
+}
+function openCart(){document.getElementById('cartDrawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
+function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
+function openMenu(){document.getElementById('menuDrawer').classList.add('open');document.getElementById('menuOverlay').classList.add('open');}
+function closeMenu(){document.getElementById('menuDrawer').classList.remove('open');document.getElementById('menuOverlay').classList.remove('open');}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='trackPage')showMyOrders();}
+function goCheckout(){if(cart.length===0){alert('Cart empty! Please add products first - Tap Add + on products');return;}closeCart();showPage('checkoutPage');}
+function placeOrderNow(){
+  const name=document.getElementById('cName').value.trim();
+  const phone=document.getElementById('cPhone').value.trim();
+  const addr=document.getElementById('cAddress').value.trim();
+  if(!name){alert('Please enter your Name');document.getElementById('cName').focus();return;}
+  if(!phone||phone.length!=10){alert('Please enter 10 digit Mobile Number');document.getElementById('cPhone').focus();return;}
+  if(!addr){alert('Please enter Delivery Address');document.getElementById('cAddress').focus();return;}
+  counter++;const oid='BHS'+counter;
+  const sub=cart.reduce((a,b)=>a+b.price*b.qty,0);
+  let del=0;let fq=cart.filter(i=>i.type==='fastfood').reduce((a,b)=>a+b.qty,0);if(cart.filter(i=>i.type==='fastfood').length>0&&fq<3)del+=30;let bt=cart.filter(i=>i.type==='bakery').reduce((a,b)=>a+b.price*b.qty,0);if(bt>0&&bt<499)del+=40;
+  const tot=sub+del;
+  const order={id:oid,name,phone,address:addr,items:[...cart],subtotal:sub,delivery:del,total:tot,payment:document.getElementById('cPayment').value,status:'Placed',time:new Date().toLocaleString()};
+  orders.push(order);localStorage.setItem('bsh_orders',JSON.stringify(orders));localStorage.setItem('bsh_counter',counter);
+  document.getElementById('orderIdText').innerText=oid;
+  const waText=`*NEW ORDER ${oid}*%0AName: ${name}%0APhone: ${phone}%0AAddress: ${addr}%0AItems: ${cart.map(i=>i.name+' x'+i.qty).join(', ')}%0ASubtotal: Rs ${sub}%0ADelivery: Rs ${del}%0ATotal: Rs ${tot}%0APayment: ${order.payment}`;
+  document.getElementById('waBtn').href=`https://wa.me/919106557703?text=${waText}`;
+  window.open(`https://wa.me/919106557703?text=${waText}`,'_blank');
+  cart=[];saveCart();updateCart();renderProducts();
+  showPage('successPage');document.getElementById('trackInput').value=oid;
+}
+function showMyOrders(){const box=document.getElementById('myOrders');if(orders.length===0){box.innerHTML='<p style="text-align:center;color:#555;font-size:12px;margin-top:20px">No orders yet - Place your first order!</p>';return;}box.innerHTML='<h3 style="margin-top:20px">Your Recent Orders</h3>'+orders.slice().reverse().slice(0,5).map(o=>`<div style="background:#1a1a1a;padding:10px;border-radius:10px;margin-top:8px;border:1px solid #222"><b>${o.id}</b> - Rs ${o.total} - ${o.status}<br><small style="color:#888">${o.time}</small></div>`).join('');}
+function doTrack(){const id=document.getElementById('trackInput').value.trim().toUpperCase();const o=orders.find(x=>x.id===id);const box=document.getElementById('trackResult');if(!o){box.innerHTML='<p style="color:#FFA500;text-align:center;margin-top:16px">❌ Order ID not found! Please check ID</p>';return;}const steps=['Placed','Accepted','Preparing','Out for Delivery','Delivered'];const cur=steps.indexOf(o.status);box.innerHTML=`<div class="zomato-card"><div style="display:flex;justify-content:space-between"><div><h3 style="color:#FFA500">${o.id}</h3><p style="font-size:11px;color:#aaa">${o.time}<br>${o.name} - ${o.phone}</p></div><div style="text-align:right"><b>Rs ${o.total}</b><br><small style="color:#25D366">${o.status}</small><br><small style="font-size:10px">Del: Rs ${o.delivery}</small></div></div><p style="margin:10px 0;font-size:12px;color:#aaa">Items: ${o.items.map(i=>i.name+' x'+i.qty).join(', ')}</p>${steps.map((s,i)=>`<div class="track-step ${i<cur?'done':''} ${i===cur?'active':''}"><b style="font-size:13px">${s}</b><br><small style="color:${i<=cur?'#FFA500':'#555'}">${i<cur?'✓ Done':i===cur?'● LIVE - '+s+' - 5 min ago':''}</small></div>`).join('')}<div style="margin-top:12px;background:#000;padding:10px;border-radius:8px"><p style="font-size:11px;color:#aaa">Delivery Address</p><p style="font-size:12px">${o.address}</p></div></div>`;}
+function adminLogin(){if(document.getElementById('adminPass').value==='bakesuper123'){document.getElementById('adminLogin').style.display='none';document.getElementById('adminPanel').style.display='block';renderAdmin();}else alert('Wrong Password');}
+function logoutAdmin(){document.getElementById('adminPanel').style.display='none';document.getElementById('adminLogin').style.display='block';document.getElementById('adminPass').value='';showPage('homePage');}
+function renderAdmin(){document.getElementById('adminProductList').innerHTML=PRODUCTS.map(p=>`<div style="background:#1a1a1a;padding:10px;border-radius:8px;margin-top:8px;display:flex;justify-content:space-between"><span><b>${p.name}</b> Rs ${p.price} (${p.type})</span><button style="background:#ff3333;color:#fff;border:none;padding:4px 8px;border-radius:6px" onclick="deleteProduct(${p.id})">Delete</button></div>`).join('');document.getElementById('adminOrders').innerHTML=orders.slice().reverse().map(o=>`<div style="background:#1a1a1a;padding:10px;border-radius:8px;margin-top:8px"><b>${o.id}</b> - ${o.name} - Rs ${o.total}<br><small>${o.phone} | ${o.time}</small><br><select onchange="updateStatus('${o.id}',this.value)" style="width:100%;margin-top:6px;padding:6px;background:#222;color:#fff;border:1px solid #444;border-radius:6px"><option value="Placed" ${o.status==='Placed'?'selected':''}>Placed</option><option value="Accepted" ${o.status==='Accepted'?'selected':''}>Accepted</option><option value="Preparing" ${o.status==='Preparing'?'selected':''}>Preparing</option><option value="Out for Delivery" ${o.status==='Out for Delivery'?'selected':''}>Out for Delivery</option><option value="Delivered" ${o.status==='Delivered'?'selected':''}>Delivered</option></select></div>`).join('')||'No orders';}
+function addProduct(){const n=document.getElementById('newName').value.trim();const pr=parseInt(document.getElementById('newPrice').value);const t=document.getElementById('newType').value;const im=document.getElementById('newImg').value.trim()||'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400';if(!n||!pr)return alert('Name & Price required');PRODUCTS.push({id:Date.now(),name:n,price:pr,type:t,img:im,desc:n});saveProducts();renderProducts();renderAdmin();alert('Added');}
+function deleteProduct(id){if(confirm('Delete?')){PRODUCTS=PRODUCTS.filter(p=>p.id!==id);saveProducts();renderProducts();renderAdmin();}}
+function updateStatus(id,s){const o=orders.find(x=>x.id===id);o.status=s;localStorage.setItem('bsh_orders',JSON.stringify(orders));renderAdmin();}
+renderProducts();updateCart();showMyOrders();
+</script>
+</body>
+</html>
