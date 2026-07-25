@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bake Super Hub - Nagina No.1 | Rs39 Burger | Live Location</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FFA500">
+<link rel="icon" href="logo.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0a0a0a;color:#fff;padding-bottom:90px}
+.banner{background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;text-align:center;padding:8px;font-size:10px;font-weight:800;position:sticky;top:0;z-index:102;white-space:nowrap;overflow:hidden}
+.header{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;position:sticky;top:28px;background:#0a0a0a;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo img{width:54px;height:54px;border-radius:14px;border:2px solid #FFA500;background:#fff;padding:4px;object-fit:contain}
+.cart-icon{position:relative;font-size:24px;cursor:pointer}.cart-count{position:absolute;top:-8px;right:-8px;background:#FFA500;color:#000;border-radius:50%;width:18px;height:18px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:800}
+.long-banner{background:#111;border-bottom:1px solid #222;padding:8px 0;overflow:hidden;white-space:nowrap}
+.long-track{display:inline-flex;gap:10px;animation:longScroll 22s linear infinite}
+.long-item{min-width:220px;height:58px;background:#1a1a1a;border:1px solid #222;border-radius:12px;display:flex;align-items:center;gap:8px;padding:6px 10px;flex-shrink:0}
+.long-item img{width:44px;height:44px;border-radius:8px;object-fit:cover}
+@keyframes longScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.page{display:none}.page.active{display:block}
+.hero{padding:16px;background:linear-gradient(180deg,#1a1a1a,#0a0a0a);border-bottom:1px solid #222}
+.location-box{background:#111;border:2px solid #FFA500;border-radius:14px;padding:14px;margin:12px 0;text-align:center}
+.hub-badge{display:inline-block;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800;margin:2px}
+.hub-n{background:#FFA500;color:#000}.hub-k{background:#25D366;color:#fff}
+.products{display:flex;flex-direction:column;gap:14px;padding:0 12px}
+.card{background:#1a1a1a;border-radius:16px;overflow:hidden;border:1px solid #222;position:relative}
+.card img{width:100%;height:230px;object-fit:cover;display:block;background:#111}
+.badge{position:absolute;top:10px;left:10px;background:#FFA500;color:#000;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800;z-index:2}
+.discount{position:absolute;top:10px;right:10px;background:linear-gradient(90deg,#25D366,#128C7E);color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:800;z-index:2}
+.price{color:#FFA500;font-weight:800;font-size:18px}
+.add-btn{background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;border:0;padding:10px 22px;border-radius:24px;font-weight:800;cursor:pointer}
+.qtybox{display:flex;align-items:center;gap:10px;background:#222;border:1px solid #FFA500;border-radius:24px;padding:6px 12px}
+.qbtn{background:#FFA500;border:0;width:28px;height:28px;border-radius:50%;font-weight:bold;cursor:pointer}
+.cart-drawer{position:fixed;bottom:-100%;left:0;right:0;background:#151515;border-radius:20px 20px 0 0;padding:16px;transition:.35s;z-index:200;max-height:82vh;overflow-y:auto;border-top:2px solid #FFA500}
+.cart-drawer.open{bottom:0}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:199;display:none}.overlay.open{display:block}
+.input{width:100%;padding:14px;background:#1e1e1e;border:1px solid #333;border-radius:12px;color:#fff;margin-bottom:10px;outline:none}
+.btn{border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;width:100%}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#151515;padding:12px 16px;display:none;justify-content:space-between;align-items:center;border-top:1px solid #333;z-index:120}
+.admin{position:fixed;inset:0;background:#0a0a0a;z-index:500;display:none;overflow-y:auto;padding:14px}.admin.open{display:block}
+.install-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;z-index:130;font-weight:800;font-size:12px}
+.install-bar.hide{display:none}
+</style>
+</head>
+<body>
+<div class="banner">🔥 2-3km=Rs30 | 4km=Rs40 | 5km=Rs50 | 6km=Rs60 | 3 Burger=FREE | Live Location ON | App Download</div>
+<div class="header">
+<div class="logo" id="logoBtn">
+<img src="logo.png" onerror="this.src='https://raw.githubusercontent.com/sa3354112-glitch/bakesuperhub/main/bakesuperhub/app-icon-512.png'">
+<div><b style="color:#FFA500">Bake Super Hub</b><br><span style="font-size:9px;color:#888">Nagina | Live Location</span></div>
+</div>
+<div style="display:flex;gap:8px;align-items:center">
+<button style="background:#FFA500;color:#000;border:0;padding:7px 12px;border-radius:20px;font-size:11px;font-weight:800" onclick="installApp()">📱 App</button>
+<div class="cart-icon" onclick="toggleCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
+</div>
+</div>
+<div class="long-banner"><div class="long-track" id="longTrack"></div></div>
+
+<div id="homePage" class="page active">
+<div class="hero">
+<h2>Fresh <span style="color:#FFA500">Baked Perfection</span><br>Delivered Daily</h2>
+<p style="color:#aaa;font-size:12px;margin-top:6px">Nagina ka No.1 - Burger Rs39 | Live Location Tracking | COD Only</p>
+<div class="location-box" id="locBox">
+<b style="color:#FFA500">📍 Live Location ON Karo - Fast Delivery</b><br>
+<span style="font-size:11px;color:#ccc">2-3km=Rs30 | 4km=Rs40 | 5km=Rs50 | Auto KM<br>Location ON karoge toh delivery ladka seedha ghar ayega!</span><br>
+<button style="margin-top:10px;background:#FFA500;color:#000;border:0;padding:10px 18px;border-radius:24px;font-weight:800" onclick="getLocation()">📍 Live Location ON Karo</button>
+<div id="vendorInfo" style="margin-top:10px;font-size:11px;line-height:1.6"></div>
+</div>
+<div><span class="hub-badge hub-n">📍 Nagina Main (0-3km)</span><span class="hub-badge hub-k">📍 Kotwali (4km) - Live Location</span></div>
+</div>
+<div class="products" id="plist"></div>
+</div>
+
+<div id="checkoutPage" class="page">
+<div style="padding:12px;padding-bottom:120px">
+<div style="background:#1a1a1a;border-radius:12px;padding:14px;border:1px solid #222">
+<h3>📍 Delivery Details + Live Location</h3>
+<div id="chkLoc" style="background:#222;border-radius:8px;padding:10px;margin:10px 0;font-size:11px;color:#FFA500;line-height:1.6"></div>
+<input class="input" id="cName" placeholder="Full Name *">
+<input class="input" id="cPhone" placeholder="Phone 10 digit *" maxlength="10" type="tel">
+<textarea class="input" id="cAddress" placeholder="Full Address, Mohalla, Landmark *"></textarea>
+<div style="background:rgba(37,211,102,.1);border:1px solid #25D366;border-radius:10px;padding:10px;margin-bottom:10px;font-size:11px;color:#25D366" id="liveLocStatus">📍 Live Location: <span id="liveLocText">Location ON nahi hai - ON Karo toh delivery boy seedha ayega!</span><br><button style="background:#25D366;color:#fff;border:0;padding:6px 12px;border-radius:20px;margin-top:6px;font-size:10px" onclick="getLocation()">📍 Location Share Karo</button></div>
+<select class="input" id="cHub"><option value="auto">🤖 Auto - Nearest Hub</option><option value="NAGINA01">📍 NAGINA01 - Nagina Main</option><option value="KOTWALI01">📍 KOTWALI01 - Kotwali Road</option></select>
+</div>
+<div style="background:#1a1a1a;border-radius:12px;padding:14px;margin-top:10px;border:1px solid #222">
+<h4>🧾 Bill</h4>
+<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:12px;color:#aaa"><span>Subtotal</span><span>Rs <span id="chkSub">0</span></span></div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:12px;color:#aaa"><span>Distance</span><span id="chkDist">0 km</span></div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:12px;color:#aaa"><span>Delivery</span><span>Rs <span id="chkDel">0</span></span></div>
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-top:1px dashed #333;font-weight:800"><span>Total COD</span><span>Rs <span id="chkTotal">0</span></span></div>
+<div id="chkHub" style="background:rgba(37,211,102,.1);border-radius:8px;padding:8px;margin-top:6px;font-size:11px;color:#25D366"></div>
+</div>
+</div>
+<div style="position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;border-top:1px solid #333;padding:12px;display:flex;justify-content:space-between;align-items:center;z-index:150"><div><span style="font-size:10px;color:#888">TOTAL COD</span><br><b>Rs <span id="chkTotal2">0</span></b></div><button style="background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;border:0;padding:12px 26px;border-radius:12px;font-weight:800" onclick="placeOrder()">Place Order →</button></div>
+</div>
+
+<div id="trackPage" class="page"><div style="padding:12px"><div style="background:#1a1a1a;border-radius:12px;padding:14px;border:1px solid #222"><div style="display:flex;justify-content:space-between"><b id="tId">#BSH0000</b><span style="background:#25D366;color:#fff;padding:4px 10px;border-radius:20px;font-size:10px">Confirmed</span></div><p style="font-size:11px;color:#888;margin-top:6px" id="tTime"></p><p style="font-size:11px;color:#FFA500" id="tHub"></p></div><div style="background:#1a1a1a;border-radius:12px;padding:14px;margin-top:10px"><p style="font-size:12px;white-space:pre-line;line-height:1.7" id="tDetails"></p><div style="margin-top:12px;background:#222;border-radius:10px;padding:12px;text-align:center">OTP: <b style="color:#FFA500;letter-spacing:5px;font-size:22px" id="tOtp">0000</b><br><span style="font-size:10px;color:#888">Delivery boy ko batana</span><br><a id="tMapLink" href="#" target="_blank" style="display:inline-block;margin-top:8px;background:#25D366;color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;text-decoration:none">📍 Live Location Dekho</a></div></div><button class="btn" style="background:#25D366;color:#fff;margin-top:12px" onclick="sendWA()">💬 WhatsApp</button><button class="btn" style="background:transparent;border:1px solid #333;color:#fff;margin-top:8px" onclick="showPage('homePage')">Order More</button></div></div>
+
+<div class="admin" id="adminPanel"><div style="display:flex;justify-content:space-between"><h2 style="color:#FFA500">🔒 Owner Admin - Live Location</h2><button onclick="closeAdmin()" style="background:#222;color:#fff;border:0;padding:8px 14px;border-radius:8px">X</button></div>
+<div style="display:flex;gap:6px;margin:12px 0;flex-wrap:wrap"><button class="btn" style="width:auto;padding:7px 14px;font-size:11px;background:#FFA500;color:#000" onclick="showATab('all')">📦 All Orders</button><button class="btn" style="width:auto;padding:7px 14px;font-size:11px;background:#222;color:#fff" onclick="showATab('hub')">📍 Hub Wise</button><button class="btn" style="width:auto;padding:7px 14px;font-size:11px;background:#222;color:#fff" onclick="showATab('vendor')">🏪 Vendor ID</button><button class="btn" style="width:auto;padding:7px 14px;font-size:11px;background:#444;color:#fff" onclick="clearOrders()">🗑 Clear</button></div>
+<div id="aAll"></div><div id="aHub" style="display:none"></div><div id="aVendor" style="display:none"></div>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer"><div style="display:flex;justify-content:space-between"><h3>Your Cart</h3><span onclick="toggleCart()">✕</span></div><div id="cartLoc" style="background:#222;border-radius:8px;padding:10px;margin:10px 0;font-size:11px;color:#FFA500"></div><div id="cartItems"></div><div style="margin-top:10px;border-top:1px dashed #333;padding-top:10px"><div style="display:flex;justify-content:space-between;color:#aaa;font-size:12px"><span>Subtotal</span><span>Rs <span id="cSub">0</span></span></div><div style="display:flex;justify-content:space-between;color:#aaa;font-size:12px;margin-top:4px"><span>Delivery (<span id="cKM">0</span>km)</span><span>Rs <span id="cDel">0</span></span></div><div style="display:flex;justify-content:space-between;font-weight:800;margin-top:8px"><span>Total</span><span>Rs <span id="cTotal">0</span></span></div></div><button class="btn" style="margin-top:14px;background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000" onclick="goCheckout()">Checkout →</button></div>
+<div class="bottom-bar" id="bottomBar"><div><span id="bQty" style="font-size:10px;color:#aaa">0</span><br><b>Rs <span id="bTotal">0</span></b></div><button style="background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;border:0;padding:10px 18px;border-radius:20px;font-weight:800" onclick="toggleCart()">View Cart</button></div>
+<div class="install-bar hide" id="installBar"><div><b>📱 App Install Karo!</b><br><span style="font-size:10px">Home screen pe app jaisa khulega</span></div><div style="display:flex;gap:8px;align-items:center"><button style="background:#000;color:#FFA500;border:0;padding:8px 16px;border-radius:20px;font-weight:800" onclick="installApp()">Install</button><span style="cursor:pointer;font-size:18px" onclick="hideInstall()">✕</span></div></div>
+
+<script>
+const WHATSAPP="919106557703";
+const VENDORS={
+"NAGINA01":{id:"NAGINA01",name:"Nagina Main Hub",owner:"Raju Bhai",phone:"9876543210",lat:29.4425,lng:78.4365,area:"Nagina 0-3km",costPrice:25,active:true},
+"KOTWALI01":{id:"KOTWALI01",name:"Kotwali Hub (4km)",owner:"Pappu Bhai",phone:"9876543211",lat:29.4350,lng:78.47,area:"Kotwali 3-6km",costPrice:25,active:true}
+};
+let PRODUCTS=[
+{id:101,name:"Nagina Special Burger",price:39,oldPrice:59,cost:25,badge:"BURGER Rs39",discount:"3 PE FREE",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80",desc:"Thela Rs25 | 2-3km Rs30 | 4km Rs40"},
+{id:105,name:"Cheese Blast Burger",price:49,oldPrice:79,cost:32,badge:"CHEESE Rs49",discount:"BEST SELLER",img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&q=80",desc:"Cheese Loaded | Auto Delivery"},
+{id:102,name:"Veg Grill Sandwich",price:49,oldPrice:79,cost:30,badge:"SANDWICH Rs49",discount:"GRILL",img:"https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=600&q=80",desc:"Veg Grill Sandwich | Crispy"},
+{id:103,name:"Chicken Burger",price:59,oldPrice:99,cost:38,badge:"CHICKEN",discount:"NEW",img:"https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80",desc:"Chicken Juicy | Shop Special"}
+];
+let cart=JSON.parse(localStorage.getItem('bsh_cart')||'[]');
+let allOrders=JSON.parse(localStorage.getItem('bsh_vendor_orders')||'[]');
+let customerLoc=null, assignedVendor=VENDORS["NAGINA01"], customerDist=2, deliveryCharge=30;
+let deferredPrompt=null;
+
+function calcDist(a,b,c,d){const R=6371;const dLat=(c-a)*Math.PI/180;const dLon=(d-b)*Math.PI/180;const x=Math.sin(dLat/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dLon/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+function getDelCharge(km){if(km<=3)return 30;if(km<=4)return 40;if(km<=5)return 50;if(km<=6)return 60;if(km<=7)return 70;if(km<=8)return 80;if(km<=9)return 90;if(km<=10)return 100;return Math.round(km*10);}
+function findNearest(lat,lng){let min=9999,near=VENDORS["NAGINA01"];for(let k in VENDORS){if(!VENDORS[k].active)continue;let d=calcDist(VENDORS[k].lat,VENDORS[k].lng,lat,lng);if(d<min){min=d;near=VENDORS[k];}}return {vendor:near,distance:min};}
+function getLocation(){
+let vInfo=document.getElementById('vendorInfo');
+let liveText=document.getElementById('liveLocText');
+vInfo.innerHTML="📍 Live Location le rahe hain... Allow karo";
+if(liveText) liveText.innerText="Location le rahe hain...";
+if(navigator.geolocation){
+navigator.geolocation.getCurrentPosition((pos)=>{
+customerLoc={lat:pos.coords.latitude,lng:pos.coords.longitude};
+let res=findNearest(customerLoc.lat,customerLoc.lng);
+assignedVendor=res.vendor;customerDist=res.distance;deliveryCharge=getDelCharge(customerDist);
+let qty=cart.reduce((a,b)=>a+b.qty,0);
+let offer=qty>=3&&customerDist<=3?'<b style="color:#25D366">🎉 3 Burger = FREE!</b>':qty>=3&&customerDist<=5?'<b style="color:#25D366">🎉 3 Burger = 50% OFF</b>':'';
+let mapLink=`https://www.google.com/maps?q=${customerLoc.lat},${customerLoc.lng}`;
+vInfo.innerHTML=`✅ <b style="color:#25D366">Live Location Mil Gaya!</b><br>🏪 ${assignedVendor.name} (${assignedVendor.id})<br>📍 Distance: ${customerDist.toFixed(1)}km | Area: ${assignedVendor.area}<br>🛵 Delivery: Rs ${deliveryCharge} ${offer}<br>📍 <a href="${mapLink}" target="_blank" style="color:#25D366;text-decoration:underline">Google Map Pe Dekho</a> | Order tere paas ayega`;
+if(liveText){liveText.innerHTML=`✅ ON Hai - ${customerDist.toFixed(1)}km | <a href="${mapLink}" target="_blank" style="color:#25D366">Map</a>`;}
+updateCart();
+},()=>{
+vInfo.innerHTML="⚠️ Location Allow nahi kiya - Default Nagina Hub Rs30 - Map nahi ayega";
+if(liveText) liveText.innerText="Allow nahi kiya - Map nahi ayega";
+customerDist=2;deliveryCharge=30;assignedVendor=VENDORS["NAGINA01"];
+updateCart();
+},{enableHighAccuracy:true,timeout:10000});
+}
+}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function renderProducts(){
+document.getElementById('plist').innerHTML=PRODUCTS.map(p=>{
+let it=cart.find(c=>c.id===p.id),q=it?it.qty:0;
+return `<div class="card"><div class="badge">${p.badge}</div><div class="discount">${p.discount}</div><img src="${p.img}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600'"><div style="padding:12px"><h3>${p.name}</h3><p style="color:#888;font-size:11px;margin:4px 0">${p.desc}</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><span class="price">Rs ${p.price} <s style="color:#666;font-size:11px">Rs ${p.oldPrice}</s></span>${q===0?`<button class="add-btn" onclick="addCart(${p.id})">Add</button>`:`<div class="qtybox"><button class="qbtn" onclick="changeQty(${p.id},-1)">-</button><b style="color:#FFA500">${q}</b><button class="qbtn" onclick="changeQty(${p.id},1)">+</button></div>`}</div></div></div>`;
+}).join('');
+let longTrack=document.getElementById('longTrack');
+let bHTML=PRODUCTS.map(p=>`<div class="long-item"><img src="${p.img}" onerror="this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100'"><div><b style="font-size:12px">${p.name}</b><br><span style="color:#FFA500;font-size:11px">Rs ${p.price}</span></div></div>`).join('')+`<div class="long-item" style="background:linear-gradient(90deg,#FFA500,#FF8C00)"><div><b style="color:#000">🔥 OFFER NOW</b><br><span style="color:#000;font-size:11px">3 Burger = Del FREE</span></div></div>`;
+if(longTrack) longTrack.innerHTML=bHTML+bHTML;
+}
+function addCart(id){let p=PRODUCTS.find(x=>x.id===id),it=cart.find(x=>x.id===id);if(it)it.qty++;else cart.push({...p,qty:1});save();renderProducts();updateCart();}
+function changeQty(id,d){let it=cart.find(x=>x.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(x=>x.id!==id);save();renderProducts();updateCart();}
+function save(){localStorage.setItem('bsh_cart',JSON.stringify(cart));}
+function updateCart(){
+let qty=cart.reduce((a,b)=>a+b.qty,0),sub=cart.reduce((a,b)=>a+b.price*b.qty,0);
+document.getElementById('cartCount').innerText=qty;
+let bottomBar=document.getElementById('bottomBar');
+if(bottomBar) bottomBar.style.display=qty>0?'flex':'none';
+let bQty=document.getElementById('bQty');
+if(bQty) bQty.innerText=qty+' items';
+let bTotal=document.getElementById('bTotal');
+if(bTotal) bTotal.innerText=sub;
+let del=qty==0?0:deliveryCharge;
+if(qty>=3&&customerDist<=3)del=0;
+else if(qty>=3&&customerDist<=5)del=Math.round(deliveryCharge*0.5);
+let cSub=document.getElementById('cSub');
+if(cSub) cSub.innerText=sub;
+let cDel=document.getElementById('cDel');
+if(cDel) cDel.innerText=del;
+let cKM=document.getElementById('cKM');
+if(cKM) cKM.innerText=customerDist.toFixed(1);
+let cTotal=document.getElementById('cTotal');
+if(cTotal) cTotal.innerText=sub+del;
+let cartLoc=document.getElementById('cartLoc');
+if(cartLoc){
+let mapLink=customerLoc?`https://www.google.com/maps?q=${customerLoc.lat},${customerLoc.lng}`:'#';
+cartLoc.innerHTML=`📍 ${assignedVendor.name} (${assignedVendor.id}) | ${customerDist.toFixed(1)}km | Rs ${del} ${qty>=3&&customerDist<=3?'(FREE)' : qty>=3&&customerDist<=5?'(50% OFF)':''}<br>${customerLoc?`<a href="${mapLink}" target="_blank" style="color:#25D366">📍 Live Map</a> | `:''}Order tere paas ayega`;
+}
+if(document.getElementById('checkoutPage').classList.contains('active'))updateCheckout();
+}
+function updateCheckout(){
+let qty=cart.reduce((a,b)=>a+b.qty,0),sub=cart.reduce((a,b)=>a+b.price*b.qty,0);
+let del=qty==0?0:deliveryCharge;
+if(qty>=3&&customerDist<=3)del=0;
+else if(qty>=3&&customerDist<=5)del=Math.round(deliveryCharge*0.5);
+let chkSub=document.getElementById('chkSub');
+if(chkSub) chkSub.innerText=sub;
+let chkDist=document.getElementById('chkDist');
+if(chkDist) chkDist.innerText=customerDist.toFixed(1)+' km';
+let chkKM=document.getElementById('chkKM');
+if(chkKM) chkKM.innerText=customerDist.toFixed(1);
+let chkDel=document.getElementById('chkDel');
+if(chkDel) chkDel.innerText=del;
+let chkTotal=document.getElementById('chkTotal');
+if(chkTotal) chkTotal.innerText=sub+del;
+let chkTotal2=document.getElementById('chkTotal2');
+if(chkTotal2) chkTotal2.innerText=sub+del;
+let chkLoc=document.getElementById('chkLoc');
+if(chkLoc){
+let mapLink=customerLoc?`https://www.google.com/maps?q=${customerLoc.lat},${customerLoc.lng}`:'#';
+chkLoc.innerHTML=`📍 Distance: ${customerDist.toFixed(1)}km | Hub: ${assignedVendor.name} (${assignedVendor.id})<br>Base Rs ${deliveryCharge} => Final Rs ${del}<br>${customerLoc?`📍 Live: <a href="${mapLink}" target="_blank" style="color:#25D366">${customerLoc.lat.toFixed(4)}, ${customerLoc.lng.toFixed(4)}</a> | <a href="${mapLink}" target="_blank" style="color:#FFA500">Google Map Kholo</a>`:'📍 Live Location OFF hai - ON Karo!'}`;
+}
+let chkHub=document.getElementById('chkHub');
+if(chkHub) chkHub.innerText=`🏪 ${assignedVendor.name} (${assignedVendor.id}) - Tu hi delivery karega`;
+let vCost=cart.reduce((s,i)=>s+i.cost*i.qty,0);
+let profit=sub+del - vCost -12;
+let chkProfit=document.getElementById('chkProfit');
+if(chkProfit) chkProfit.innerHTML=`💰 Cost Rs ${vCost} | Petrol 12 | <b style="color:#25D366">Profit Rs ${profit}</b> | Live Location se ghar tak jayega`;
+}
+function toggleCart(){document.getElementById('cartDrawer').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');}
+function goCheckout(){if(cart.length==0){alert('Cart khali hai');return}toggleCart();showPage('checkoutPage');updateCheckout();}
+function placeOrder(){
+let n=document.getElementById('cName').value.trim(),p=document.getElementById('cPhone').value.trim(),a=document.getElementById('cAddress').value.trim(),hubSel=document.getElementById('cHub').value;
+if(!n||p.length!=10||!a){alert('Name, Phone 10 digit, Address bharo!');return}
+let finalVendor=hubSel==='auto'?assignedVendor:VENDORS[hubSel];
+let finalDist=customerDist;
+if(hubSel!=='auto'&&customerLoc){finalDist=calcDist(finalVendor.lat,finalVendor.lng,customerLoc.lat,customerLoc.lng);}
+let sub=cart.reduce((s,i)=>s+i.price*i.qty,0),qty=cart.reduce((a,b)=>a+b.qty,0);
+let del=deliveryCharge;
+if(hubSel!=='auto')del=getDelCharge(finalDist);
+if(qty>=3&&finalDist<=3)del=0;else if(qty>=3&&finalDist<=5)del=Math.round(del*0.5);
+let total=sub+del,vCost=cart.reduce((s,i)=>s+i.cost*i.qty,0),profit=total-vCost-12;
+let id='BSH'+Math.floor(1000+Math.random()*9000),otp=Math.floor(1000+Math.random()*9000);
+let items=cart.map(i=>`${i.name} x${i.qty}`).join(', ');
+let liveMapLink=customerLoc?`https://www.google.com/maps?q=${customerLoc.lat},${customerLoc.lng}`:'Location OFF';
+let liveLatLng=customerLoc?`${customerLoc.lat},${customerLoc.lng}`:'Not Shared';
+let order={id,otp,vendorId:finalVendor.id,vendorName:finalVendor.name,vendorPhone:finalVendor.phone,customerName:n,customerPhone:p,address:a,distance:finalDist.toFixed(1),items,sub,del,total,vCost,profit,liveLatLng,liveMapLink,time:new Date().toLocaleString(),status:"New - Live Location ke saath"};
+
+allOrders.unshift(order);
+localStorage.setItem('bsh_vendor_orders',JSON.stringify(allOrders));
+localStorage.setItem('bsh_last_order',JSON.stringify(order));
+
+// WhatsApp - Live Location ke saath - Tere paas ayega
+let msg=`*🔔 NEW ORDER ${id} - LIVE LOCATION*%0A%0AVendor: ${finalVendor.name} (${finalVendor.id})%0ACustomer: ${n}%0APhone: ${p}%0AAddress: ${a}%0ADistance: ${finalDist.toFixed(1)}km%0A%0ALIVE LOCATION:%0A${liveLatLng}%0AMap: ${liveMapLink}%0A%0AItems: ${items}%0ASubtotal: Rs ${sub}%0ADelivery (${finalDist.toFixed(1)}km): Rs ${del}%0ATotal COD: Rs ${total}%0ACost: Rs ${vCost} | Profit: Rs ${profit}%0AOTP: ${otp}%0A%0A📍 Map pe click karke seedha customer ke ghar jao!%0A💵 COD - Tu hi delivery karega!`;
+window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
+
+setTimeout(()=>{
+cart=[];save();renderProducts();updateCart();
+showPage('trackPage');
+document.getElementById('tId').innerText='#'+id;
+document.getElementById('tOtp').innerText=otp;
+document.getElementById('tTime').innerText='Order: '+order.time+' | '+finalDist.toFixed(1)+'km | COD Rs '+total;
+document.getElementById('tHub').innerText='🏪 '+finalVendor.name+' | Rs '+del+' | Profit Rs '+profit+' | Live Location ON';
+document.getElementById('tDetails').innerText=`Name: ${n}\nPhone: ${p}\nAddress: ${a}\nVendor: ${finalVendor.name} (${finalVendor.id})\nDist: ${finalDist.toFixed(1)}km\nLive: ${liveLatLng}\n\nItems: ${items}\nSub Rs ${sub}\nDel Rs ${del}\nTotal Rs ${total} COD\nCost Rs ${vCost}\nProfit Rs ${profit}\nOTP ${otp}`;
+let tMapLink=document.getElementById('tMapLink');
+if(tMapLink){tMapLink.href=liveMapLink; tMapLink.innerText=customerLoc?'📍 Live Location Map Kholo':'📍 Location OFF tha';}
+},600);
+}
+function sendWA(){let o=JSON.parse(localStorage.getItem('bsh_last_order'));if(!o)return;window.open(`https://wa.me/${WHATSAPP}?text=*ORDER ${o.id}*%0A${o.items}%0ARs ${o.total}%0ALive: ${o.liveMapLink}`,'_blank');}
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;let bar=document.getElementById('installBar');if(bar) bar.classList.remove('hide');});
+function installApp(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then((c)=>{if(c.outcome==='accepted'){hideInstall();}deferredPrompt=null;});}else{alert('📱 Install: Chrome > 3 dot > Add to Home Screen');}}
+function hideInstall(){let bar=document.getElementById('installBar');if(bar) bar.classList.add('hide');}
+let pressTimer;
+const logoBtn=document.getElementById('logoBtn');
+if(logoBtn){
+logoBtn.addEventListener('mousedown',()=>{pressTimer=setTimeout(()=>{let pass=prompt("Admin Code? 1234");if(pass==="1234"||pass==="bsh123"){document.getElementById('adminPanel').classList.add('open');showATab('all');}},3000);});
+logoBtn.addEventListener('mouseup',()=>clearTimeout(pressTimer));
+logoBtn.addEventListener('touchstart',()=>{pressTimer=setTimeout(()=>{let pass=prompt("Admin Code? 1234");if(pass==="1234"||pass==="bsh123"){document.getElementById('adminPanel').classList.add('open');showATab('all');}},3000);});
+logoBtn.addEventListener('touchend',()=>clearTimeout(pressTimer));
+}
+function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
+function showATab(tab){
+let aAll=document.getElementById('aAll'),aHub=document.getElementById('aHub'),aVendor=document.getElementById('aVendor');
+if(aAll) aAll.style.display=tab==='all'?'block':'none';
+if(aHub) aHub.style.display=tab==='hub'?'block':'none';
+if(aVendor) aVendor.style.display=tab==='vendor'?'block':'none';
+if(tab==='all'&&aAll){
+aAll.innerHTML=allOrders.length==0?'<p style="color:#888">Koi order nahi</p>':allOrders.map(o=>`<div style="background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:10px;margin-bottom:8px"><div style="display:flex;justify-content:space-between"><b style="color:#FFA500">${o.id}</b><span style="background:${o.vendorId==='NAGINA01'?'#FFA500':'#25D366'};color:#000;padding:2px 8px;border-radius:10px;font-size:10px">${o.vendorName}</span></div><p style="font-size:11px;color:#aaa;margin-top:6px">${o.customerName} | ${o.customerPhone}<br>${o.address}<br>Dist: ${o.distance}km | Live: ${o.liveLatLng||'OFF'}<br>${o.items}<br>Total: Rs ${o.total} | Profit: Rs ${o.profit} | OTP: ${o.otp}<br><a href="${o.liveMapLink}" target="_blank" style="color:#25D366">📍 Map Kholo - Customer ke paas jao</a></p><p style="font-size:9px;color:#666">${o.time}</p></div>`).join('');
+}
+if(tab==='hub'&&aHub){
+let nag=allOrders.filter(o=>o.vendorId==='NAGINA01'),kot=allOrders.filter(o=>o.vendorId==='KOTWALI01');
+aHub.innerHTML=`<div style="background:#1a1a1a;border:2px solid #FFA500;border-radius:12px;padding:12px;margin-bottom:10px"><h3 style="color:#FFA500">📍 Nagina Hub ${nag.length} Orders</h3><div>${nag.map(o=>`<div style="background:#222;border-radius:6px;padding:6px;margin:4px 0;font-size:10px">${o.id} | ${o.distance}km | Rs ${o.total} | <a href="${o.liveMapLink}" target="_blank" style="color:#25D366">📍 Map</a> | ${o.customerName}</div>`).join('')||'Koi nahi'}</div></div><div style="background:#1a1a1a;border:2px solid #25D366;border-radius:12px;padding:12px"><h3 style="color:#25D366">📍 Kotwali Hub 4km - ${kot.length} Orders</h3><div>${kot.map(o=>`<div style="background:#222;border-radius:6px;padding:6px;margin:4px 0;font-size:10px">${o.id} | ${o.distance}km | Rs ${o.total} | <a href="${o.liveMapLink}" target="_blank" style="color:#25D366">📍 Map</a> | ${o.customerName}</div>`).join('')||'Koi nahi'}</div></div>`;
+}
+if(tab==='vendor'&&aVendor){
+let html='<h3 style="color:#FFA500">🏪 Vendor ID - Live Location ke saath</h3>';
+for(let vid in VENDORS){
+let vOrders=allOrders.filter(o=>o.vendorId===vid);
+let profit=vOrders.reduce((s,o)=>s+o.profit,0);
+html+=`<div style="background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:12px;margin:8px 0"><b style="color:#FFA500">${VENDORS[vid].name} (${vid})</b><br><span style="font-size:11px;color:#aaa">Area ${VENDORS[vid].area} | Orders ${vOrders.length} | Profit Rs ${profit}</span><div style="margin-top:6px">${vOrders.map(o=>`<div style="background:#222;border-radius:4px;padding:5px;margin:3px 0;font-size:10px">${o.id} - ${o.distance}km - <a href="${o.liveMapLink}" target="_blank" style="color:#25D366">📍 Map</a> - ${o.customerName}</div>`).join('')||'Koi nahi'}</div></div>`;
+}
+aVendor.innerHTML=html;
+}
+}
+function clearOrders(){if(confirm("Saare orders delete?")){allOrders=[];localStorage.setItem('bsh_vendor_orders','[]');showATab('all');}}
+setTimeout(getLocation,2000);
+renderProducts();updateCart();
+</script>
+<div style="text-align:center;padding:14px;color:#555;font-size:9px">© Bake Super Hub | Live Location ON | 2-3km Rs30, 4km Rs40, 5km Rs50 | 3 Burger FREE | App Download | Tracking | Vendor ID | Live Map | FSSAI 22725371000677</div>
+</body>
+</html>
