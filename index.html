@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bake Super Hub - Nagina No.1</title><link rel="manifest" href="./manifest.json"><meta name="theme-color" content="#FFA500"><link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png"><style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}body{background:#0a0a0a;color:#fff;padding-bottom:90px}.banner{background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;text-align:center;padding:9px;font-size:11px;font-weight:800}.header{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;position:sticky;top:0;background:#0a0a0a;z-index:100}.logo{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}.logo img{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:16px;border:2px solid #FFA500;padding:4px;display:block;box-shadow:0 0 0 3px rgba(255,165,0,.15),0 4px 12px rgba(255,165,0,.4)}.cart-icon{position:relative;font-size:22px;cursor:pointer}.cart-count{position:absolute;top:-8px;right:-8px;background:#FFA500;color:#000;border-radius:50%;width:18px;height:18px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:bold}.page{display:none}.page.active{display:block}.hero{padding:22px 16px;background:linear-gradient(180deg,#1a1a1a,#0a0a0a);border-bottom:1px solid #222}.hero h1{font-size:28px;font-weight:800;line-height:1.2}.section{padding:14px}.products{display:flex;flex-direction:column;gap:14px}.card{background:#1a1a1a;border-radius:16px;overflow:hidden;border:1px solid #222;position:relative}.card img{width:100%;height:200px;object-fit:cover;display:block;background:#111}.badge{position:absolute;top:10px;left:10px;background:#FFA500;color:#000;padding:5px 10px;border-radius:20px;font-size:9px;font-weight:800}.discount{position:absolute;top:10px;right:10px;background:linear-gradient(90deg,#25D366,#128C7E);color:#fff;padding:6px 10px;border-radius:20px;font-size:9px;font-weight:800}.price{color:#FFA500;font-weight:800;font-size:17px}.add-btn{background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;border:0;padding:10px 20px;border-radius:24px;font-weight:800;cursor:pointer;font-size:13px}.qtybox{display:flex;align-items:center;gap:10px;background:#222;border:1px solid #FFA500;border-radius:24px;padding:6px 10px}.qbtn{background:#FFA500;border:0;width:28px;height:28px;border-radius:50%;font-weight:bold;cursor:pointer;font-size:16px}.cart-drawer{position:fixed;bottom:-100%;left:0;right:0;background:#151515;border-radius:20px 20px 0 0;padding:16px;transition:.35s;z-index:200;max-height:82vh;overflow-y:auto;border-top:2px solid #FFA500}.cart-drawer.open{bottom:0}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:199;display:none}.overlay.open{display:block}.input{width:100%;padding:14px 16px;background:#1e1e1e;border:1px solid #333;border-radius:12px;color:#fff;margin-bottom:12px;font-size:14px;outline:none}.input:focus{border-color:#FFA500}.btn{border:0;padding:14px 24px;border-radius:12px;font-weight:bold;cursor:pointer;width:100%;font-size:14px}.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#151515;padding:12px 16px;display:none;justify-content:space-between;align-items:center;border-top:1px solid #333;z-index:120}
+.long-banner{background:#111;border-bottom:1px solid #222;padding:8px 0;overflow:hidden;white-space:nowrap}.long-track{display:inline-flex;gap:10px;animation:longScroll 22s linear infinite}.long-item{min-width:220px;height:58px;background:#1a1a1a;border:1px solid #222;border-radius:12px;display:flex;align-items:center;gap:8px;padding:6px 10px;flex-shrink:0}.long-item img{width:44px;height:44px;border-radius:8px;object-fit:cover}.long-item b{font-size:11px;display:block}.long-item span{font-size:10px;color:#FFA500;font-weight:bold}.long-item.free{background:linear-gradient(90deg,#FFA500,#FF8C00)}.long-item.free b,.long-item.free span{color:#000}@keyframes longScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0a0a;z-index:500;display:none;overflow-y:auto;padding:16px}.admin-panel.open{display:block}.admin-card{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:10px;margin-bottom:10px}
+.modern-offer{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.offer-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:20px;font-size:11px;font-weight:700}.chip-small{background:#222;border:1px solid #444;color:#aaa}.chip-free{background:linear-gradient(90deg,#25D366,#128C7E);color:#fff}.chip-new{background:linear-gradient(90deg,#FFA500,#FF6B00);color:#000;animation:pulse 2s infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.zomato-card{background:#1a1a1a;border:1px solid #222;border-radius:16px;padding:16px;margin-bottom:14px}.z-bill-row{display:flex;justify-content:space-between;padding:8px 0;font-size:13px;color:#aaa}.z-bill-total{display:flex;justify-content:space-between;padding:12px 0;border-top:1px dashed #333;margin-top:8px;font-weight:800;font-size:15px}.zomato-place-bar{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;border-top:1px solid #222;padding:14px 16px;z-index:150;display:flex;justify-content:space-between;align-items:center}
+/* APP INSTALL STYLES */
+.install-banner{position:fixed;bottom:70px;left:12px;right:12px;background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;padding:12px 16px;border-radius:14px;z-index:140;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 24px rgba(255,165,0,.5);animation:slideUp .5s ease;transform:translateY(150%);transition:.4s}.install-banner.show{transform:translateY(0)}@keyframes slideUp{from{transform:translateY(150%)}to{transform:translateY(0)}}
+.app-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:300;display:none;align-items:center;justify-content:center;padding:16px}.app-modal.open{display:flex}.app-modal-box{background:#1a1a1a;border:2px solid #FFA500;border-radius:20px;padding:20px;max-width:340px;width:100%;text-align:center;position:relative;animation:popIn .3s ease}@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}.step{display:flex;gap:12px;align-items:center;text-align:left;background:#222;border-radius:12px;padding:10px 12px;margin:8px 0;font-size:12px}.step-num{background:#FFA500;color:#000;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0}
+</style></head><body>
+<div class="banner">🔥 OFFER NOW: Small Order = Rs30 Delivery | 3 Burger = Del FREE | 2 Pizza = Del FREE | COD Only</div>
+<div class="header"><div class="logo" id="logoBtn"><img src="logo.png?v=appguide" onerror="this.src='https://raw.githubusercontent.com/sa3354112-glitch/bakesuperhub/main/bakesuperhub/app-icon-512.png'"><b style="color:#FFA500">Bake Super Hub</b></div><div style="display:flex;gap:12px;align-items:center"><span style="font-size:12px;background:#FFA500;color:#000;padding:5px 10px;border-radius:20px;font-weight:800;cursor:pointer" onclick="openAppGuide()">📲 App Download</span><div class="cart-icon" onclick="toggleCart()">🛒<span class="cart-count" id="cartCount">0</span></div></div></div>
+<div class="long-banner"><div class="long-track" id="longTrack"></div></div>
+
+<div class="install-banner" id="installBanner"><div><b style="font-size:13px">📲 App Install Karo - 1 Click Me!</b><p style="font-size:10px">Home screen pe app jaisa khulega</p></div><button style="background:#000;color:#FFA500;border:0;padding:8px 14px;border-radius:20px;font-weight:800;font-size:11px;cursor:pointer" onclick="installApp()">Install</button><span style="margin-left:8px;cursor:pointer" onclick="closeInstallBanner()">✕</span></div>
+
+<div class="app-modal" id="appModal"><div class="app-modal-box">
+<span style="position:absolute;top:12px;right:16px;cursor:pointer;font-size:18px" onclick="closeAppGuide()">✕</span>
+<div style="width:70px;height:70px;background:#fff;border-radius:18px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><img src="logo.png" style="width:60px;height:60px;object-fit:contain;border-radius:12px" onerror="this.src='https://raw.githubusercontent.com/sa3354112-glitch/bakesuperhub/main/bakesuperhub/app-icon-512.png'"></div>
+<h3 style="color:#FFA500;font-size:18px">Bake Super Hub App Download Karo!</h3>
+<p style="color:#aaa;font-size:11px;margin:8px 0 14px">Chrome se app kaise download kare - 10 second me!</p>
+
+<div class="step"><div class="step-num">1</div><div><b>Chrome ke 3 dot pe click karo</b><br><span style="color:#888;font-size:10px">Upar right corner me ⋮ 3 dot hai</span></div><span style="margin-left:auto;font-size:18px">⋮</span></div>
+<div class="step"><div class="step-num">2</div><div><b>"Add to Home Screen" ya "Install App" pe click karo</b><br><span style="color:#888;font-size:10px">Menu me niche milega</span></div><span style="margin-left:auto;font-size:18px">📲</span></div>
+<div class="step"><div class="step-num">3</div><div><b>"Install" pe click karo - Ho gaya!</b><br><span style="color:#888;font-size:10px">Home screen pe app aa jayega - Play Store jaisa!</span></div><span style="margin-left:auto;font-size:18px">✅</span></div>
+
+<button class="btn" style="background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;margin-top:14px" onclick="installApp()">📲 Abhi Install Karo - 1 Click</button>
+<button class="btn" style="background:transparent;border:1px solid #333;color:#fff;margin-top:8px" onclick="closeAppGuide()">Baad Me Karunga</button>
+<p style="color:#666;font-size:9px;margin-top:10px">💡 App install karne se fast order + offer milega!</p>
+</div></div>
+
+<div id="homePage" class="page active"><div class="hero"><h1>Fresh Baked <span style="color:#FFA500">Perfection</span><br>Delivered Daily</h1><p style="color:#aaa;margin-top:10px;font-size:13px;line-height:1.5">Nagina ka No.1 Fast Food Hub<br>🔥 Burger Rs39 se start | Pizza Rs120<br>💵 Cash on Delivery Only</p><div class="modern-offer"><span class="offer-chip chip-small">🛵 Small Order: Rs30</span><span class="offer-chip chip-free">🎉 3 Burger = Del FREE</span><span class="offer-chip chip-free">🍕 2 Pizza = Del FREE</span><span class="offer-chip chip-new">📲 App Download Karo</span></div><div style="margin-top:12px;background:linear-gradient(90deg,#FFA500,#FF8C00);border-radius:12px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="openAppGuide()"><div><b style="color:#000;font-size:12px">📲 App Download Karo - Fast Order!</b><p style="color:#000;font-size:10px;opacity:.8">Chrome > 3 dot > Add to Home Screen</p></div><span style="background:#000;color:#FFA500;padding:6px 12px;border-radius:20px;font-size:10px;font-weight:800">Install</span></div><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><span style="background:#FFA500;color:#000;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:bold">✓ FSSAI: 22725371000677</span><span style="background:#222;color:#ccc;padding:6px 12px;border-radius:20px;font-size:10px;border:1px solid #333">Bake Super Food</span></div></div><div class="section"><div class="products" id="plist"></div></div></div>
+
+<div id="checkoutPage" class="page"><div class="section" style="padding-bottom:110px">
+<div class="zomato-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h3 style="font-size:15px">📍 Delivery Details</h3><span style="background:#25D366;color:#fff;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700">⏱️ 30 Mins • COD</span></div>
+<input class="input" id="cName" placeholder="Full Name *"><input class="input" id="cPhone" placeholder="Phone 10 digit *" maxlength="10" type="tel"><textarea class="input" id="cAddress" placeholder="Full Address, Mohalla, Landmark *" rows="2"></textarea><input class="input" id="cLandmark" placeholder="Nearby Landmark (Optional)"></div>
+<div class="zomato-card"><h4 style="font-size:14px;margin-bottom:8px">💵 Payment - COD Only</h4><div style="background:rgba(255,165,0,.1);border:1px solid #FFA500;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px"><span style="font-size:20px">💵</span><div><b style="font-size:13px">Cash on Delivery</b><p style="font-size:11px;color:#aaa">Pay after delivery</p></div><span style="margin-left:auto;background:#FFA500;color:#000;padding:4px 8px;border-radius:12px;font-size:10px;font-weight:700">SELECTED</span></div></div>
+<div class="zomato-card"><h4 style="font-size:14px;margin-bottom:8px">🧾 Bill Details</h4>
+<div class="z-bill-row"><span>Subtotal</span><span>Rs <span id="checkoutSub">0</span></span></div>
+<div class="z-bill-row"><span>Delivery Charge</span><span id="checkoutDelRow">Rs <span id="checkoutDel">0</span></span></div>
+<div class="z-bill-row" id="freeDelRow" style="display:none;color:#25D366"><span>🎉 Delivery FREE!</span><span>-Rs 30</span></div>
+<div class="z-bill-total"><span>Total Pay (COD)</span><span>Rs <span id="checkoutTotal">0</span></span></div>
+</div>
+</div>
+<div class="zomato-place-bar" id="placeBar"><div><p style="font-size:11px;color:#888">TOTAL PAY - COD</p><b style="font-size:18px">Rs <span id="checkoutTotal2">0</span></b></div><button style="background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;border:0;padding:12px 28px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:8px" onclick="placeOrder()">Place Order <span>→</span></button></div>
+</div>
+
+<div id="trackPage" class="page"><div class="section"><div style="background:#1a1a1a;border-radius:16px;padding:16px;border:1px solid #222"><div style="display:flex;justify-content:space-between;align-items:center"><b id="trackId" style="font-size:18px">#BSH0000</b><span style="background:#25D366;color:#fff;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">Confirmed • COD</span></div><p style="color:#888;font-size:11px;margin-top:6px" id="trackTime"></p></div><div style="background:#1a1a1a;border-radius:16px;padding:16px;margin-top:14px;border:1px solid #222"><h4>Order Summary</h4><p style="color:#aaa;font-size:12px;margin-top:10px;white-space:pre-line;line-height:1.6" id="trackDetails"></p><div style="margin-top:12px;padding:10px;background:#222;border-radius:10px;text-align:center">OTP: <b style="color:#FFA500;letter-spacing:4px;font-size:18px" id="trackOtp">0000</b></div></div><div style="background:linear-gradient(90deg,#FFA500,#FF8C00);border-radius:12px;padding:12px;margin-top:14px;text-align:center;cursor:pointer" onclick="openAppGuide()"><b style="color:#000;font-size:12px">📲 App Download Karo - Agla Order Fast Hoga!</b></div><button class="btn" style="margin-top:14px;background:#25D366;color:#fff;padding:14px;border-radius:12px" onclick="sendWhatsappAgain()">💬 WhatsApp Pe Bhejo</button><button class="btn" style="margin-top:10px;background:transparent;border:1px solid #333;color:#fff;padding:14px;border-radius:12px" onclick="showPage('homePage')">Order More</button></div></div>
+
+<div class="admin-panel" id="adminPanel"><div style="display:flex;justify-content:space-between"><h2 style="color:#FFA500">🔒 Admin</h2><button onclick="closeAdmin()" style="background:#222;color:#fff;border:0;padding:8px 14px;border-radius:8px">X</button></div><div id="adminList"></div><button class="btn" style="margin-top:12px;background:#FFA500;color:#000" onclick="saveAdmin()">Save All</button></div>
+<div class="overlay" id="overlay" onclick="toggleCart()"></div><div class="cart-drawer" id="cartDrawer"><div style="display:flex;justify-content:space-between"><h3>Your Cart</h3><span onclick="toggleCart()">✕</span></div><div id="dmsg" style="background:#222;border:1px dashed #FFA500;color:#FFA500;font-size:11px;text-align:center;margin:12px 0;padding:10px;border-radius:10px"></div><div id="cartItems" style="margin-top:10px"></div><div style="margin-top:12px;border-top:1px dashed #333;padding-top:12px"><div style="display:flex;justify-content:space-between;color:#aaa;font-size:13px"><span>Subtotal</span><span>Rs <span id="subTotal">0</span></span></div><div style="display:flex;justify-content:space-between;color:#aaa;font-size:13px;margin-top:6px"><span>Delivery</span><span>Rs <span id="delCharge">0</span></span></div><div style="display:flex;justify-content:space-between;font-weight:800;margin-top:10px;font-size:16px"><span>Total Pay</span><span>Rs <span id="grandTotal">0</span></span></div></div><button class="btn" style="margin-top:16px;background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;padding:14px;border-radius:12px" onclick="goCheckout()">Proceed to Checkout →</button></div>
+<div class="bottom-bar" id="bottomBar"><div><span id="bottomQty" style="font-size:11px;color:#aaa">0 items</span><br><b style="font-size:16px">Rs <span id="bottomTotal">0</span></b></div><button style="background:linear-gradient(90deg,#FFA500,#FF8C00);color:#000;border:0;padding:10px 20px;border-radius:24px;font-weight:800;cursor:pointer" onclick="toggleCart()">View Cart</button></div>
+
+<script>
+const WHATSAPP="919106557703";
+const SANDWICH_PIC="sandwich.png?v=appguide";
+let DEFAULT_PRODUCTS=[
+{id:101,name:"Nagina Special Burger",price:39,oldPrice:59,img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",desc:"Small Order Rs30 | 3 Burger pe Delivery FREE",badge:"BURGER",discount:"3 PE DEL FREE"},
+{id:105,name:"Cheese Burger",price:69,oldPrice:99,img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600",desc:"Small Order Rs30 | 3 Burger pe Delivery FREE",badge:"CHEESE BURGER",discount:"3 PE DEL FREE"},
+{id:102,name:"Nagina Spl Pizza",price:120,oldPrice:199,img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600",desc:"Small Order Rs30 | 2 Pizza pe Delivery FREE",badge:"PIZZA",discount:"2 PE DEL FREE"},
+{id:106,name:"Paneer Pizza",price:149,oldPrice:249,img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600",desc:"Small Order Rs30 | 2 Pizza pe Delivery FREE",badge:"PANEER PIZZA",discount:"2 PE DEL FREE"},
+{id:103,name:"Veg Grill Sandwich",price:49,oldPrice:79,img:SANDWICH_PIC,desc:"4 Triangular Pieces - Small Order Rs30",badge:"SANDWICH",discount:"3 PE DEL FREE"}
+];
+let PRODUCTS=JSON.parse(localStorage.getItem('bsh_products_appguide')||'null')||DEFAULT_PRODUCTS;
+let cart=JSON.parse(localStorage.getItem('bsh_cart')||'[]');
+
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);document.getElementById('placeBar').style.display=id==='checkoutPage'?'flex':'none';}
+function renderProducts(){document.getElementById('plist').innerHTML=PRODUCTS.map(p=>{let it=cart.find(c=>c.id===p.id),q=it?it.qty:0;return`<div class="card"><div class="badge">${p.badge}</div><div class="discount">${p.discount}</div><img src="${p.img}" onerror="this.src='https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=600'"><div style="padding:14px"><h3 style="font-size:15px;font-weight:700">${p.name}</h3><p style="color:#888;font-size:11px;margin:6px 0;line-height:1.5">${p.desc}</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px"><span class="price">Rs ${p.price} <s style="color:#666;font-size:11px">Rs ${p.oldPrice}</s></span>${q===0?`<button class="add-btn" onclick="addCart(${p.id})">Add</button>`:`<div class="qtybox"><button class="qbtn" onclick="changeQty(${p.id},-1)">-</button><b style="color:#FFA500">${q}</b><button class="qbtn" onclick="changeQty(${p.id},1)">+</button></div>`}</div></div></div>`}).join('');let longTrack=document.getElementById('longTrack');let bHTML=PRODUCTS.map(p=>`<div class="long-item"><img src="${p.img}"><div><b>${p.name}</b><span>Rs ${p.price}</span></div></div>`).join('')+`<div class="long-item free"><div><b>🔥 OFFER NOW</b><span>3 Burger = Del FREE</span></div></div>`;longTrack.innerHTML=bHTML+bHTML;}
+function addCart(id){let p=PRODUCTS.find(x=>x.id===id),it=cart.find(x=>x.id===id);if(it)it.qty++;else cart.push({...p,qty:1});save();renderProducts();updateCart();}
+function changeQty(id,d){let it=cart.find(x=>x.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(x=>x.id!==id);save();renderProducts();updateCart();}
+function save(){localStorage.setItem('bsh_cart',JSON.stringify(cart));}
+function updateCart(){let qty=cart.reduce((a,b)=>a+b.qty,0),sub=cart.reduce((a,b)=>a+b.price*b.qty,0);document.getElementById('cartCount').innerText=qty;document.getElementById('bottomBar').style.display=qty>0?'flex':'none';document.getElementById('bottomQty').innerText=qty+(qty==1?' item':' items');document.getElementById('bottomTotal').innerText=sub;document.getElementById('cartItems').innerHTML=cart.length===0?'<p style="text-align:center;color:#888;padding:20px">Cart empty</p>':cart.map(i=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #222;font-size:13px"><div><b>${i.name}</b><p style="font-size:11px;color:#888">Qty: ${i.qty} x Rs ${i.price}</p></div><span style="font-weight:700">Rs ${i.price*i.qty}</span></div>`).join('');let pc=cart.filter(i=>i.name.toLowerCase().includes('pizza')).reduce((a,b)=>a+b.qty,0),oc=cart.filter(i=>!i.name.toLowerCase().includes('pizza')).reduce((a,b)=>a+b.qty,0),del=qty==0?0:pc>=2||oc>=3?0:30;document.getElementById('subTotal').innerText=sub;document.getElementById('delCharge').innerText=del;document.getElementById('checkoutSub').innerText=sub;document.getElementById('checkoutDel').innerText=del;document.getElementById('grandTotal').innerText=sub+del;document.getElementById('checkoutTotal').innerText=sub+del;document.getElementById('checkoutTotal2').innerText=sub+del;let isFree=del==0&&qty>0;document.getElementById('freeDelRow').style.display=isFree?'flex':'none';document.getElementById('checkoutDelRow').style.display=isFree?'none':'flex';document.getElementById('dmsg').innerHTML=isFree?'🎉 <b>Delivery FREE!</b> - 3 Burger / 2 Pizza':'🛵 Small Order: <b>Rs30 Delivery</b> | 3 Burger pe FREE!';}
+function toggleCart(){document.getElementById('cartDrawer').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');}
+function goCheckout(){if(cart.length==0){alert('Cart khali');return}toggleCart();showPage('checkoutPage');updateCart();}
+function placeOrder(){
+let n=document.getElementById('cName').value.trim(),p=document.getElementById('cPhone').value.trim(),a=document.getElementById('cAddress').value.trim(),land=document.getElementById('cLandmark').value.trim();
+if(!n||p.length!=10||!a){alert('Name, Phone, Address bharo!');return}
+let sub=cart.reduce((s,i)=>s+i.price*i.qty,0),pc=cart.filter(i=>i.name.toLowerCase().includes('pizza')).reduce((s,i)=>s+i.qty,0),oc=cart.filter(i=>!i.name.toLowerCase().includes('pizza')).reduce((s,i)=>s+i.qty,0),del=pc>=2||oc>=3?0:30,total=sub+del;
+let id='BSH'+Math.floor(1000+Math.random()*9000),otp=Math.floor(1000+Math.random()*9000),items=cart.map(i=>`${i.name} x${i.qty}`).join(', ');
+let order={id,otp,name:n,phone:p,address:a,landmark:land,items,sub,del,total,time:new Date().toLocaleTimeString()};
+localStorage.setItem('bsh_last_order',JSON.stringify(order));
+let msg=`*🔔 NEW ORDER ${id} - COD*%0A%0AName: ${n}%0APhone: ${p}%0AAddress: ${a}${land?`%0ALandmark: ${land}`:''}%0A%0AItems: ${items}%0ASubtotal: Rs ${sub}%0ADelivery: Rs ${del} ${del==0?'(FREE)':''}%0ATotal: Rs ${total} (COD)%0AOTP: ${otp}%0ATime: ${order.time}%0A%0A💵 CASH ON DELIVERY - Small Order Rs30 | 3 Burger / 2 Pizza = FREE`;
+window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
+setTimeout(()=>{cart=[];save();renderProducts();updateCart();showPage('trackPage');document.getElementById('placeBar').style.display='none';document.getElementById('trackId').innerText='#'+id;document.getElementById('trackOtp').innerText=otp;document.getElementById('trackTime').innerText='Order at '+order.time+' • 30 mins • COD';document.getElementById('trackDetails').innerText=`Name: ${n}\nPhone: ${p}\nAddress: ${a}${land?'\nLandmark: '+land:''}\n\nItems: ${items}\nSubtotal: Rs ${sub}\nDelivery: Rs ${del}\nTotal: Rs ${total} (COD)\nOTP: ${otp}`;},600);
+}
+function sendWhatsappAgain(){let o=JSON.parse(localStorage.getItem('bsh_last_order'));if(!o)return;let msg=`*ORDER ${o.id} - COD*%0AName: ${o.name}%0APhone: ${o.phone}%0AItems: ${o.items}%0ATotal: Rs ${o.total} COD%0AOTP: ${o.otp}`;window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');}
+let pressTimer;const logoBtn=document.getElementById('logoBtn');logoBtn.addEventListener('touchstart',()=>{pressTimer=setTimeout(()=>{let pass=prompt("🔒 Enter Admin Code");if(pass==="1234"||pass==="bsh123"){document.getElementById('adminPanel').classList.add('open');renderAdmin();}},3000);});logoBtn.addEventListener('touchend',()=>{clearTimeout(pressTimer);});logoBtn.addEventListener('mousedown',()=>{pressTimer=setTimeout(()=>{let pass=prompt("🔒 Enter Admin Code");if(pass==="1234"||pass==="bsh123"){document.getElementById('adminPanel').classList.add('open');renderAdmin();}},3000);});logoBtn.addEventListener('mouseup',()=>{clearTimeout(pressTimer);});
+function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
+function renderAdmin(){document.getElementById('adminList').innerHTML=PRODUCTS.map((p,i)=>`<div class="admin-card"><b style="color:#FFA500">${p.name}</b><input class="input" style="margin-top:8px" id="a_name_${i}" value="${p.name}"><input class="input" id="a_price_${i}" type="number" value="${p.price}"><input class="input" id="a_desc_${i}" value="${p.desc}"><input class="input" id="a_img_${i}" value="${p.img}"></div>`).join('');}
+function saveAdmin(){PRODUCTS=PRODUCTS.map((p,i)=>({...p,name:document.getElementById(`a_name_${i}`).value,price:parseInt(document.getElementById(`a_price_${i}`).value),desc:document.getElementById(`a_desc_${i}`).value,img:document.getElementById(`a_img_${i}`).value}));localStorage.setItem('bsh_products_appguide',JSON.stringify(PRODUCTS));renderProducts();closeAdmin();alert("✅ Save ho gaya!");}
+
+// APP INSTALL GUIDE LOGIC
+let deferredPrompt;
+let hasShownGuide = localStorage.getItem('bsh_app_guide_shown');
+
+function openAppGuide(){document.getElementById('appModal').classList.add('open');}
+function closeAppGuide(){document.getElementById('appModal').classList.remove('open');localStorage.setItem('bsh_app_guide_shown','yes');}
+function closeInstallBanner(){document.getElementById('installBanner').classList.remove('show');}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show banner after 2 sec if not installed
+  setTimeout(()=>{
+    if(!localStorage.getItem('bsh_app_installed')){
+      document.getElementById('installBanner').classList.add('show');
+    }
+  },2000);
+  // Show modal guide after 4 sec first time
+  if(!hasShownGuide){
+    setTimeout(()=>{
+      openAppGuide();
+    },4000);
+  }
+});
+
+function installApp(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(choice => {
+      if(choice.outcome==='accepted'){
+        localStorage.setItem('bsh_app_installed','yes');
+        document.getElementById('installBanner').classList.remove('show');
+        closeAppGuide();
+        alert('✅ App Install Ho Gaya! Home screen pe dekho - Bake Super Hub!');
+      }
+      deferredPrompt=null;
+    });
+  } else {
+    // Fallback - show guide if direct install not supported
+    openAppGuide();
+  }
+}
+
+// If no beforeinstallprompt support (iOS etc), show guide anyway after 5 sec first time
+setTimeout(()=>{
+  if(!hasShownGuide && !localStorage.getItem('bsh_app_installed')){
+    openAppGuide();
+  }
+},5000);
+
+// Service Worker
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js').then(()=>console.log('App Ready - SW Registered')).catch(()=>{});
+}
+
+renderProducts();updateCart();
+</script><div style="text-align:center;padding:14px;color:#555;font-size:9px">© Bake Super Hub | COD Only | 📲 App Download: Chrome > 3 dot > Add to Home Screen | FSSAI 22725371000677</div></body></html>
