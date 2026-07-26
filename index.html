@@ -43,7 +43,7 @@ body{background:#0a0a0a;color:#fff;padding-bottom:85px}
 .inbar.show{transform:translateY(0)}
 .admin{position:fixed;inset:0;background:#0a0a0a;z-index:500;display:none;overflow:auto;padding:14px}
 .admin.open{display:block}
-.admin.open #inbar{display:none !important}
+body:has(.admin.open) #inbar{display:none !important}
 .admin-card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px;margin-bottom:12px}
 </style>
 </head>
