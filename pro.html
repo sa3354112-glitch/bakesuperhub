@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bake Super Hub - Nagina No.1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}</style>
+</head>
+<body class="bg-[#121212] text-white">
+
+<div class="bg-[#ff9f00] text-black text-xs font-bold p-2 text-center flex justify-between items-center"><span>Delivery Charge: FREE 0-3km | 4km Rs40 5km Rs50</span><span class="bg-black text-white px-3 py-1 rounded-full">Direct Install - 1 Click me</span></div>
+
+<header class="bg-[#1a1a1a] p-3 flex justify-between items-center sticky top-0 z-20 border-b border-zinc-800">
+<div class="flex items-center gap-3"><img src="logo.png" class="w-12 h-12 rounded-full border-2 border-amber-500" onerror="this.src='https://via.placeholder.com/50'"><div><div class="font-black text-amber-500">Bake Super Hub</div><div class="text-[11px] text-zinc-400">Nagina No.1 - FSSAI Registered</div></div></div>
+<div class="flex items-center gap-2"><button class="bg-[#ff9f00] text-black font-bold px-5 py-2 rounded-full text-sm">Download</button><div class="relative" onclick="toggleCart()"><span class="text-2xl">🛒</span><span id="cartCount" class="absolute -top-2 -right-2 bg-amber-500 text-black text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center">0</span></div></div>
+</header>
+
+<div class="bg-[#1a1a1a] p-3 flex gap-3 overflow-x-auto no-scrollbar border-b border-zinc-800" id="catRow"></div>
+
+<div class="p-4">
+<h1 class="text-[32px] font-black leading-none">Fresh <span class="text-amber-500">Baked</span> Perfection</h1><h1 class="text-[32px] font-black leading-none">Delivered Daily</h1>
+<p class="text-[13px] text-zinc-400 mt-2">Burger Rs39 | Cheese Rs49 | Pizza Rs120 | COD | FSSAI Registered</p>
+<div class="bg-zinc-800 p-3 rounded-xl mt-3 text-[13px]"><span class="text-amber-500 font-bold">Delivery Charge:</span> 1 Burger pe Rs30, 3 Burger pe Free, 2 Pizza pe Free (Nagina 0-3km me)</div>
+</div>
+
+<div id="products" class="p-3 grid grid-cols-1 gap-4"></div>
+
+<!-- CART -->
+<div id="cartDrawer" class="fixed inset-0 bg-black/80 z-40 hidden"><div class="absolute bottom-0 left-0 right-0 bg-white text-black rounded-t-[20px] p-4 max-h-[90vh] overflow-auto">
+<div class="flex justify-between items-center"><h2 class="font-black text-lg">Your Order</h2><button onclick="toggleCart()" class="bg-zinc-200 w-8 h-8 rounded-full">X</button></div>
+<div id="cartItems" class="mt-3"></div>
+<div class="bg-zinc-100 p-3 rounded-xl mt-3"><div class="flex justify-between text-sm"><span>Subtotal</span><span id="subT">0</span></div><div class="flex justify-between text-sm"><span>Delivery</span><span id="delT">0</span></div><div class="flex justify-between font-black text-lg border-t mt-2 pt-2"><span>Total</span><span id="grandT">0</span></div></div>
+<input id="custName" placeholder="Full Name*" class="w-full border-2 p-3 rounded-xl mt-3">
+<input id="custPhone" placeholder="Phone 10 digits*" class="w-full border-2 p-3 rounded-xl mt-2">
+<textarea id="custAddr" placeholder="Full Address, Mohalla, Landmark, Nagina*" class="w-full border-2 p-3 rounded-xl mt-2"></textarea>
+<input type="hidden" id="custLat"><input type="hidden" id="custLng"><input type="hidden" id="custCity">
+<div class="bg-orange-50 border border-orange-200 p-2 rounded-xl mt-2 text-xs"><span id="locStatus">📍 Getting your location for fast delivery... Please Allow</span></div>
+<select id="payMode" class="w-full border-2 p-3 rounded-xl mt-3"><option value="COD">Cash on Delivery</option><option value="UPI">UPI Payment - 9106557703@pthdfc</option></select>
+<div id="upiBox" class="hidden bg-black text-white p-4 rounded-xl text-center mt-3"><p class="text-sm">Pay to UPI ID</p><p class="font-mono font-black text-amber-400 text-lg">9106557703@pthdfc</p><p id="upiAmt" class="font-black text-2xl mt-1"></p><a id="upiLink" class="bg-amber-500 text-black px-8 py-3 rounded-full inline-block mt-3 font-black">Pay Now</a><p class="text-[10px] mt-2 text-zinc-400">Pay karke Place Order dabao - Screenshot rakhna</p></div>
+<button onclick="placeOrder()" class="w-full bg-[#ff9f00] text-black font-black p-4 rounded-full mt-4 text-lg">PLACE ORDER - Rs <span id="btnTotal">0</span></button>
+</div></div>
+
+<div id="success" class="hidden fixed inset-0 bg-white text-black z-50 p-6 text-center"><h1 class="text-6xl mt-20">✅</h1><h2 class="font-black text-2xl">Order Confirmed!</h2><p id="orderIdShow" class="font-mono bg-black text-amber-400 inline-block px-4 py-1 rounded mt-3 font-bold"></p><div id="successDetails" class="text-left bg-zinc-100 p-4 rounded-xl mt-6 text-sm"></div><button onclick="location.href=location.pathname" class="w-full bg-black text-white p-4 rounded-full mt-6 font-bold">Continue Shopping</button></div>
+
+<!-- ADMIN -->
+<div id="adminPage" class="hidden fixed inset-0 bg-[#f0f0f0] text-black z-[60] overflow-auto">
+<div class="bg-black text-white p-4 flex justify-between"><h2 class="font-black">ADMIN - Private</h2><button onclick="location.hash='';location.reload()" class="bg-white text-black px-3 py-1 rounded-full text-sm">Close</button></div>
+<div id="adminLogin" class="p-10 text-center"><input id="adminPass" type="password" placeholder="Password 7860" class="border-2 p-3 rounded-xl w-full max-w-xs"><button onclick="adminLogin()" class="bg-black text-white w-full max-w-xs p-3 rounded-xl mt-3 font-bold">Login</button></div>
+<div id="adminContent" class="hidden p-3">
+<div class="grid grid-cols-3 gap-2 text-center"><div class="bg-black text-white p-4 rounded-xl"><div id="statVisits" class="font-black text-2xl">0</div><div class="text-[10px]">Visits</div></div><div class="bg-amber-500 text-black p-4 rounded-xl"><div id="statOrders" class="font-black text-2xl">0</div><div class="text-[10px]">Orders</div></div><div class="bg-white p-4 rounded-xl border"><div id="statRev" class="font-black text-2xl">0</div><div class="text-[10px]">Revenue</div></div></div>
+<input id="adminSearch" placeholder="Search Name/Phone/ID" class="w-full border-2 p-3 rounded-xl mt-4" onkeyup="filterOrders()">
+<div class="bg-white p-3 rounded-xl mt-4"><h3 class="font-black text-sm">Product Manager - Add/Edit/Delete</h3><input id="pName" placeholder="Name" class="border p-2 rounded w-full mt-2 text-sm"><input id="pPrice" type="number" placeholder="Price" class="border p-2 rounded w-full mt-2 text-sm"><input id="pImg" placeholder="Image URL" class="border p-2 rounded w-full mt-2 text-sm"><input id="pTag" placeholder="Tag BURGER Rs39" class="border p-2 rounded w-full mt-2 text-sm"><select id="pCat" class="border p-2 rounded w-full mt-2 text-sm"><option>Burger</option><option>Cheese Burger</option><option>Pizza</option><option>Sandwich</option><option>Momos</option><option>Roll</option><option>Drinks</option></select><button onclick="addProduct()" class="bg-amber-500 text-black font-bold w-full p-2 rounded mt-2">Add Product</button><div id="pList" class="mt-3 space-y-1"></div></div>
+<div id="adminOrders" class="mt-4 space-y-3"></div>
+</div>
+</div>
+
+<script>
+let defaultProds=[
+{id:1,name:"Nagina Special Burger",price:39,img:"https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=700",tag:"BURGER Rs39",cat:"Burger"},
+{id:2,name:"Cheese Burger",price:49,img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=700",tag:"CHEESE Rs49",cat:"Cheese Burger"},
+{id:3,name:"Veg Grill Sandwich",price:49,img:"sandwich.png",tag:"VEG GRILL Rs49",cat:"Sandwich"},
+{id:4,name:"Paneer Pizza",price:180,img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=700",tag:"PIZZA Rs180",cat:"Pizza"}
+];
+let prods=JSON.parse(localStorage.getItem('bsh_final_v4')||JSON.stringify(defaultProds));
+let cart=JSON.parse(localStorage.getItem('bsh_cart_v4')||'[]');
+function saveProds(){localStorage.setItem('bsh_final_v4',JSON.stringify(prods));render();renderPList();}
+function saveCart(){localStorage.setItem('bsh_cart_v4',JSON.stringify(cart));renderCart();}
+function render(){
+let cats=[...new Set(prods.map(p=>p.cat))];
+document.getElementById('catRow').innerHTML='<div onclick="filterCat(\'All\')" class="bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer">All</div>'+cats.map(c=>`<div onclick="filterCat('${c}')" class="bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer flex items-center gap-2"><img src="${prods.find(p=>p.cat===c)?.img}" class="w-6 h-6 rounded-full object-cover"> ${c}</div>`).join('');
+renderProducts(prods);
+}
+let currentCat='All';
+function filterCat(cat){currentCat=cat;if(cat==='All')renderProducts(prods);else renderProducts(prods.filter(p=>p.cat===cat));}
+function renderProducts(list){
+document.getElementById('products').innerHTML=list.map(p=>`
+<div class="bg-[#1e1e1e] rounded-[20px] overflow-hidden border border-zinc-800">
+<div class="relative"><img src="${p.img}" class="w-full h-[280px] object-cover" onerror="this.src='logo.png'"><span class="absolute top-3 left-3 bg-[#ff9f00] text-black text-xs font-black px-4 py-1.5 rounded-full">${p.tag}</span><span class="absolute top-3 right-3 bg-[#00c853] text-white text-xs font-bold px-4 py-1.5 rounded-full">3 PE FREE</span></div>
+<div class="p-4"><h3 class="font-bold text-[18px]">${p.name}</h3><p class="text-[12px] text-zinc-400">${p.name} - Rs${p.price}</p><div class="flex justify-between items-center mt-3"><span class="text-[#ff9f00] font-black text-[22px]">Rs ${p.price}</span><button onclick="addToCart(${p.id})" class="bg-[#ff9f00] text-black font-black px-8 py-3 rounded-full text-sm">Shop Now</button></div></div>
+</div>`).join('');
+}
+function addToCart(id){let f=cart.find(c=>c.id===id);if(f)f.q++;else cart.push({id,q:1});saveCart();document.getElementById('cartDrawer').classList.remove('hidden');}
+function renderCart(){let count=cart.reduce((s,c)=>s+c.q,0);document.getElementById('cartCount').innerText=count;let sub=cart.reduce((s,c)=>{let pr=prods.find(x=>x.id===c.id);return pr?s+pr.price*c.q:s;},0);let del=count>=3?0:count>0?30:0;let tot=sub+del;document.getElementById('subT').innerText='Rs '+sub;document.getElementById('delT').innerText='Rs '+del;document.getElementById('grandT').innerText='Rs '+tot;document.getElementById('btnTotal').innerText=tot;document.getElementById('upiAmt').innerText='Rs '+tot;document.getElementById('upiLink').href=`upi://pay?pa=9106557703@pthdfc&pn=Bake%20Super%20Hub&am=${tot}&cu=INR`;document.getElementById('cartItems').innerHTML=cart.map(c=>{let pr=prods.find(x=>x.id===c.id);return pr?`<div class="flex justify-between bg-zinc-50 p-3 rounded-xl mt-2"><div><b class="text-sm">${pr.name}</b><div class="text-xs">Rs ${pr.price} x ${c.q}</div></div><div class="flex gap-2 items-center"><button onclick="changeQ(${c.id},-1)" class="bg-zinc-200 w-7 h-7 rounded-full">-</button><span>${c.q}</span><button onclick="changeQ(${c.id},1)" class="bg-black text-white w-7 h-7 rounded-full">+</button></div></div>`:'';}).join('')||'<p class="text-xs text-zinc-500">Cart empty</p>';}
+function changeQ(id,d){let f=cart.find(c=>c.id===id);if(!f)return;f.q+=d;if(f.q<=0)cart=cart.filter(c=>c.id!==id);saveCart();}
+function toggleCart(){document.getElementById('cartDrawer').classList.toggle('hidden');renderCart();}
+
+// AUTO LOCATION - IP + GPS
+function getLoc(){
+if(navigator.geolocation){navigator.geolocation.getCurrentPosition(pos=>{
+document.getElementById('custLat').value=pos.coords.latitude;document.getElementById('custLng').value=pos.coords.longitude;
+document.getElementById('locStatus').innerHTML=`✅ Exact Location: ${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} - Fast Delivery Ready`;
+},()=>{getIPLoc();});}else getIPLoc();
+}
+function getIPLoc(){fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
+document.getElementById('custCity').value=d.city+', '+d.region;document.getElementById('locStatus').innerHTML=`📍 Approx Location: ${d.city}, ${d.region} - Allow GPS for exact`;
+}).catch(()=>{document.getElementById('locStatus').innerHTML='📍 Location Allow karo - Fast Delivery ke liye';});}
+getLoc();
+
+document.getElementById('payMode').addEventListener('change',e=>{document.getElementById('upiBox').classList.toggle('hidden',e.target.value!=='UPI');});
+function placeOrder(){
+let n=document.getElementById('custName').value.trim(),ph=document.getElementById('custPhone').value.trim(),ad=document.getElementById('custAddr').value.trim();
+if(cart.length==0)return alert('Cart khali');if(!n||ph.length!=10||!ad)return alert('Name/Phone/Address bharo');
+let sub=cart.reduce((s,c)=>{let pr=prods.find(x=>x.id===c.id);return pr?s+pr.price*c.q:s;},0);let del=cart.reduce((s,c)=>s+c.q,0)>=3?0:30;let tot=sub+del;let oid='BSH'+Math.floor(1000+Math.random()*9000);
+let orders=JSON.parse(localStorage.getItem('bsh_orders_final')||'[]');
+orders.push({id:oid,name:n,phone:ph,addr:ad,lat:document.getElementById('custLat').value,lng:document.getElementById('custLng').value,city:document.getElementById('custCity').value,cart:[...cart],sub,del,total:tot,pay:document.getElementById('payMode').value,status:'New',time:new Date().toLocaleString()});
+localStorage.setItem('bsh_orders_final',JSON.stringify(orders));
+localStorage.removeItem('bsh_cart_v4');cart=[];
+document.getElementById('success').classList.remove('hidden');document.getElementById('orderIdShow').innerText=oid;
+document.getElementById('successDetails').innerHTML=`<b>${n}</b> - ${ph}<br>${ad}<br>City: ${document.getElementById('custCity').value||''}<br>Lat: ${document.getElementById('custLat').value||'No GPS'}<br><br>Total Rs ${tot}`;
+}
+
+// ADMIN
+function addProduct(){let n=document.getElementById('pName').value,pr=parseInt(document.getElementById('pPrice').value),img=document.getElementById('pImg').value||'logo.png',tag=document.getElementById('pTag').value||'NEW',cat=document.getElementById('pCat').value;if(!n||!pr)return alert('Name Price bharo');prods.push({id:Date.now(),name:n,price:pr,img:img,tag:tag,cat:cat});saveProds();document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('pImg').value='';}
+function renderPList(){document.getElementById('pList').innerHTML=prods.map(p=>`<div class="flex justify-between bg-white p-2 rounded text-xs items-center border"><div class="flex items-center gap-2"><img src="${p.img}" class="w-8 h-8 rounded object-cover"><span>${p.name} Rs${p.price} [${p.cat}]</span></div><div class="flex gap-1"><button onclick="editPrice(${p.id})" class="bg-black text-white px-2 py-1 rounded">Price</button><button onclick="delProd(${p.id})" class="bg-red-600 text-white px-2 py-1 rounded">Del</button></div></div>`).join('');}
+function editPrice(id){let np=prompt('New Price?');if(!np)return;let p=prods.find(x=>x.id===id);p.price=parseInt(np);saveProds();}
+function delProd(id){if(!confirm('Delete?'))return;prods=prods.filter(x=>x.id!==id);saveProds();}
+let allOrders=[];
+function adminLogin(){if(document.getElementById('adminPass').value!=='7860')return alert('Wrong');document.getElementById('adminLogin').classList.add('hidden');document.getElementById('adminContent').classList.remove('hidden');loadAdmin();}
+function loadAdmin(){allOrders=JSON.parse(localStorage.getItem('bsh_orders_final')||'[]');document.getElementById('statOrders').innerText=allOrders.length;document.getElementById('statRev').innerText='Rs '+allOrders.reduce((s,o)=>s+o.total,0);fetch('https://api.countapi.xyz/get/bakesuperhub-nagina-2026/visits').then(r=>r.json()).then(d=>{document.getElementById('statVisits').innerText=d.value||0;});renderAdmin(allOrders);renderPList();}
+function renderAdmin(list){
+document.getElementById('adminOrders').innerHTML=list.slice().reverse().map(o=>{
+let mapBtn=o.lat?`<a href="https://www.google.com/maps?q=${o.lat},${o.lng}" target="_blank" class="bg-blue-600 text-white px-3 py-1.5 rounded-full text-xs font-bold inline-block mt-1">📍 MAP KHOLO - Exact Location</a>`:`<span class="text-xs">📍 IP Location: ${o.city||'No GPS - Address se jao'}</span>`;
+return `<div class="bg-white border-2 border-black rounded-xl p-3 text-sm">
+<div class="flex justify-between"><b>${o.id}</b><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-bold">${o.status}</span></div>
+<div class="mt-2">👤 <b>${o.name}</b> - 📞 <a href="tel:${o.phone}" class="text-blue-600 font-bold">${o.phone}</a></div>
+<div>🏠 ${o.addr}</div>
+<div class="mt-1 font-bold">📍 ${mapBtn}<br><span class="text-[11px]">GPS: ${o.lat||'Not Allowed'}, ${o.lng||''}</span></div>
+<div class="bg-zinc-100 p-2 rounded mt-2"><b>Items:</b> ${o.cart.map(c=>{let pr=prods.find(x=>x.id===c.id)||{name:'Item'};return pr.name+' x'+c.q;}).join(', ')}<br><b>Total Rs ${o.total} - ${o.pay}</b></div>
+<div class="text-[10px] text-zinc-500 mt-1">${o.time}</div>
+<div class="flex gap-2 mt-2"><a href="https://wa.me/91${o.phone}?text=Hi ${o.name}, order ${o.id} confirm" target="_blank" class="bg-green-600 text-white px-3 py-1 rounded-full text-xs">WhatsApp</a><button onclick="delOrder('${o.id}')" class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs">Delete</button></div>
+</div>`;
+}).join('')||'<p class="text-center">No Orders</p>';
+}
+function filterOrders(){let q=document.getElementById('adminSearch').value.toLowerCase();let f=allOrders.filter(o=>o.id.toLowerCase().includes(q)||o.name.toLowerCase().includes(q)||o.phone.includes(q));renderAdmin(f);}
+function delOrder(id){if(!confirm('Delete '+id))return;allOrders=allOrders.filter(o=>o.id!==id);localStorage.setItem('bsh_orders_final',JSON.stringify(allOrders));loadAdmin();}
+if(location.hash==='#admin')document.getElementById('adminPage').classList.remove('hidden');
+window.addEventListener('hashchange',()=>{if(location.hash==='#admin')document.getElementById('adminPage').classList.remove('hidden');});
+fetch('https://api.countapi.xyz/hit/bakesuperhub-nagina-2026/visits').then(r=>r.json()).catch(()=>{});
+render();renderCart();
+</script>
+</body>
+</html>
