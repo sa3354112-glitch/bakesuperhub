@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake Super Hub - Premium Bakery & Snacks</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d2691e; /* Chocolate/Bakery Brown */
+            --secondary-color: #f4a460;
+            --dark-color: #2d2d2d;
+            --light-color: #fffaf5;
+            --success-color: #27ae60;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #fff; color: var(--dark-color); line-height: 1.6; }
+
+        /* Navigation */
+        nav {
+            background: #fff;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--primary-color); font-weight: bold; }
+        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--dark-color); font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 25px; max-width: 600px; }
+        .cta-btn { 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 12px 30px; 
+            text-decoration: none; 
+            border-radius: 30px; 
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        .cta-btn:hover { background: #a0522d; transform: translateY(-3px); }
+
+        /* Sections General */
+        section { padding: 60px 5%; }
+        .section-title { text-align: center; margin-bottom: 40px; font-family: 'Playfair Display', serif; font-size: 2.5rem; }
+
+        /* Categories Grid */
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+        .cat-card { 
+            background: var(--light-color); 
+            padding: 20px; 
+            text-align: center; 
+            border-radius: 15px; 
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid #eee;
+        }
+        .cat-card:hover { background: var(--secondary-color); color: white; transform: translateY(-5px); }
+        .cat-card i { font-size: 2rem; margin-bottom: 10px; color: var(--primary-color); }
+        .cat-card:hover i { color: white; }
+
+        /* Product Cards */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { 
+            background: white; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid #f0f0f0;
+        }
+        .product-card:hover { transform: scale(1.03); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .badge { 
+            position: absolute; top: 15px; left: 15px; 
+            background: var(--success-color); color: white; 
+            padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;
+        }
+        .discount-badge { background: #e74c3c; left: auto; right: 15px; }
+        .product-img { width: 100%; height: 220px; object-fit: cover; background: #eee; }
+        .product-info { padding: 20px; }
+        .rating { color: #f1c40f; font-size: 14px; margin-bottom: 5px; }
+        .product-title { font-size: 1.2rem; margin-bottom: 10px; font-weight: 600; }
+        .product-desc { font-size: 0.9rem; color: #777; margin-bottom: 15px; height: 40px; overflow: hidden; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-size: 1.3rem; font-weight: 700; color: var(--primary-color); }
+        .old-price { text-decoration: line-through; color: #999; font-size: 0.9rem; margin-left: 5px; }
+        .add-btn { 
+            background: var(--primary-color); color: white; border: none; 
+            padding: 8px 15px; border-radius: 8px; cursor: pointer; transition: var(--transition);
+        }
+        .add-btn:hover { background: var(--dark-color); }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25d366; color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 30px; box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+            z-index: 1001; transition: var(--transition); text-decoration: none;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); background: #128c7e; }
+
+        /* About Section */
+        .about-box { background: var(--light-color); border-radius: 30px; padding: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-stats { display: flex; gap: 20px; margin-top: 20px; }
+        .stat-item { text-align: center; flex: 1; background: white; padding: 15px; border-radius: 15px; }
+
+        footer { background: var(--dark-color); color: white; padding: 50px 5% 20px; text-align: center; }
+        .footer-links { margin-bottom: 20px; }
+        .footer-links a { color: #ccc; margin: 0 15px; text-decoration: none; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Bake Super Hub</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-basket" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <h1>Fresh Baked Perfection</h1>
+        <p>Premium bakery products, healthy snacks, and gourmet cakes delivered fresh to your doorstep in Bijnor.</p>
+        <a href="#shop" class="cta-btn">Shop Now <i class="fas fa-arrow-right"></i></a>
+    </section>
+
+    <!-- Categories -->
+    <section>
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid">
+            <div class="cat-card"><i class="fas fa-bread-slice"></i><p>Bakery</p></div>
+            <div class="cat-card"><i class="fas fa-birthday-cake"></i><p>Cakes</p></div>
+            <div class="cat-card"><i class="fas fa-cookie"></i><p>Cookies</p></div>
+            <div class="cat-card"><i class="fas fa-hamburger"></i><p>Snacks</p></div>
+            <div class="cat-card"><i class="fas fa-coffee"></i><p>Beverages</p></div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="shop">
+        <h2 class="section-title">Best Sellers</h2>
+        <div class="product-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="badge">Healthy</span>
+                <span class="badge discount-badge">20% OFF</span>
+                <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=500&q=60" alt="Cookies" class="product-img">
+                <div class="product-info">
+                    <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (175)</div>
+                    <h3 class="product-title">Mixed Berry Cookies</h3>
+                    <p class="product-desc">Soft baked cookies with real cranberries & blueberries.</p>
+                    <div class="price-row">
+                        <div class="price">₹199 <span class="old-price">₹249</span></div>
+                        <button class="add-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <span class="badge discount-badge">25% OFF</span>
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=60" alt="Cake" class="product-img">
+                <div class="product-info">
+                    <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <h3 class="product-title">Chocolate Truffle Cake</h3>
+                    <p class="product-desc">Rich chocolate truffle with silky ganache frosting.</p>
+                    <div class="price-row">
+                        <div class="price">₹599 <span class="old-price">₹799</span></div>
+                        <button class="add-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=60" alt="Bread" class="product-img">
+                <div class="product-info">
+                    <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    <h3 class="product-title">Artisan Sourdough</h3>
+                    <p class="product-desc">Handcrafted traditional sourdough with crispy crust.</p>
+                    <div class="price-row">
+                        <div class="price">₹149 <span class="old-price">₹199</span></div>
+                        <button class="add-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nagina Special -->
+            <div class="product-card">
+                <span class="badge" style="background:#e67e22">Best Seller</span>
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=60" alt="Burger" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Nagina Special Burger</h3>
+                    <p class="product-desc">Special aloo tikki with our signature hari chutney.</p>
+                    <div class="price-row">
+                        <div class="price">₹39</div>
+                        <button class="add-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-box">
+            <div class="about-text">
+                <h2 style="font-family:'Playfair Display', serif; font-size: 2rem; margin-bottom: 15px;">About Our Hub</h2>
+                <p>Founded with a passion for quality, Bake Super Hub brings you the finest bakery products. We use premium ingredients and maintain modern hygiene standards to deliver excellence.</p>
+                <div class="about-stats">
+                    <div class="stat-item"><strong>50+</strong><br>Products</div>
+                    <div class="stat-item"><strong>100%</strong><br>Fresh</div>
+                    <div class="stat-item"><strong>4.5☆</strong><br>Rating</div>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80" alt="Bakery Shop" style="flex: 1; border-radius: 20px; width: 100%; max-width: 400px;">
+        </div>
+    </section>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919106557703" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="color: white; margin-bottom: 20px;">Bake Super Hub</div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Refund Policy</a>
+        </div>
+        <p>&copy; 2024 Bake Super Hub Bijnor. All rights reserved.</p>
+        <p style="font-size: 12px; margin-top: 10px; color: #888;">Designed for Excellence</p>
+    </footer>
+
+</body>
+</html>
