@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Bake Super Hub | Nagina No.1</title>
+    
+    <!-- SEO & Social Meta -->
+    <meta name="description" content="Order Fresh Burgers, Pizza & Snacks in Nagina. FSSAI Registered.">
+    <meta property="og:image" content="logo.png">
+    <meta name="theme-color" content="#FFA500">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --p: #FFA500; --bg: #080808; --card: #151515; --text: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body { background: var(--bg); color: var(--text); padding-bottom: 100px; overflow-x: hidden; }
+
+        /* Navbar */
+        .nav { position: sticky; top: 0; background: rgba(8,8,8,0.9); backdrop-filter: blur(10px); padding: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-area img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--p); }
+        .admin-btn { background: #222; color: var(--p); border: 1px solid var(--p); padding: 5px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; }
+
+        /* Marquee Offer */
+        .marquee { background: var(--p); color: #000; font-size: 11px; font-weight: 800; padding: 5px 0; text-align: center; }
+
+        /* Hero */
+        .hero { padding: 30px 20px; background: linear-gradient(180deg, #1a1a1a 0%, #080808 100%); }
+        .hero h1 { font-size: 38px; line-height: 1.1; font-weight: 800; }
+        .hero p { color: #888; margin-top: 10px; font-size: 14px; }
+
+        /* Categories/Filters */
+        .filters { display: flex; gap: 10px; padding: 0 20px; overflow-x: auto; scrollbar-width: none; }
+        .filter-item { background: #1a1a1a; padding: 8px 20px; border-radius: 20px; border: 1px solid #333; white-space: nowrap; font-size: 13px; }
+        .filter-item.active { background: var(--p); color: #000; border-color: var(--p); font-weight: bold; }
+
+        /* Products */
+        .products { padding: 20px; display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .card { background: var(--card); border-radius: 24px; overflow: hidden; border: 1px solid #222; position: relative; transition: 0.3s; }
+        .card img { width: 100%; height: 240px; object-fit: cover; }
+        .badge { position: absolute; top: 15px; left: 15px; background: var(--p); color: #000; padding: 5px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        .card-content { padding: 18px; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+        .price { font-size: 22px; font-weight: 800; color: var(--p); }
+        
+        /* Add Button */
+        .btn-add { background: var(--p); color: #000; border: none; padding: 10px 25px; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.2s; }
+        .btn-add:active { transform: scale(0.9); }
+
+        /* Cart Floating Bar */
+        .cart-bar { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--p); padding: 15px 20px; border-radius: 20px; display: none; justify-content: space-between; align-items: center; color: #000; z-index: 2000; box-shadow: 0 10px 30px rgba(255,165,0,0.3); animation: slideUp 0.4s ease; }
+        @keyframes slideUp { from { transform: translateY(100px); } to { transform: translateY(0); } }
+
+        /* Modals/Drawers */
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 2100; display: none; }
+        .drawer { position: fixed; bottom: 0; left: 0; right: 0; background: #121212; border-radius: 30px 30px 0 0; padding: 25px; z-index: 2200; transform: translateY(100%); transition: 0.4s cubic-bezier(0, 0, 0.2, 1); max-height: 85vh; overflow-y: auto; }
+        .drawer.open { transform: translateY(0); }
+
+        /* Form Inputs */
+        input, textarea { width: 100%; background: #1a1a1a; border: 1px solid #333; padding: 15px; border-radius: 15px; color: #fff; margin-bottom: 12px; outline: none; }
+        input:focus { border-color: var(--p); }
+
+        /* Admin Section */
+        .admin-order { background: #1a1a1a; padding: 15px; border-radius: 15px; margin-bottom: 15px; border-left: 4px solid var(--p); }
+        .status-tag { font-size: 10px; background: #25D366; color: #fff; padding: 3px 8px; border-radius: 5px; }
+
+        /* FSSAI */
+        .fssai { background: #fff; border-radius: 15px; padding: 12px; display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+        .fssai b { color: #000; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <div class="marquee">🔥 FREE DELIVERY on 3 Burgers or 2 Pizzas (Nagina 0-3KM)</div>
+
+    <nav class="nav">
+        <div class="logo-area">
+            <img src="logo.png" alt="Logo">
+            <div>
+                <b style="color: var(--p);">Bake Super Hub</b><br>
+                <small style="color: #666; font-size: 10px;">FSSAI: 22725371000677</small>
+            </div>
+        </div>
+        <button class="admin-btn" onclick="openAdmin()">Owner Login</button>
+    </nav>
+
+    <!-- Page: Home -->
+    <div id="page-home">
+        <div class="hero">
+            <h1>Freshly <span style="color: var(--p);">Baked</span><br>Daily in Nagina</h1>
+            <p>100% Veg • Hygienic • Fast Delivery</p>
+        </div>
+
+        <div class="filters">
+            <div class="filter-item active">All Menu</div>
+            <div class="filter-item">Burgers</div>
+            <div class="filter-item">Pizza</div>
+            <div class="filter-item">Sandwich</div>
+        </div>
+
+        <div class="products" id="product-list">
+            <!-- Loading via JS -->
+        </div>
+
+        <div style="padding: 20px;">
+            <div class="fssai">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/FSSAI_logo.svg/200px-FSSAI_logo.svg.png" width="50">
+                <div><b>FSSAI REGISTERED KITCHEN</b><br><small style="color:#555">Reg No: 22725371000677</small></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Cart Bar -->
+    <div class="cart-bar" id="cart-bar" onclick="openCheckout()">
+        <div>
+            <b id="cart-count">1 Item</b><br>
+            <span style="font-size: 12px; font-weight: bold;">₹<span id="cart-total">0</span> + Delivery</span>
+        </div>
+        <b>View Cart 🛒</b>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+    <!-- Drawer: Checkout -->
+    <div class="drawer" id="drawer-checkout">
+        <h2 style="margin-bottom: 20px; color: var(--p);">Final Checkout</h2>
+        <div id="checkout-items" style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px;"></div>
+        
+        <div id="location-status" style="background: #222; padding: 10px; border-radius: 10px; font-size: 12px; margin-bottom: 15px; color: var(--p);">
+            📍 Checking distance for delivery charges...
+        </div>
+
+        <input type="text" id="cust-name" placeholder="आपका नाम (Full Name)">
+        <input type="tel" id="cust-phone" placeholder="मोबाइल नंबर (Phone Number)">
+        <textarea id="cust-addr" placeholder="पूरा पता: मकान नंबर, मोहल्ला, लैंडमार्क"></textarea>
+        
+        <div style="background: #000; padding: 15px; border-radius: 15px; margin-top: 10px;">
+            <div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:5px;">
+                <span>Item Total</span><span>₹<span id="bill-sub">0</span></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:5px;">
+                <span>Delivery Charge (<span id="bill-km">0</span>km)</span><span>₹<span id="bill-del">0</span></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:18px; font-weight: 800; color: var(--p); border-top: 1px dashed #333; padding-top: 10px; margin-top: 10px;">
+                <span>Total Pay (COD)</span><span>₹<span id="bill-total">0</span></span>
+            </div>
+        </div>
+
+        <button class="btn-add" style="width: 100%; height: 55px; margin-top: 20px; font-size: 18px;" onclick="placeOrder()">Website Order Confirm ✔</button>
+    </div>
+
+    <!-- Drawer: Admin Panel -->
+    <div class="drawer" id="drawer-admin">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+            <h2 style="color: var(--p);">Admin Orders</h2>
+            <button class="admin-btn" onclick="clearOrders()" style="background: red; color: white; border: none;">Clear All</button>
+        </div>
+        <div id="admin-order-list">
+            <p style="text-align: center; color: #555;">No orders yet.</p>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const SHOP_COORDS = { lat: 29.4425, lng: 78.4365 }; // Nagina coordinates
+        const PRODUCTS = [
+            { id: 1, name: "Special Veg Burger", price: 39, img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600", tag: "Rs 39 Only" },
+            { id: 2, name: "Cheese Lava Burger", price: 49, img: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600", tag: "Extra Cheese" },
+            { id: 3, name: "Veg Cheese Pizza (7 inch)", price: 120, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600", tag: "Best Seller" },
+            { id: 4, name: "Cheese Corn Pizza", price: 149, img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600", tag: "New Launch" }
+        ];
+
+        let cart = [];
+        let userDistance = 0;
+
+        // --- CORE FUNCTIONS ---
+
+        function init() {
+            renderProducts();
+            askLocation();
+            updateCartUI();
+        }
+
+        function renderProducts() {
+            const list = document.getElementById('product-list');
+            list.innerHTML = PRODUCTS.map(p => `
+                <div class="card">
+                    <img src="${p.img}">
+                    <div class="badge">${p.tag}</div>
+                    <div class="card-content">
+                        <h3>${p.name}</h3>
+                        <div class="price-row">
+                            <div class="price">₹${p.price}</div>
+                            <button class="btn-add" onclick="addToCart(${p.id})">Add +</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            cart.push(product);
+            updateCartUI();
+            
+            // Show bar
+            document.getElementById('cart-bar').style.display = 'flex';
+        }
+
+        function updateCartUI() {
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cart-count').innerText = `${cart.length} Item${cart.length > 1 ? 's' : ''}`;
+            document.getElementById('cart-total').innerText = subtotal;
+            
+            // Calc Delivery
+            let delivery = calculateDelivery(userDistance, cart);
+            
+            document.getElementById('bill-sub').innerText = subtotal;
+            document.getElementById('bill-km').innerText = userDistance.toFixed(1);
+            document.getElementById('bill-del').innerText = delivery;
+            document.getElementById('bill-total').innerText = subtotal + delivery;
+        }
+
+        function calculateDelivery(km, items) {
+            if (km === 0) return 30; // Default if location blocked
+            
+            let burgerCount = items.filter(i => i.name.includes("Burger")).length;
+            let pizzaCount = items.filter(i => i.name.includes("Pizza")).length;
+
+            if (km <= 3) {
+                if (burgerCount >= 3 || pizzaCount >= 2) return 0;
+                return 30;
+            } else if (km <= 5) {
+                return 50;
+            }
+            return 70;
+        }
+
+        function askLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    userDistance = getDistance(SHOP_COORDS.lat, SHOP_COORDS.lng, pos.coords.latitude, pos.coords.longitude);
+                    document.getElementById('location-status').innerText = `📍 Delivery to your location (${userDistance.toFixed(1)} km)`;
+                    updateCartUI();
+                }, () => {
+                    document.getElementById('location-status').innerText = "⚠️ Location blocked. Using flat Rs.30 delivery.";
+                });
+            }
+        }
+
+        function getDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // KM
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        }
+
+        // --- ORDER LOGIC ---
+
+        function placeOrder() {
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const addr = document.getElementById('cust-addr').value;
+
+            if (!name || !phone || !addr) { alert("Please fill all details!"); return; }
+
+            const order = {
+                id: "#BSH" + Math.floor(1000 + Math.random() * 9000),
+                name, phone, addr,
+                items: cart.map(i => i.name).join(", "),
+                total: document.getElementById('bill-total').innerText,
+                time: new Date().toLocaleTimeString()
+            };
+
+            // Save to Website Database (Local)
+            let orders = JSON.parse(localStorage.getItem('website_orders') || '[]');
+            orders.push(order);
+            localStorage.setItem('website_orders', JSON.stringify(orders));
+
+            alert(`✅ Order Placed Successfully!\nOrder ID: ${order.id}\nWebsite par record save ho gaya hai.`);
+            
+            // Optionally redirect to WhatsApp
+            const waMsg = `*New Website Order*\nID: ${order.id}\nName: ${name}\nItems: ${order.items}\nTotal: Rs ${order.total}\nAddr: ${addr}`;
+            window.open(`https://wa.me/919106557703?text=${encodeURIComponent(waMsg)}`);
+            
+            cart = [];
+            closeAll();
+            updateCartUI();
+            document.getElementById('cart-bar').style.display = 'none';
+        }
+
+        // --- ADMIN FUNCTIONS ---
+
+        function openAdmin() {
+            const pin = prompt("Enter Owner PIN:");
+            if (pin === "2026") {
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('drawer-admin').classList.add('open');
+                loadAdminOrders();
+            } else {
+                alert("Wrong PIN!");
+            }
+        }
+
+        function loadAdminOrders() {
+            const list = document.getElementById('admin-order-list');
+            let orders = JSON.parse(localStorage.getItem('website_orders') || '[]');
+            
+            if (orders.length === 0) {
+                list.innerHTML = "<p style='text-align:center; color:#555;'>No orders in database.</p>";
+                return;
+            }
+
+            list.innerHTML = orders.reverse().map(o => `
+                <div class="admin-order">
+                    <div style="display:flex; justify-content:space-between;">
+                        <b>${o.id}</b> <span class="status-tag">New Order</span>
+                    </div>
+                    <div style="font-size:13px; margin:10px 0;">
+                        <b>👤 ${o.name}</b> | 📞 ${o.phone}<br>
+                        🍔 ${o.items}<br>
+                        📍 ${o.addr}
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="color:var(--p); font-weight:800;">₹${o.total}</span>
+                        <small style="color:#666;">${o.time}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearOrders() {
+            if(confirm("Sare orders delete kar dein?")) {
+                localStorage.removeItem('website_orders');
+                loadAdminOrders();
+            }
+        }
+
+        // --- UI HELPERS ---
+
+        function openCheckout() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('drawer-checkout').classList.add('open');
+            
+            const checkoutItems = document.getElementById('checkout-items');
+            checkoutItems.innerHTML = cart.map(i => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px;">
+                    <span>${i.name}</span><b>₹${i.price}</b>
+                </div>
+            `).join('');
+        }
+
+        function closeAll() {
+            document.getElementById('overlay').style.display = 'none';
+            document.querySelectorAll('.drawer').forEach(d => d.classList.remove('open'));
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
