@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bake Super Hub - Base</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#000;color:#fff;padding-bottom:80px}
+.header{background:#000;border-bottom:1px solid #222;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
+.logo{display:flex;gap:10px;align-items:center}.logo-img{width:52px;height:52px;border-radius:50%;border:3px solid #FFA500;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}.logo-img img{width:100%;height:100%;object-fit:cover}
+.logo b{color:#FFA500;font-size:17px}.logo span{color:#aaa;font-size:11px;display:block}
+.cart{background:#111;border:1px solid #222;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative}.count{position:absolute;top:-6px;right:-6px;background:#FFA500;color:#000;min-width:18px;height:18px;border-radius:9px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:800}
+.grid{display:grid;grid-template-columns:1fr;gap:12px;padding:12px;max-width:1000px;margin:0 auto}@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:#111;border:1px solid #222;border-radius:16px;overflow:hidden}.card-m{height:220px;background:#0a0a0a;position:relative}.card-m img{width:100%;height:100%;object-fit:cover}.card-b{padding:10px}.card-b h3{font-size:14px}.price{color:#FFA500;font-weight:800;margin-top:6px}.btn{background:#FFA500;color:#000;border:0;padding:8px 14px;border-radius:20px;font-weight:800;cursor:pointer;margin-top:8px}
+.page{display:none}.page.active{display:block}
+.bbar{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #222;padding:10px 12px;display:none;justify-content:space-between;align-items:center;z-index:40}
+.input{width:100%;padding:10px;background:#000;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:8px;font-size:13px}
+.admin{position:fixed;inset:0;background:#000;z-index:100;display:none;overflow:auto}.admin.open{display:block}
+</style></head><body>
+<div class="header"><div class="logo" id="logoBtn"><div class="logo-img"><img src="https://i.ibb.co/4w7F2yK/bake-super-hub-logo.png" alt="Logo" onerror="this.parentElement.innerHTML='<b style=color:#FFA500;font-size:9px>BAKE<br>HUB</b>'"></div><div><b>Bake Super Hub</b><span>Nagina No.1 • FSSAI 22725371000677</span></div></div><div class="cart" onclick="openCart()">🛒<span class="count" id="cartCount">0</span></div></div>
+
+<div id="home" class="page active"><div class="grid" id="plist"></div></div>
+
+<div id="checkout" class="page"><div style="padding:12px;max-width:600px;margin:0 auto;padding-bottom:100px">
+<h3 style="color:#FFA500">Checkout - Easy Order</h3>
+<input class="input" id="cName" placeholder="Naam *"><input class="input" id="cPhone" placeholder="Phone 10 digit *" maxlength="10"><textarea class="input" id="cAddr" placeholder="Address *"></textarea>
+<div id="chkItems" style="margin-top:10px"></div>
+<div style="display:flex;justify-content:space-between;margin-top:10px;font-weight:800;color:#FFA500"><span>Total</span><span>Rs <span id="chkTotal">0</span></span></div>
+<button style="width:100%;background:#FFA500;color:#000;border:0;padding:12px;border-radius:10px;font-weight:800;margin-top:10px" onclick="placeOrder()">Order Confirm Karo</button>
+<button style="width:100%;background:#111;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;margin-top:8px" onclick="showPage('home')">Back - Home Jao</button>
+</div></div>
+
+<div id="trackPage" class="page"><div style="padding:12px;max-width:600px;margin:0 auto;text-align:center"><h2 style="color:#FFA500">Order Confirm!</h2><p id="tId" style="margin-top:10px"></p><p id="tDetails" style="font-size:12px;margin-top:10px;white-space:pre-line"></p><button style="margin-top:12px;background:#111;border:1px solid #333;color:#fff;padding:10px;width:100%;border-radius:10px" onclick="showPage('home')">Home Jao</button></div></div>
+
+<div class="admin" id="admin"><div style="padding:12px;display:flex;justify-content:space-between;border-bottom:1px solid #222"><h2 style="font-size:12px;color:#FFA500">Admin - Base - Orders Yahan Ayenge</h2><button onclick="closeAdmin()" style="background:#222;border:1px solid #444;color:#fff;padding:6px 12px;border-radius:8px">Close</button></div><div style="padding:12px"><div id="adminOrders" style="font-size:11px"></div><div style="margin-top:20px"><h4 style="color:#FFA500">Add Product - Base</h4><input class="input" id="pName" placeholder="Naam *"><input class="input" id="pPrice" placeholder="Price *" type="number"><button onclick="addProduct()" style="width:100%;background:#FFA500;color:#000;border:0;padding:10px;border-radius:8px;font-weight:800">Add Product</button></div></div>
+
+<div style="display:none" id="drawer"></div>
+<div class="bbar" id="bbar"><div><span id="bQty" style="font-size:10px;color:#aaa">0 items</span><br><b style="color:#FFA500">Rs <span id="bTotal">0</span></b></div><button style="background:#FFA500;color:#000;border:0;padding:8px 14px;border-radius:20px;font-weight:800" onclick="goCheckout()">Cart Dekho</button></div>
+
+<script>
+let PRODUCTS=[{id:101,name:"Nagina Special Burger",price:39,img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600"},{id:102,name:"Cheese Burger",price:49,img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600"},{id:103,name:"Veg Cheese Pizza",price:120,img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600"}];
+let cart=[],allOrders=[];
+try{let s=localStorage.getItem('bsh_p');if(s){let p=JSON.parse(s);if(p&&p.length>0)PRODUCTS=p;}}catch(e){}
+try{cart=JSON.parse(localStorage.getItem('bsh_c')||'[]')}catch(e){cart=[]}
+try{allOrders=JSON.parse(localStorage.getItem('bsh_o')||'[]')}catch(e){allOrders=[]}
+function saveP(){localStorage.setItem('bsh_p',JSON.stringify(PRODUCTS));}
+function saveC(){localStorage.setItem('bsh_c',JSON.stringify(cart));}
+function saveO(){localStorage.setItem('bsh_o',JSON.stringify(allOrders));}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function render(){let h="";for(let p of PRODUCTS){let q=cart.find(x=>x.id===p.id)?.qty||0;h+=`<div class="card"><div class="card-m"><img src="${p.img}" loading="lazy"></div><div class="card-b"><h3>${p.name}</h3><div class="price">Rs ${p.price}</div>${q===0?`<button class="btn" onclick="addCart(${p.id})">Add To Cart</button>`:`<div style="display:flex;gap:6px;align-items:center;margin-top:6px"><button style="background:#fff;color:#000;border:0;width:24px;height:24px;border-radius:50%;font-weight:800" onclick="changeQty(${p.id},-1)">-</button><b>${q}</b><button style="background:#fff;color:#000;border:0;width:24px;height:24px;border-radius:50%;font-weight:800" onclick="changeQty(${p.id},1)">+</button></div>`}</div></div>`;}document.getElementById('plist').innerHTML=h;updateCart();renderAdmin();}
+function addCart(id){let p=PRODUCTS.find(x=>x.id===id);let f=cart.find(x=>x.id===id);if(f)f.qty++;else cart.push({id:p.id,name:p.name,price:p.price,qty:1});saveC();render();}
+function changeQty(id,d){let c=cart.find(x=>x.id===id);if(c){c.qty+=d;if(c.qty<=0)cart=cart.filter(x=>x.id!==id);}saveC();render();}
+function openCart(){goCheckout();}
+function goCheckout(){if(cart.length===0){alert('Cart khali');return;}showPage('checkout');updateCheckout();}
+function updateCart(){let qty=0,total=0;for(let c of cart){qty+=c.qty;total+=c.price*c.qty;}document.getElementById('cartCount').innerText=qty;document.getElementById('bbar').style.display=qty>0?'flex':'none';document.getElementById('bQty').innerText=qty+' items';document.getElementById('bTotal').innerText=total;}
+function updateCheckout(){let total=0,html="";for(let c of cart){total+=c.price*c.qty;html+=`<div style="background:#000;border:1px solid #222;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between"><span>${c.name} x${c.qty}</span><span>Rs${c.price*c.qty}</span></div>`;}document.getElementById('chkItems').innerHTML=html;document.getElementById('chkTotal').innerText=total;}
+function placeOrder(){let n=document.getElementById('cName').value.trim();let ph=document.getElementById('cPhone').value.trim();let a=document.getElementById('cAddr').value.trim();if(n.length<2){alert('Naam likho');return;}if(ph.length!==10){alert('Phone 10 digit');return;}if(a.length<5){alert('Address likho');return;}if(cart.length===0){alert('Cart khali');return;}let total=0;for(let c of cart)total+=c.price*c.qty;let id='BSH'+Date.now().toString().slice(-6);let items="";for(let c of cart)items+=c.name+" x"+c.qty+", ";let order={id,name:n,phone:ph,addr:a,items,total,time:new Date().toLocaleString()};allOrders.unshift(order);saveO();document.getElementById('tId').innerText='Order ID: '+id+' - Rs'+total;document.getElementById('tDetails').innerText=`Name: ${n}\nPhone: ${ph}\nAddress: ${a}\nItems: ${items}\nTotal: Rs${total}`;cart=[];saveC();render();showPage('trackPage');}
+function renderAdmin(){let el=document.getElementById('adminOrders');if(!el) return;let h="";for(let o of allOrders){h+=`<div style="background:#000;border:1px solid #222;padding:8px;border-radius:8px;margin-bottom:6px"><b style="color:#FFA500">${o.id} - Rs${o.total}</b><br><span style="font-size:10px">${o.name} - ${o.phone}<br>${o.items}<br>${o.addr}<br>${o.time}</span></div>`;}el.innerHTML=h||"No orders yet - Order karo";document.getElementById('adminOrders').innerHTML=h;}
+function addProduct(){let name=document.getElementById('pName').value.trim();let price=parseInt(document.getElementById('pPrice').value);if(!name){alert('Naam likho');return;}if(!price){alert('Price likho');return;}let id=Date.now();PRODUCTS.push({id,name,price,img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600"});saveP();render();document.getElementById('pName').value='';document.getElementById('pPrice').value='';alert('Add Ho Gaya - '+name);}
+function closeAdmin(){document.getElementById('admin').classList.remove('open');}
+let taps=0,last=0;document.getElementById('logoBtn').addEventListener('click',()=>{let now=Date.now();if(now-last>2000)taps=0;taps++;last=now;if(taps>=7){document.getElementById('admin').classList.add('open');taps=0;}});
+render();
+</script>
+</body></html>
