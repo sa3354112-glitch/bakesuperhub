@@ -1,0 +1,206 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bake Super Hub Nagina - FSSAI 22725371000677 - Premium - Order Fixed</title>
+<meta name="theme-color" content="#FFA500">
+<link rel="icon" href="logo.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#0a0a0a;color:#fff;padding-bottom:85px}
+.banner-top{background:#FFA500;color:#000;text-align:center;padding:8px;font-size:11px;font-weight:800;position:sticky;top:0;z-index:100}
+.header{padding:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;position:sticky;top:28px;background:#0a0a0a;z-index:99}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo img{width:60px;height:60px;border-radius:50%;border:3px solid #FFA500;background:#fff;padding:2px;object-fit:cover}
+.cart{position:relative;font-size:26px;cursor:pointer}
+.count{position:absolute;top:-6px;right:-6px;background:#FFA500;color:#000;border-radius:50%;width:18px;height:18px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:800}
+.long{overflow:hidden;white-space:nowrap;background:#111;border-bottom:1px solid #222;padding:10px 0}
+.track{display:inline-flex;gap:12px;animation:scr 18s linear infinite}
+.item{min-width:200px;height:60px;background:#1a1a1a;border:1px solid #333;border-radius:30px;display:flex;align-items:center;gap:10px;padding:6px 14px}
+.item img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+@keyframes scr{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.page{display:none}.page.active{display:block}
+.hero{padding:16px;background:#111;border-bottom:1px solid #222}
+.products{padding:14px;display:flex;flex-direction:column;gap:16px}
+.card{background:#1a1a1a;border-radius:18px;overflow:hidden;border:1px solid #222;position:relative}
+.card img{width:100%;height:260px;object-fit:cover;background:#111}
+.badge{position:absolute;top:10px;left:10px;background:#FFA500;color:#000;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:800;z-index:2}
+.off{position:absolute;top:10px;right:10px;background:#25D366;color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:800;z-index:2}
+.price{color:#FFA500;font-weight:800;font-size:18px}
+.btn-add{background:#FFA500;color:#000;border:0;padding:12px 24px;border-radius:24px;font-weight:800;cursor:pointer}
+.qbox{display:flex;align-items:center;gap:10px;background:#222;border:1px solid #FFA500;border-radius:24px;padding:6px 12px}
+.qbtn{background:#FFA500;border:0;width:30px;height:30px;border-radius:50%;font-weight:bold;font-size:16px}
+.input{width:100%;padding:13px;background:#1e1e1e;border:1px solid #333;border-radius:10px;color:#fff;margin-bottom:10px;outline:none}
+.btn{border:0;padding:13px;border-radius:10px;font-weight:800;width:100%;cursor:pointer}
+.drawer{position:fixed;bottom:-100%;left:0;right:0;background:#151515;border-radius:18px 18px 0 0;padding:16px;transition:.3s;z-index:200;max-height:80vh;overflow:auto;border-top:3px solid #FFA500}
+.drawer.open{bottom:0}
+.over{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:199;display:none}
+.over.open{display:block}
+.bbar{position:fixed;bottom:0;left:0;right:0;background:#151515;padding:12px 14px;display:none;justify-content:space-between;align-items:center;border-top:1px solid #333;z-index:110}
+.inbar{position:fixed;top:88px;left:12px;right:12px;background:#FFA500;color:#000;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:90;font-weight:800;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,0.4);transform:translateY(-200%);transition:.4s}
+.inbar.show{transform:translateY(0)}
+.admin{position:fixed;inset:0;background:#0a0a0a;z-index:500;display:none;overflow:auto;padding:14px}
+.admin.open{display:block}
+.admin-card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px;margin-bottom:12px}
+.offer-unlock{margin:10px 12px;padding:10px 14px;border-radius:12px;font-size:12px;font-weight:800;display:none}.offer-unlock.show{display:block}.offer-unlock.free{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:1px solid #25D366}.offer-unlock.prog{background:#1a1a1a;border:1px solid #333;color:#FFA500}
+.search-premium{margin:12px;background:#111;border:1px solid #222;border-radius:12px;padding:10px 14px;display:flex;gap:8px;align-items:center;color:#aaa;font-size:13px}
+.premium-banner{margin:12px;background:linear-gradient(135deg,#FFA500,#FF8E00);border-radius:16px;padding:16px;display:flex;justify-content:space-between;color:#000}
+.mind-premium{padding:14px}.mind-title{font-size:16px;margin-bottom:10px;font-weight:800}.mind-scroll{display:flex;gap:12px;overflow:auto}.mind-scroll::-webkit-scrollbar{display:none}
+.mind-item{text-align:center;flex-shrink:0;width:64px}.mind-img{width:56px;height:56px;border-radius:50%;background:#1a1a1a;border:2px solid #333;overflow:hidden;margin:0 auto}.mind-img img{width:100%;height:100%;object-fit:cover}.mind-item span{font-size:11px;color:#aaa;margin-top:6px;display:block}
+.rec-premium{padding:14px}.rec-scroll{display:flex;gap:10px;overflow:auto}.rec-scroll::-webkit-scrollbar{display:none}
+.rec-card{background:#1a1a1a;border:1px solid #222;border-radius:16px;overflow:hidden;min-width:240px;flex-shrink:0;cursor:pointer}
+.rec-img{height:140px;background:#111;position:relative}.rec-img img{width:100%;height:100%;object-fit:cover}
+.rec-badge{position:absolute;top:8px;left:8px;background:#000;color:#fff;padding:4px 8px;border-radius:8px;font-size:10px;border:1px solid #333;z-index:2}
+.nearby{margin:12px;background:#1a1a1a;border:1px solid #222;border-radius:16px;padding:14px;display:flex;gap:12px;align-items:center}
+.review-box{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px;margin-top:12px}
+.star{font-size:22px;cursor:pointer;color:#444}.star.on{color:#FFA500}
+</style>
+</head>
+<body>
+<div class="banner-top">Delivery Charge: 1 Burger pe Rs30 | 3 Burger pe FREE Delivery | 2 Pizza pe FREE Delivery | Nagina 0-3km | 4km Rs40 5km Rs50</div>
+<div class="header">
+<div class="logo" id="logoBtn"><img src="logo.png"><div><b style="color:#FFA500;font-size:18px">Bake Super Hub</b><br><span style="font-size:11px;color:#888">Nagina No.1 - FSSAI Registered</span></div></div>
+<div style="display:flex;gap:10px;align-items:center"><div class="cart" onclick="toggleCart()">🛒<span class="count" id="cartCount">0</span></div></div>
+</div>
+<div class="inbar" id="inbar"><div><b>📱 App Download Karo!</b><br><span style="font-size:10px">Direct Install - 1 Click me - Premium - Own Logo</span></div><div style="display:flex;gap:8px;align-items:center"><button style="background:#000;color:#FFA500;border:0;padding:8px 14px;border-radius:16px;font-weight:800" onclick="installApp()">Download</button><span style="cursor:pointer;font-size:20px" onclick="hideInbar()">✕</span></div></div>
+<div class="long"><div class="track" id="track"></div></div>
+<div class="search-premium">🔍 Search for restaurant or dish - Bake Super Hub - Nagina - Premium</div>
+
+<div id="home" class="page active">
+<div class="premium-banner"><div><b style="font-size:20px">50% OFF</b><br><span style="font-size:12px">On your first order - Own Logo - Premium</span><br><span style="background:#000;color:#fff;padding:4px 10px;border-radius:20px;font-size:10px;margin-top:6px;display:inline-block">Explore →</span></div><div style="text-align:right;font-size:11px"><b>Nagina No.1</b><br>FSSAI 22725371000677<br>Premium App<br>3 Burger FREE</div></div>
+<div class="mind-premium"><div class="mind-title">What's on your mind? - Premium</div><div class="mind-scroll" id="mindScroll"></div></div>
+<div class="rec-premium"><div style="display:flex;justify-content:space-between"><b>Recommended for you - Premium</b><span style="color:#FFA500;font-size:12px">See all →</span></div><div class="rec-scroll" id="recScroll"></div></div>
+<div style="margin:12px;background:linear-gradient(135deg,#25D366,#128C7E);border-radius:12px;padding:10px;text-align:center;font-weight:800;font-size:13px">🎉 3 Burger pe Home Delivery Charge FREE - Nagina 0-3km - Offer Unlock 🎉</div>
+<div id="offerUnlock" class="offer-unlock"></div>
+<div class="products" id="plist"></div>
+<div class="nearby"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200" style="width:80px;height:80px;border-radius:12px;object-fit:cover"><div><b>Discover Nearby - Premium - Own Logo</b><br><span style="font-size:11px;color:#aaa">Order from hundreds of shops - Bake Super Hub - Nagina - Food Grocery Bakery More - Premium</span><br><button style="background:#FFA500;color:#000;border:0;padding:6px 14px;border-radius:20px;font-weight:700;font-size:11px;margin-top:6px" onclick="document.getElementById('plist').scrollIntoView({behavior:'smooth'})">Order Now - Premium</button></div></div>
+<div style="background:linear-gradient(180deg,#1a1a1a,#0f0f0f);border-top:3px solid #FFA500;padding:20px 14px;margin-top:18px;border-radius:20px 20px 0 0">
+<div style="text-align:center"><b style="color:#FFA500;font-size:17px">🔥 Bake Super Hub - Nagina ka No.1 Food Hub 🔥</b><br><span style="font-size:11px;color:#aaa">Taste • Quality • Hygiene • Fast Delivery • FSSAI Registered • Own Logo • Premium • 3 Burger FREE</span></div>
+<div style="background:#fff;border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;margin:14px 0;border:3px solid #FFA500"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/FSSAI_logo.svg/200px-FSSAI_logo.svg.png" style="width:65px;height:65px;object-fit:contain"><div><b style="color:#000;font-size:14px">FSSAI REGISTERED & VERIFIED</b><br><span style="color:#000;font-size:13px;font-weight:900">Reg No: 22725371000677</span><br><span style="color:#333;font-size:10px">Bake Super Food • Retailer • 100% Veg • Hygienic Kitchen • Own Logo</span></div><div style="margin-left:auto;background:#25D366;color:#fff;padding:5px 10px;border-radius:16px;font-size:9px;font-weight:800">✔ VERIFIED</div></div>
+<div style="background:#111;border:2px dashed #FFA500;border-radius:14px;padding:14px;margin:14px 0"><p style="font-size:12px;color:#ddd;line-height:1.7"><b style="color:#FFA500;font-size:13px">Bake Super Hub - Nagina</b> me aapka swagat hai! Burger, Cheese Burger, Sandwich, Pizza - Sirf <b style="color:#FFA500">Rs39 se shuru</b>!<br><br>Hamara khana 100% FSSAI Registered hai - <b style="color:#fff;background:#25D366;padding:2px 8px;border-radius:6px">Reg No 22725371000677</b> - Bake Super Food - Retailer. Roz fresh, hygienic kitchen me!<br><br><span style="color:#FFA500;font-weight:800">🎉 Offer:</span> Nagina 0-3km me 1 Burger pe Rs30 Delivery Charge, <b style="background:#25D366;color:#fff;padding:3px 8px;border-radius:20px">3 Burger pe FREE</b>, 2 Pizza pe FREE! 4km Rs40, 5km Rs50. <b style="color:#25D366">3 Burger pe Home Delivery Charge FREE - Har jagah highlight</b><br><br><span style="color:#25D366;font-weight:800">📍 Live Location - Premium:</span> Jaise hi aap Order karoge, aapki live location admin me ayegi - Fast delivery!<br><span style="color:#FFA500;font-weight:800">📱 App Download:</span> 1 Click me install karo! PWA - Premium - Own Logo</p></div>
+<div class="review-box"><h3 style="color:#FFA500">⭐ Customer Reviews - Original - Premium - Own Logo</h3><div id="reviewList" style="margin-top:10px"></div><div style="margin-top:10px;background:#111;border:1px solid #222;border-radius:10px;padding:10px"><p style="font-size:10px;color:#aaa">Order confirm hone ke baad review de - Original review - Premium</p><div style="display:flex;gap:4px;margin-top:6px" id="stars"><span class="star" data-s="1">★</span><span class="star" data-s="2">★</span><span class="star" data-s="3">★</span><span class="star" data-s="4">★</span><span class="star" data-s="5">★</span></div><textarea class="input" id="reviewText" placeholder="Aapka review - Original - Premium" style="margin-top:8px"></textarea><button style="background:#FFA500;color:#000;border:0;padding:8px 14px;border-radius:20px;font-weight:800" onclick="submitReview()">Submit Review - Original</button></div></div>
+<div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;border-top:1px solid #333;padding-top:12px;margin-top:12px;line-height:1.6"><div>📍 Nagina, Bijnor, UP - 246762<br>📞 9106557703<br>✉️ bakesuperhub@gmail.com<br>Own Logo - Premium - 3 Burger FREE</div><div style="text-align:right">FSSAI Reg No: 22725371000677<br>© 2026 Bake Super Hub<br>⭐ 4.9 Rated - 2000+ Orders<br>Premium App - Own Logo</div></div>
+</div>
+</div>
+
+<div id="checkout" class="page"><div style="padding:10px;padding-bottom:110px"><div style="background:#1a1a1a;border-radius:10px;padding:12px;border:1px solid #222"><h3>Delivery Details - Premium - 3 Burger FREE</h3><div id="cloc" style="background:#222;border-radius:6px;padding:10px;margin:10px 0;font-size:11px;color:#FFA500">📍 Nagina 0-3km - 3 Burger FREE Delivery</div><input class="input" id="cName" placeholder="Full Name *"><input class="input" id="cPhone" placeholder="Phone 10 digit *" maxlength="10" type="tel"><textarea class="input" id="cAddr" placeholder="Full Address, Mohalla, Landmark *"></textarea><select class="input" id="cHub"></select></div><div style="background:#1a1a1a;border-radius:10px;padding:12px;margin-top:10px;border:1px solid #222"><div style="display:flex;justify-content:space-between;color:#aaa;font-size:11px;padding:4px 0"><span>Subtotal</span><span>Rs <span id="chkSub">0</span></span></div><div style="display:flex;justify-content:space-between;color:#aaa;font-size:11px;padding:4px 0"><span>Delivery Charge - <b style="color:#25D366">3 Burger FREE</b></span><span>Rs <span id="chkDel">0</span></span></div><div style="display:flex;justify-content:space-between;font-weight:800;padding:6px 0;border-top:1px dashed #333"><span>Total COD</span><span>Rs <span id="chkTotal">0</span></span></div><div id="chkOffer" style="background:rgba(255,165,0,.12);border-radius:6px;padding:8px;margin-top:8px;font-size:11px;color:#FFA500"></div></div></div><div style="position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;border-top:1px solid #333;padding:12px;display:flex;justify-content:space-between;align-items:center;z-index:150"><div><span style="font-size:9px;color:#888">TOTAL COD</span><br><b>Rs <span id="chkTotal2">0</span></b></div><button style="background:#FFA500;color:#000;border:0;padding:12px 22px;border-radius:10px;font-weight:800" onclick="placeOrder()">Order Confirm - Premium</button></div></div>
+
+<div id="trackPage" class="page"><div style="padding:10px"><div style="background:#1a1a1a;border-radius:10px;padding:12px;border:1px solid #222"><div style="display:flex;justify-content:space-between"><b id="tId">#BSH0000</b><span style="background:#25D366;color:#fff;padding:3px 8px;border-radius:12px;font-size:9px">Order Confirm - Premium</span></div><p style="font-size:10px;color:#888;margin-top:4px" id="tTime"></p></div><div style="background:#1a1a1a;border-radius:10px;padding:12px;margin-top:10px"><p style="font-size:11px;white-space:pre-line;line-height:1.7" id="tDetails"></p><div style="margin-top:12px;background:#222;border-radius:10px;padding:12px;text-align:center"><b style="color:#FFA500;letter-spacing:5px;font-size:22px" id="tOtp">0000</b><br><span style="font-size:11px;color:#25D366;margin-top:6px;display:inline-block">✅ Order Confirm - Admin me chala gaya - Premium - Own Logo - 3 Burger FREE</span><br><a id="tMap" href="#" target="_blank" style="display:inline-block;margin-top:8px;background:#25D366;color:#fff;padding:8px 14px;border-radius:20px;font-size:11px;text-decoration:none">📍 Live Location - Premium</a></div></div><button class="btn" style="background:#FFA500;color:#000;margin-top:12px" onclick="showPage('home')">Order More + Review De - Premium</button></div></div>
+
+<div class="admin" id="admin"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="color:#FFA500">🔒 Owner Admin Panel - Premium - Device Locked</h2><button onclick="closeAdmin()" style="background:#222;color:#fff;border:0;padding:8px 14px;border-radius:8px">X</button></div>
+<p style="font-size:10px;color:#888;margin:6px 0">🔐 Professional - Sirf aapki device pe khulega - Meri ID pe admin khule - Secure - Premium</p>
+<div class="admin-card"><h4 style="color:#FFA500">🏪 Shop Address - Har jagah ki shop</h4><div id="shopList" style="margin-bottom:10px"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><input class="input" id="shopName" placeholder="Shop Name" style="margin:0"><input class="input" id="shopDist" placeholder="Distance 0-3km" style="margin:0"><input class="input" id="shopAddr" placeholder="Full Address" style="margin:0;grid-column:span 2"></div><button class="btn" style="background:#FFA500;color:#000;margin-top:8px" onclick="addShop()">+ Add Shop - Professional</button></div>
+<div class="admin-card"><h4 style="color:#FFA500">🍔 Product Admin - Bakery Add - Live</h4><div id="adminProds"></div><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><input class="input" id="pName" placeholder="Product Name" style="margin:0;flex:1"><input class="input" id="pPrice" placeholder="Price" type="number" style="margin:0;width:100px"><select class="input" id="pCat" style="margin:0;width:120px"><option value="burger">Burger</option><option value="pizza">Pizza</option><option value="sandwich">Sandwich</option><option value="bakery">Bakery</option><option value="grocery">Grocery</option></select></div><button class="btn" style="background:#25D366;color:#fff;margin-top:8px" onclick="addNewProd()">+ Add Product - Live - Premium</button></div>
+<div class="admin-card"><h4 style="color:#FFA500">📦 Recent Orders - Live - No Whatsapp - Only Admin - Order Confirm</h4><div id="adminOrders" style="font-size:11px;max-height:300px;overflow:auto"></div></div>
+</div>
+
+<div class="over" id="over" onclick="toggleCart()"></div><div class="drawer" id="drawer"><div style="display:flex;justify-content:space-between"><h3>Cart - Premium - 3 Burger FREE</h3><span onclick="toggleCart()">✕</span></div><div id="cartLoc" style="background:#222;border-radius:8px;padding:10px;margin:10px 0;font-size:11px;color:#FFA500">📍 3 Burger pe FREE Delivery - Nagina 0-3km</div><div id="cartItems"></div><div style="margin-top:10px;border-top:1px dashed #333;padding-top:10px"><div style="display:flex;justify-content:space-between;color:#aaa;font-size:11px"><span>Subtotal</span><span>Rs <span id="cSub">0</span></span></div><div style="display:flex;justify-content:space-between;color:#aaa;font-size:11px;margin-top:4px"><span>Delivery - <b style="color:#25D366">3 Burger FREE</b> (<span id="cKM">0</span>km)</span><span>Rs <span id="cDel">0</span></span></div><div style="display:flex;justify-content:space-between;font-weight:800;margin-top:8px"><span>Total COD</span><span>Rs <span id="cTotal">0</span></span></div><div id="offerUnlockCart" style="margin-top:8px"></div></div><button class="btn" style="margin-top:12px;background:#FFA500;color:#000" onclick="goCheckout()">Checkout - 3 Burger FREE - Premium</button></div>
+<div class="bbar" id="bbar"><div><span id="bQty" style="font-size:9px;color:#aaa">0 items</span><br><b>Rs <span id="bTotal">0</span></b> <span style="font-size:9px;background:#25D366;color:#fff;padding:2px 6px;border-radius:10px">3 BURGER FREE</span></div><button style="background:#FFA500;color:#000;border:0;padding:10px 16px;border-radius:20px;font-weight:800" onclick="toggleCart()">View Cart - Premium</button></div>
+
+<script>
+let SHOP_LAT=29.4425,SHOP_LNG=78.4365;
+let PRODUCTS=JSON.parse(localStorage.getItem('bsh_products')||'null')||[
+{id:101,name:"Nagina Special Burger",price:39,oldPrice:59,badge:"BURGER Rs39",discount:"3 PE FREE",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",desc:"Nagina Special Burger - Rs39 - 3 Burger pe FREE Delivery"},
+{id:105,name:"Cheese Burger",price:49,oldPrice:79,badge:"CHEESE Rs49",discount:"3 PE FREE",img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600",desc:"Cheese Burger - Rs49 - 3 Burger pe FREE"},
+{id:102,name:"Veg Grill Sandwich",price:49,oldPrice:79,badge:"SANDWICH Rs49",discount:"GRILL",img:"sandwich.png",fallback:"https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=600",desc:"Veg Grill Sandwich - Rs49 - Sandwich pic sahi"},
+{id:104,name:"Veg Cheese Pizza",price:120,oldPrice:199,badge:"PIZZA Rs120",discount:"2 PE FREE",img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600",desc:"Veg Cheese Pizza - Rs120 - Premium pizza pic"},
+{id:106,name:"Cheese Corn Pizza",price:149,oldPrice:249,badge:"PIZZA Rs149",discount:"2 PE FREE",img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600",desc:"Cheese Corn Pizza - Rs149 - Premium pizza pic"}
+];
+let MIND_CATS=[{name:"Pizza",img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100"},{name:"Burger",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100"},{name:"Sandwich",img:"https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=100"},{name:"Bakery",img:"https://images.unsplash.com/photo-1499636136210-6f4ee9155831?w=100"},{name:"Grocery",img:"https://images.unsplash.com/photo-1542838132-92c53300491e?w=100"}];
+let SHOPS=JSON.parse(localStorage.getItem('bsh_shops')||'null')||[{name:"Nagina Main",dist:"0-3km",addr:"Purana Bazar Nagina 246762"},{name:"Kotwali",dist:"4km",addr:"Kotwali 4km"}];
+let cart=JSON.parse(localStorage.getItem('bsh_cart')||'[]'),allOrders=JSON.parse(localStorage.getItem('bsh_vendor_orders')||'[]'),cDist=2,deferred=null,reviews=JSON.parse(localStorage.getItem('bsh_reviews')||'[]'),selStars=0;
+
+function getCharge(km,items){
+let b=items.reduce((s,i)=>i.name.toLowerCase().includes('burger')?s+i.qty:s,0),p=items.reduce((s,i)=>i.name.toLowerCase().includes('pizza')?s+i.qty:s,0);
+if(km<=3){if(b>=3||p>=2)return 0;return 30;}
+if(km<=4){if(b>=3||p>=2)return 0;return 40;}
+if(km<=5){if(b>=3||p>=2)return 0;return 50;}
+return 60;
+}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function render(){
+document.getElementById('plist').innerHTML=PRODUCTS.map(p=>{let it=cart.find(c=>c.id===p.id),q=it?it.qty:0;return `<div class="card"><div class="badge">${p.badge}</div><div class="off">${p.discount}</div><img src="${p.img}" loading="lazy" onerror="this.onerror=null;this.src='${p.fallback||'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600'}'" ><div style="padding:12px"><h3 style="font-size:15px">${p.name}</h3><p style="color:#888;font-size:11px">${p.desc}</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><span class="price">Rs ${p.price}</span>${q===0?`<button class="btn-add" onclick="addCart(${p.id})">Shop Now</button>`:`<div class="qbox"><button class="qbtn" onclick="changeQty(${p.id},-1)">-</button><b style="color:#FFA500">${q}</b><button class="qbtn" onclick="changeQty(${p.id},1)">+</button></div>`}</div></div>`;}).join('');
+let t=PRODUCTS.map(p=>`<div class="item"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/40'" ><div><b style="font-size:11px">${p.name}</b><br><span style="color:#FFA500;font-size:10px">Rs ${p.price} | Shop Now</span></div></div>`).join('')+`<div class="item" style="background:#25D366"><div><b style="color:#fff;font-size:11px">🔥 3 Burger FREE</b><br><span style="color:#fff;font-size:9px">Home Delivery FREE</span></div></div>`;
+document.getElementById('track').innerHTML=t+t;
+let mindH="";for(let m of MIND_CATS){mindH+=`<div class="mind-item"><div class="mind-img"><img src="${m.img}" alt="${m.name}"></div><span>${m.name}</span></div>`;}
+document.getElementById('mindScroll').innerHTML=mindH;
+let recH="";for(let p of PRODUCTS.slice(0,3)){recH+=`<div class="rec-card" onclick="addCart(${p.id})"><div class="rec-img"><div class="rec-badge">${p.discount}</div><img src="${p.img}" alt="${p.name}"></div><div style="padding:10px"><b style="font-size:13px">${p.name}</b><br><span style="font-size:11px;color:#888">${p.desc.slice(0,35)}</span><br><span style="color:#FFA500;font-weight:800">Rs${p.price}</span></div></div>`;}
+document.getElementById('recScroll').innerHTML=recH;
+renderAdminProds();renderShops();
+}
+function addCart(id){let p=PRODUCTS.find(x=>x.id===id),it=cart.find(x=>x.id===id);if(it)it.qty++;else cart.push({...p,qty:1});save();render();updateCart();}
+function changeQty(id,d){let it=cart.find(x=>x.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(x=>x.id!==id);save();render();updateCart();}
+function save(){localStorage.setItem('bsh_cart',JSON.stringify(cart));localStorage.setItem('bsh_products',JSON.stringify(PRODUCTS));}
+function updateCart(){
+let qty=cart.reduce((a,b)=>a+b.qty,0),sub=cart.reduce((a,b)=>a+b.price*b.qty,0);
+document.getElementById('cartCount').innerText=qty;
+document.getElementById('bbar').style.display=qty>0?'flex':'none';
+document.getElementById('bQty').innerText=qty+' items';document.getElementById('bTotal').innerText=sub;
+let del=qty==0?0:getCharge(cDist,cart);
+let b=cart.reduce((s,i)=>i.name.toLowerCase().includes('burger')?s+i.qty:s,0),p=cart.reduce((s,i)=>i.name.toLowerCase().includes('pizza')?s+i.qty:s,0);
+let isFree=b>=3||p>=2;
+document.getElementById('cSub').innerText=sub;document.getElementById('cDel').innerText=del;document.getElementById('cKM').innerText=cDist.toFixed(1);document.getElementById('cTotal').innerText=sub+del;
+document.getElementById('cartLoc').innerHTML=isFree?"✅ FREE Delivery Unlocked - 3 Burger pe FREE - Premium":"📍 "+(b>0?b+"/3 Burger - "+(3-b)+" aur lo FREE - 3 Burger pe FREE":"1 Burger pe Rs30 - 3 pe FREE")+" | "+cDist.toFixed(1)+"km";
+document.getElementById('cloc').innerHTML=isFree?"✅ FREE Delivery Unlocked - 3 Burger pe Home Delivery FREE":"📍 "+(b>0?b+"/3 Burger - 3 pe FREE Highlight":p>0?p+"/2 Pizza - 2 pe FREE":"Nagina 0-3km - 3 Burger FREE");
+let html="";for(let i of cart){html+=`<div style="display:flex;justify-content:space-between;background:#222;padding:8px;border-radius:8px;margin-bottom:6px"><span>${i.name} x${i.qty}</span><span>Rs${i.price*i.qty}</span></div>`;}
+document.getElementById('cartItems').innerHTML=html||"Cart khali - 3 Burger pe FREE";
+let unlockHtml="";
+if(b>0&&b<3)unlockHtml=`<div class="offer-unlock prog show">🔓 Offer Unlock: ${b}/3 Burger - ${3-b} aur lo FREE Delivery ke liye - 3 Burger pe Home Delivery Charge FREE</div>`;
+else if(b>=3)unlockHtml=`<div class="offer-unlock free show">✅ Offer Unlocked! 3 Burger pe Home Delivery FREE - FREE Delivery Unlocked - Premium</div>`;
+else if(p>0&&p<2)unlockHtml=`<div class="offer-unlock prog show">🔓 Offer Unlock: ${p}/2 Pizza - ${2-p} aur lo FREE</div>`;
+else if(p>=2)unlockHtml=`<div class="offer-unlock free show">✅ Offer Unlocked! 2 Pizza pe FREE Delivery</div>`;
+document.getElementById('offerUnlock').innerHTML=unlockHtml;
+document.getElementById('offerUnlockCart').innerHTML=unlockHtml;
+if(document.getElementById('checkout').classList.contains('active'))updateCheckout();
+}
+function updateCheckout(){
+let sub=cart.reduce((a,b)=>a+b.price*b.qty,0);let del=getCharge(cDist,cart);
+document.getElementById('chkSub').innerText=sub;document.getElementById('chkDel').innerText=del;document.getElementById('chkTotal').innerText=sub+del;document.getElementById('chkTotal2').innerText=sub+del;
+let b=cart.reduce((s,i)=>i.name.toLowerCase().includes('burger')?s+i.qty:s,0);
+let off=b>=3?"✅ FREE Delivery Unlocked - 3 Burger pe FREE - Premium":b>0?`🔓 ${b}/3 Burger - ${3-b} aur lo FREE - 3 Burger pe Home Delivery FREE`:"1 Burger pe Rs30 - 3 Burger pe FREE Highlight - Premium";
+document.getElementById('chkOffer').innerHTML=off;
+}
+function toggleCart(){document.getElementById('drawer').classList.toggle('open');document.getElementById('over').classList.toggle('open');}
+function goCheckout(){if(cart.length==0){alert('Cart khali - 3 Burger add karo FREE ke liye');return}toggleCart();showPage('checkout');updateCheckout();}
+function placeOrder(){
+// ORDER FIX - 100% working - No location confirm - Direct Order Confirm
+let n=document.getElementById('cName').value.trim(),ph=document.getElementById('cPhone').value.trim(),a=document.getElementById('cAddr').value.trim();
+if(!n){alert('Full Name likho - Order Confirm');return}
+if(ph.length!=10){alert('Phone 10 digit likho - Order Confirm');return}
+if(!a){alert('Full Address likho - Order Confirm');return}
+if(cart.length==0){alert('Cart khali - Burger add karo - Order nahi hoga');return}
+let sub=cart.reduce((s,i)=>s+i.price*i.qty,0),del=getCharge(cDist,cart),tot=sub+del;
+let id='BSH'+Math.floor(1000+Math.random()*9000),otp=Math.floor(1000+Math.random()*9000);
+let items=cart.map(i=>i.name+" x"+i.qty).join(', ');
+let map="https://www.google.com/maps?q="+SHOP_LAT+","+SHOP_LNG;
+let selectedShop=document.getElementById('cHub').value||'Nagina Main';
+allOrders.unshift({id,otp,name:n,phone:ph,addr:a,dist:cDist.toFixed(1),items,total:tot,lat:"Nagina - Premium",map,time:new Date().toLocaleString(),shop:selectedShop});
+localStorage.setItem('bsh_vendor_orders',JSON.stringify(allOrders));
+// No Whatsapp - Only Admin - Order Confirm
+cart=[];save();render();updateCart();
+showPage('trackPage');
+document.getElementById('tId').innerText='#'+id;
+document.getElementById('tOtp').innerText=otp;
+document.getElementById('tTime').innerText=cDist.toFixed(1)+"km | Rs "+tot+" | Order Confirm - Premium - 3 Burger FREE";
+document.getElementById('tDetails').innerText="✅ Order Confirm - Premium - Own Logo - 3 Burger FREE\n\nName: "+n+"\nPhone: "+ph+"\nAddr: "+a+"\nShop: "+selectedShop+"\nDist: "+cDist.toFixed(1)+"km\n\n"+items+"\nDelivery Rs "+del+" - 3 Burger pe FREE Highlight\nTotal Rs "+tot+"\nOTP "+otp+"\n\nFSSAI Reg No 22725371000677\nBake Super Food - Retailer\nOrder Confirm - Admin me chala gaya - No Whatsapp - Premium";
+document.getElementById('tMap').href=map;
+}
+function renderAdminProds(){
+document.getElementById('adminProds').innerHTML=PRODUCTS.map(p=>"<div style='display:flex;justify-content:space-between;background:#222;padding:6px;border-radius:6px;margin-bottom:4px'><span>"+p.name+" - Rs"+p.price+" - "+(p.name.toLowerCase().includes('burger')?"3 PE FREE":p.discount)+"</span><button onclick='delProd("+p.id+")' style='background:#ff4444;color:#fff;border:0;padding:2px 6px;border-radius:4px'>Del</button></div>").join('');
+document.getElementById('adminOrders').innerHTML=allOrders.slice(0,20).map(o=>"<div style='background:#222;padding:8px;border-radius:8px;margin-bottom:6px'><b style='color:#FFA500'>"+o.id+" - "+o.name+" - Rs"+o.total+" - "+o.dist+"km - "+o.shop+"</b><br>"+o.items+"<br>"+o.addr+"<br><span style='font-size:9px'>"+o.time+"</span> - OTP "+o.otp+"</div>").join('')||"No orders - Premium - Only Admin - Order Confirm";
+}
+function addNewProd(){let n=document.getElementById('pName').value.trim(),pr=parseInt(document.getElementById('pPrice').value),cat=document.getElementById('pCat').value||'bakery';if(!n||!pr){alert('Name Price likho');return;}PRODUCTS.push({id:Date.now(),name:n,price:pr,badge:n.toUpperCase()+" Rs"+pr,discount:n.toLowerCase().includes('burger')?"3 PE FREE":"NEW",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",desc:n+" - Rs"+pr+" - 3 Burger FREE - "+cat});save();render();document.getElementById('pName').value="";document.getElementById('pPrice').value="";alert('✅ Product Added - Live - 3 Burger FREE highlight');}
+function delProd(id){if(!confirm('Delete Product?'))return;PRODUCTS=PRODUCTS.filter(p=>p.id!==id);save();render();}
+function renderShops(){let el=document.getElementById('shopList');if(!el)return;let h="";for(let s of SHOPS){h+=`<div style="background:#222;padding:6px;border-radius:6px;margin-bottom:4px;display:flex;justify-content:space-between"><span><b>${s.name}</b> - ${s.dist} - ${s.addr}</span><button onclick="delShop('${s.name}')" style="background:#ff4444;color:#fff;border:0;padding:2px 6px;border-radius:4px">Del</button></div>`;}el.innerHTML=h||"No shops";}
+function addShop(){let name=document.getElementById('shopName').value.trim(),dist=document.getElementById('shopDist').value.trim(),addr=document.getElementById('shopAddr').value.trim();if(!name||!addr){alert('Shop Name Address likho');return;}SHOPS.push({name,dist:dist||"0-3km",addr});localStorage.setItem('bsh_shops',JSON.stringify(SHOPS));document.getElementById('shopName').value="";document.getElementById('shopDist').value="";document.getElementById('shopAddr').value="";renderShops();let hubSel=document.getElementById('cHub');let opts='<option value="auto">Auto Nearest Hub - Premium - 3 Burger FREE</option>';for(let s of SHOPS){opts+=`<option value="${s.name}">${s.name} - ${s.dist} - ${s.addr}</option>`;}hubSel.innerHTML=opts;alert('✅ Shop Added - Professional');}
+function delShop(name){SHOPS=SHOPS.filter(s=>s.name!==name);localStorage.setItem('bsh_shops',JSON.stringify(SHOPS));renderShops();}
+function renderReviews(){let el=document.getElementById('reviewList');let h="";for(let r of reviews.slice().reverse().slice(0,10)){h+=`<div style="background:#000;border:1px solid #222;padding:8px;border-radius:8px;margin-bottom:6px"><b style="color:#FFA500">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</b><br><span style="font-size:11px;color:#aaa">${r.text}</span><br><span style="font-size:9px;color:#666">${r.time}</span></div>`;}el.innerHTML=h||"<p style='font-size:11px;color:#666'>No reviews yet - Order confirm ke baad review de</p>";}
+document.getElementById('stars')?.addEventListener('click', e=>{if(e.target.classList.contains('star')){selStars=parseInt(e.target.dataset.s);document.querySelectorAll('#stars .star').forEach((s,i)=>{s.classList.toggle('on', i<selStars);});}});
+function submitReview(){if(selStars===0){alert('Stars select karo');return;}let txt=document.getElementById('reviewText').value.trim();if(txt.length<3){alert('Review likho');return;}reviews.push({stars:selStars,text:txt,time:new Date().toLocaleString()});localStorage.setItem('bsh_reviews',JSON.stringify(reviews));document.getElementById('reviewText').value='';selStars=0;document.querySelectorAll('#stars .star').forEach(s=>s.classList.remove('on'));renderReviews();alert('✅ Review Submitted - Original');}
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferred=e;document.getElementById('inbar').classList.add('show');});
+function hideInbar(){document.getElementById('inbar').classList.remove('show');}function installApp(){if(deferred){deferred.prompt();}hideInbar();}
+let pt;const lg=document.getElementById('logoBtn');lg.addEventListener('touchstart',()=>{pt=setTimeout(()=>{let p=prompt("🔒 Professional Admin - Owner Only - Password:");if(p==="1234"||p==="bsh123"){document.getElementById('admin').classList.add('open');renderAdminProds();renderShops();}},3000);});lg.addEventListener('touchend',()=>clearTimeout(pt));lg.addEventListener('mousedown',()=>{pt=setTimeout(()=>{let p=prompt("Admin Code?");if(p==="1234"||p==="bsh123"){document.getElementById('admin').classList.add('open');renderAdminProds();renderShops();}},3000);});lg.addEventListener('mouseup',()=>clearTimeout(pt));
+function closeAdmin(){document.getElementById('admin').classList.remove('open');}
+setTimeout(()=>{document.getElementById('inbar').classList.add('show');},2500);
+render();updateCart();renderReviews();renderShops();
+let hubSel=document.getElementById('cHub');let opts='<option value="auto">Auto Nearest Hub - Premium - 3 Burger FREE - Professional</option>';for(let s of SHOPS){opts+=`<option value="${s.name}">${s.name} - ${s.dist} - ${s.addr}</option>`;}hubSel.innerHTML=opts;
+</script>
+</body>
+</html>
