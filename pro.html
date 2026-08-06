@@ -1,0 +1,88 @@
+# 🥐 Bake Super Hub - Modern Bakery & Quick Commerce Android App
+
+A complete, production-grade Android application built with **Kotlin** and **Jetpack Compose**, featuring a modern quick-commerce bakery ordering experience, live order tracking with OTP & QR pickup verification, dynamic delivery partner mode, AI bakery combo recommendation engine, and an emergency admin control panel.
+
+---
+
+## 🚀 Features
+
+### 🛒 Customer Experience
+* **Fresh Bakery Catalog**: Dynamic categories (Artisan Breads, Pastries, Cakes, Specialty Brews, Freshly Baked Hot Buns).
+* **Live Order Tracking**: Visual step-by-step order progress (Placed → Baking in Oven → Out for Delivery → Delivered).
+* **Express QR & OTP Pickup**: Dynamic QR code and 4-digit pickup/delivery security OTPs.
+* **Smart AI Combo Builder**: Automated pairings (Bakery + Beverage + Dessert) with flat 15% discount and AI mood-based recommendations.
+* **Party & Event Pre-Orders**: Calendar scheduling for custom birthday cakes and large party orders.
+* **Rewards & Referrals**: Earn BakePoints on every order + referral code system (`BAKE88`).
+
+### 🛵 Delivery Partner Portal
+* **Live Dispatch Dashboard**: Toggle Online/Offline status, live wallet earnings, and rating system.
+* **GPS Navigation Simulation**: Turn-by-turn routing to store pickup and customer location.
+* **Two-Step Security OTP**: Counter pickup verification (`4829`) and customer delivery confirmation (`9102`).
+
+### ⚙️ Super Admin Panel
+* **Store Management**: Revenue analytics, active baking order queue, delivery fee & commission controls.
+* **Emergency Shop Pause**: Instant switch to temporarily halt new online orders during peak rushes.
+* **Broadcast Alerts**: Send real-time push notifications to registered customers.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+* **Language**: 100% Kotlin
+* **UI Framework**: Jetpack Compose + Material Design 3 (Dynamic Color & Edge-to-Edge)
+* **Architecture**: MVVM (Model-View-ViewModel) + Clean Architecture
+* **State Management**: Kotlin Coroutines & `MutableStateFlow` / `collectAsStateWithLifecycle`
+* **Local Persistence**: Android Room Database (SQLite) with KSP
+* **Navigation**: Type-safe Jetpack Navigation Compose
+
+---
+
+## 📁 Project Structure
+
+```
+app/src/main/java/com/example/
+├── data/
+│   ├── AppDatabase.kt          # Room DB Configuration
+│   ├── BakeRepository.kt       # Unified Data Repository
+│   ├── Dao.kt                  # Room DAOs for Products, Cart, Orders, User
+│   └── Entity.kt               # Room Entities & Data Models
+├── ui/
+│   ├── components/
+│   │   └── BakeComponents.kt   # Reusable M3 UI Components
+│   ├── screens/
+│   │   ├── AdminPanelScreen.kt        # Super Admin Dashboard
+│   │   ├── CartScreen.kt              # Interactive Shopping Cart
+│   │   ├── CheckoutScreen.kt          # Address & Payment Gateway
+│   │   ├── DeliveryPartnerScreen.kt   # Partner Order & Wallet App
+│   │   ├── HomeScreen.kt              # Main Feed & Categories
+│   │   ├── LoginRegisterScreen.kt     # Auth & Guest Login
+│   │   ├── OrderTrackingScreen.kt     # Real-time Order & QR Code
+│   │   ├── OrdersHistoryScreen.kt     # Past Orders
+│   │   ├── ProductDetailsScreen.kt    # Customization & Cart Action
+│   │   ├── ProfileScreen.kt           # Profile, Wallet & Settings
+│   │   ├── SearchScreen.kt            # Live Search & Filters
+│   │   └── SmartComboAndAiScreen.kt   # AI Pairing & Pre-Orders
+│   ├── theme/
+│   │   ├── Color.kt                   # M3 Warm Bakery Palette
+│   │   ├── Theme.kt                   # Compose Theme Wrapper
+│   │   └── Type.kt                    # Typography Setup
+│   └── viewmodel/
+│       └── MainViewModel.kt           # Central ViewModel & State Flow
+└── MainActivity.kt                     # Navigation Host & Core Entry Point
+```
+
+---
+
+## 📦 How to Export / Download Project
+
+### Option 1: Direct Download or GitHub Push from AI Studio UI
+1. In the upper-right corner of the **Google AI Studio** header bar, click the **Settings / Export** icon.
+2. Select **"Download Project ZIP"** to download the complete source code to your computer.
+3. Or select **"Push to GitHub"** to automatically connect your GitHub account and publish the repository.
+
+### Option 2: Open in Android Studio
+1. Extract the downloaded ZIP file.
+2. Open **Android Studio** (Koala / Ladybug or newer).
+3. Select **Open** and select the root directory of this project.
+4. Gradle will automatically sync dependencies.
+5. Click **Run (`Shift + F10`)** to launch on an Android Emulator or physical Android device!
