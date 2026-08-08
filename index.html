@@ -1,0 +1,366 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Bake Super Hub</title><meta name="theme-color" content="#FFA500"><link rel="manifest" href="./manifest.json"><style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#0a0a0a;color:#fff;padding-bottom:90px}.top{background:#FFA500;color:#000;padding:6px;text-align:center;font-size:11px;font-weight:900}.h{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;background:#000;position:sticky;top:0;z-index:99;border-bottom:1px solid #222}.logo{display:flex;gap:10px;align-items:center}.logo img{width:44px;height:44px;border-radius:50%;border:2px solid #FFA500;background:#fff}.dlHeader{background:#FFA500;color:#000;border:0;padding:8px 14px;border-radius:20px;font-size:11px;font-weight:900}.cart{width:44px;height:44px;background:#1a1a1a;border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative}.c{position:absolute;top:-6px;right:-6px;background:#FFA500;color:#000;min-width:20px;height:20px;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:900}.s{margin:12px;background:#111;border:1px solid #222;border-radius:24px;padding:12px 16px;display:flex;gap:10px;align-items:center}.s input{flex:1;background:transparent;border:0;color:#fff;outline:none}.free{margin:0 12px;background:#0f1a0f;border:1px solid #00c853;border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center}.chips{margin:12px;display:flex;gap:8px;overflow-x:auto}.chip{background:#1a1a1a;border:1px solid #2a2a2a;padding:10px 18px;border-radius:24px;font-size:13px;white-space:nowrap}.chip.a{background:#FFA500;color:#000;font-weight:900}.list{padding:0 12px;display:flex;flex-direction:column;gap:14px}.card{background:#151515;border-radius:20px;overflow:hidden;border:1px solid #222;position:relative}.card img{width:100%;height:220px;object-fit:cover;background:#222;display:block}.badge{position:absolute;top:12px;left:12px;background:#FFA500;color:#000;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:900}.badgeR{position:absolute;top:12px;right:12px;background:#00c853;color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:900}.cardB{padding:14px}.addBtn{margin-top:12px;width:100%;background:#FFA500;color:#000;border:0;padding:12px;border-radius:24px;font-weight:900}.qty{display:flex;gap:10px;align-items:center;justify-content:center;background:#000;border:1px solid #FFA500;border-radius:24px;padding:6px 12px;margin-top:12px}.qty button{width:30px;height:30px;border-radius:50%;border:0;background:#FFA500;font-weight:900}.page{display:none}.page.active{display:block}.in{width:100%;padding:12px;background:#1e1e1e;border:1px solid #333;border-radius:12px;color:#fff;margin:6px 0;font-size:14px}.bnav{position:fixed;bottom:12px;left:12px;right:12px;background:#151515;border:1px solid #222;border-radius:24px;display:flex;justify-content:space-around;padding:8px 0;z-index:99}.nav{flex:1;text-align:center;font-size:10px;color:#666;padding:6px}.nav.active{color:#FFA500}.admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;padding:12px;overflow:auto}.admin.open{display:block}.orderBox{background:#151515;border-radius:16px;padding:14px;margin:12px;border:1px solid #222}.desc{margin:12px;background:#111;border:1px solid #222;border-radius:16px;padding:16px;font-size:13px;color:#aaa;line-height:1.8}.fssai{margin:12px;background:#fff;border-radius:16px;padding:12px;color:#000;display:flex;gap:10px;align-items:center}#toast{position:fixed;top:20px;right:12px;left:12px;z-index:10000;display:flex;flex-direction:column;gap:8px;pointer-events:none}.placeBtn{width:100%;background:#FFA500;color:#000;border:0;padding:16px;border-radius:16px;font-weight:900;font-size:16px;margin-top:16px}.installBar{position:fixed;top:58px;left:12px;right:12px;background:#111;border:1px solid #FFA500;border-radius:12px;padding:12px 16px;display:none;z-index:100;justify-content:space-between;align-items:center}</style></head><body>
+<div class="top">1 Burger Rs30 | 3 Burger FREE | 2 Pizza FREE | Nagina 0-3km FREE | 4km Rs40 5km Rs50</div>
+<div class="h"><div class="logo" id="logoBtn"><img src="./logo.png"><div><b style="color:#FFA500">Bake Super Hub</b><br><span style="font-size:10px;color:#888">FSSAI 22725371000677</span></div></div><div style="display:flex;gap:8px;align-items:center"><button class="dlHeader" id="dlHeader">Download</button><div class="cart" onclick="showTab('ordersPage')">🛒<span class="c" id="cnt">0</span></div></div></div>
+<div class="installBar" id="installBar"><div style="display:flex;gap:10px;align-items:center"><img src="./logo.png" style="width:32px;height:32px;border-radius:8px"><div><b style="font-size:13px">Bake Super Hub</b><br><span style="font-size:10px;color:#888">Install</span></div></div><button id="installNowBtn" style="background:#FFA500;color:#000;border:0;padding:8px 14px;border-radius:20px;font-weight:900">Install</button></div>
+<div id="home" class="page active"><div class="s"><span>🔍</span><input id="se" placeholder="Search..." oninput="doSearch()"></div><div class="free"><div style="width:36px;height:36px;background:#00c853;border-radius:50%;display:flex;align-items:center;justify-content:center">✓</div><div><b style="color:#00c853;font-size:13px" id="offerTitle">Add 3 for FREE Delivery</b><br><span style="font-size:11px;color:#ccc" id="offerDesc">4km tak 1 Pizza FREE • 3 Burger/Sandwich pe 4km tak FREE</span></div></div><div class="chips"><div class="chip a" onclick="filterCat('all',this)">All</div><div class="chip" onclick="filterCat('burger',this)">Burger</div><div class="chip" onclick="filterCat('pizza',this)">Pizza</div><div class="chip" onclick="filterCat('sandwich',this)">Sandwich</div></div><div class="list" id="list"></div><div class="fssai"><img src="./logo.png" style="width:45px;height:45px;border-radius:8px;background:#fff"><div style="flex:1"><b>FSSAI VERIFIED</b><br>22725371000677</div><div style="background:#00c853;color:#fff;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:900">✓</div></div><div class="desc"><b style="color:#FFA500">Bake Super Hub - Nagina</b><br><br>Burger Rs39, Cheese Rs49, Sandwich Rs49, Pizza Rs120<br>Free: 4km tak 1 Pizza, 3 Burger/Sandwich pe 4km tak FREE, Nagina 0-3km FREE<br>Delivery: 4km Rs40, 5km Rs50, 30 Min<br>Location: Dhampur, Nagina, Kotwali, Badhapur, Nehtaur<br>Contact: 9106557703<br>UPI: 9106557703@pthdfc<br>COD, GPay, PhonePe, Paytm, Card<br>10 AM - 11 PM</div></div>
+<div id="searchPage" class="page"><div class="s"><span>🔍</span><input id="se2" placeholder="Search..." oninput="doSearch2()"></div><div class="list" id="searchList"></div></div>
+<div id="ordersPage" class="page"><div style="padding:12px"><h2 style="color:orange">Your Orders</h2><div id="ordersList" style="margin-top:10px"></div></div></div>
+<div id="profilePage" class="page"><div style="padding:12px"><div style="background:#151515;border-radius:16px;padding:14px;text-align:center"><h3>Bake Super Hub</h3><p style="color:#888;font-size:11px">Visits: <span id="visitCount">0</span></p><button id="installBtn" style="margin-top:12px;background:#FFA500;color:#000;padding:12px 18px;border-radius:20px;border:0;font-weight:900;width:100%">Install App</button><p style="font-size:11px;color:#888;margin-top:10px">FSSAI 22725371000677<br>9106557703</p></div></div></div>
+<div id="orderPage" class="page"><div style="padding:12px"><div class="orderBox"><h2>Delivery Details</h2><div style="background:#111;padding:8px 10px;border-radius:8px;font-size:11px;color:#00c853;margin-bottom:10px"><span id="distInfo">Fetching location...</span></div><input id="n" placeholder="Full Name *" class="in"><input id="ph" placeholder="Phone 10 digit *" maxlength="10" class="in"><textarea id="addr" placeholder="Full Address *" class="in" rows="3"></textarea><select id="area" class="in"><option value="Nagina">Nagina</option><option value="Dhampur">Dhampur</option><option value="Kotwali">Kotwali</option><option value="Badhapur">Badhapur</option><option value="Nehtaur">Nehtaur</option></select><select id="pay" class="in"><option value="COD">Cash on Delivery</option><option value="Online">Online Payment</option></select><div style="background:#111;border:1px dashed #FFA500;border-radius:12px;padding:10px;font-size:12px;margin-top:10px" id="summary"></div><button onclick="placeOrder()" class="placeBtn">Place Order</button></div></div></div>
+<div id="donePage" class="page"><div style="background:#151515;padding:20px;text-align:center"><div style="width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:30px">✓</div><h2 style="margin-top:10px">Order Confirmed</h2><p id="oid" style="color:#888;font-size:12px"></p><div style="margin-top:10px"><b id="timer" style="color:#FFA500">30:00</b> | OTP: <b id="otp" style="color:#FFA500">0000</b></div><div id="payLabel" style="margin-top:8px;border-radius:20px;padding:6px 12px;display:inline-block;font-size:11px"></div></div><div style="padding:12px"><p id="odetails" style="white-space:pre-line;font-size:12px;color:#aaa"></p><button onclick="showTab('home')" style="width:100%;margin-top:12px;background:#FFA500;color:#000;border:0;padding:12px;border-radius:12px;font-weight:900">Continue</button></div></div>
+<div class="bnav"><div class="nav active" id="nav-home" onclick="showTab('home')"><div>🏠</div>Home</div><div class="nav" id="nav-search" onclick="showTab('searchPage')"><div>🔍</div>Search</div><div class="nav" id="nav-orders" onclick="showTab('ordersPage')"><div>📦</div>Orders</div><div class="nav" id="nav-profile" onclick="showTab('profilePage')"><div>👤</div>Profile</div></div>
+<div class="admin" id="admin"><div style="display:flex;justify-content:space-between"><div><h3 style="color:orange">Owner Panel</h3><p style="font-size:11px;color:#888">Visits: <span id="adminVisits">0</span> | Orders: <span id="adminOrderCount">0</span></p></div><button onclick="closeAdmin()" style="background:#222;color:#fff;padding:6px 12px;border-radius:6px;border:1px solid #333">X</button></div><div style="display:flex;gap:6px;margin-top:10px"><button onclick="showATab('orders')" style="background:#FFA500;color:#000;padding:7px 12px;border-radius:20px;border:0;font-size:11px">Orders</button><button onclick="showATab('products')" style="background:#222;color:#fff;padding:7px 12px;border-radius:20px;border:1px solid #333;font-size:11px">Products</button></div><div id="a-orders" style="margin-top:12px;background:#151515;border:1px solid #222;border-radius:16px;padding:12px"><div style="display:flex;justify-content:space-between"><h4 style="color:orange">Orders - Live Location</h4><button onclick="if(confirm('Clear all?')){orders=[];localStorage.setItem('orders_v2',JSON.stringify(orders));updateCart();}" style="background:#ff4444;color:#fff;padding:4px 8px;border-radius:6px;border:0;font-size:11px">Clear All</button></div><div id="adminOrders" style="margin-top:10px"></div></div><div id="a-products" style="display:none;margin-top:12px;background:#151515;border:1px solid #222;border-radius:16px;padding:12px"><h4 style="color:orange">Products</h4><input id="pName" placeholder="Name" class="in"><input id="pPrice" placeholder="Price" type="number" class="in"><select id="pCat" class="in"><option value="burger">Burger</option><option value="pizza">Pizza</option><option value="sandwich">Sandwich</option><option value="bakery">Bakery</option></select><input id="pFile" type="file" accept="image/*" class="in"><input id="pImg" placeholder="Image URL" class="in"><button onclick="addProduct()" style="width:100%;padding:10px;background:#25D366;color:#fff;border:0;border-radius:8px;font-weight:800">Add Product</button><div id="adminProds" style="margin-top:10px"></div></div></div>
+<div id="toast"></div>
+<script>
+var CURRENT_VERSION="v17-simple-working";
+var sv=localStorage.getItem('pro_version');
+if(sv!==CURRENT_VERSION){
+localStorage.removeItem('pro_v2');
+localStorage.setItem('pro_version',CURRENT_VERSION);
+}
+var products=JSON.parse(localStorage.getItem('pro_v2')||'null')||[
+{id:1,name:"Nagina Special Burger",price:39,cat:"burger",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",tag:"BURGER Rs39"},
+{id:2,name:"Cheese Burger",price:49,cat:"burger",img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600",tag:"CHEESE Rs49"},
+{id:3,name:"Veg Grill Sandwich",price:49,cat:"sandwich",img:"./sandwich.png",tag:"SANDWICH Rs49"},
+{id:4,name:"Veg Cheese Pizza",price:120,cat:"pizza",img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600",tag:"PIZZA Rs120"},
+{id:5,name:"Cheese Corn Pizza",price:149,cat:"pizza",img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600",tag:"CORN PIZZA"}
+];
+for(var i=0;i<products.length;i++){
+if(products[i].name.toLowerCase().indexOf('sandwich')>-1){
+products[i].img="./sandwich.png";
+}
+}
+localStorage.setItem('pro_v2',JSON.stringify(products));
+var visits=parseInt(localStorage.getItem('visits')||'0')+1;
+localStorage.setItem('visits',visits);
+var cart=[];
+var orders=JSON.parse(localStorage.getItem('orders_v2')||'[]');
+var currentCat='all';
+var taps=0;
+var last=0;
+var timerInt=null;
+var deferredPrompt=null;
+var currentPage='home';
+var userLocation=null;
+var UPI_ID="9106557703@pthdfc";
+function getOffer(){
+var b=0;var p=0;
+for(var i=0;i<cart.length;i++){
+var n=cart[i].name.toLowerCase();
+if(n.indexOf('burger')>-1||n.indexOf('sandwich')>-1)b+=cart[i].qty;
+if(n.indexOf('pizza')>-1)p+=cart[i].qty;
+}
+if(b==0&&p==0)return {title:"Add 3 for FREE Delivery",desc:"4km tak 1 Pizza FREE"};
+if(b>=3||p>=1)return {title:"FREE Delivery",desc:"FREE"};
+return {title:"Add 3 for FREE Delivery",desc:"Add 3 for FREE"};
+}
+function render(){
+var f;
+if(currentCat==='all'){f=products;}else{f=[];for(var i=0;i<products.length;i++){if(products[i].cat===currentCat)f.push(products[i]);}}
+var h='';
+for(var i=0;i<f.length;i++){
+var p=f[i];
+var c=null;
+for(var j=0;j<cart.length;j++){if(cart[j].id==p.id)c=cart[j];}
+var q=c?c.qty:0;
+h+='<div class="card"><div class="badge">'+p.tag+'</div><div class="badgeR">Add 3 for FREE</div><img src="'+p.img+'" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=600\'"><div class="cardB"><div><div class="cardName">'+p.name+'</div><div style="font-size:12px;color:#888">⭐ 4.6 (128) | Hot & Juicy</div></div></div><div style="padding:0 14px 14px">';
+if(q==0){h+='<button class="addBtn" onclick="addToCart('+p.id+')">Add to Cart</button>';}else{h+='<div class="qty"><button onclick="changeQty('+p.id+',-1)">-</button><b>'+q+'</b><button onclick="changeQty('+p.id+',1)">+</button></div>';}
+h+='</div></div>';
+}
+document.getElementById('list').innerHTML=h;
+updateCart();
+}
+function addToCart(id){
+var p=null;for(var i=0;i<products.length;i++){if(products[i].id==id)p=products[i];}
+var ex=null;for(var i=0;i<cart.length;i++){if(cart[i].id==id)ex=cart[i];}
+if(ex){ex.qty++;}else{cart.push({id:p.id,name:p.name,price:p.price,qty:1});}
+render();
+toast(p.name+' added');
+}
+function changeQty(id,d){
+var ex=null;for(var i=0;i<cart.length;i++){if(cart[i].id==id)ex=cart[i];}
+if(!ex)return;
+ex.qty+=d;
+if(ex.qty<=0){
+var newCart=[];
+for(var i=0;i<cart.length;i++){if(cart[i].id!=id)newCart.push(cart[i]);}
+cart=newCart;
+}
+render();
+}
+function updateCart(){
+var q=0;var s=0;
+for(var i=0;i<cart.length;i++){q+=cart[i].qty;s+=cart[i].price*cart[i].qty;}
+document.getElementById('cnt').innerText=q;
+var offer=getOffer();
+document.getElementById('offerTitle').innerText=offer.title;
+document.getElementById('offerDesc').innerText=offer.desc;
+document.getElementById('summary').innerText='Subtotal Rs'+s+' | Total Rs'+s+' | '+offer.title;
+var ao='';
+for(var i=0;i<orders.length;i++){
+var o=orders[i];
+ao+='<div style="background:#222;padding:10px;border-radius:10px;margin-bottom:8px;border-left:4px solid #00c853"><div style="display:flex;justify-content:space-between"><b style="color:orange;font-size:12px">'+o.id+' - '+o.area+' - '+o.payType+'</b><button onclick="delOrder(\''+o.id+'\')" style="background:#ff4444;color:#fff;padding:4px 10px;border-radius:6px;border:0">Delete</button></div><div style="font-size:11px;color:#aaa;margin-top:6px">Customer: '+o.name+' | '+o.phone+'<br>'+o.items+'<br>Rs'+o.total+' | '+o.addr+'<br><a href="'+o.map+'" target="_blank" style="color:#00c853">View Live Location</a><br>'+o.time+'</div></div>';
+}
+document.getElementById('adminOrders').innerHTML=ao||'No orders';
+var ap='';
+for(var i=0;i<products.length;i++){
+var pr=products[i];
+ap+='<div style="display:flex;justify-content:space-between;background:#222;padding:6px;border-radius:6px;margin-bottom:4px"><span>'+pr.name+' Rs'+pr.price+'</span><button onclick="delProd('+pr.id+')" style="background:#ff4444;color:#fff;padding:2px 8px;border-radius:4px;border:0">Del</button></div>';
+}
+document.getElementById('adminProds').innerHTML=ap;
+var oh='';
+for(var i=orders.length-1;i>=0;i--){
+var o=orders[i];
+oh+='<div style="background:#151515;padding:12px;border-radius:16px;margin-bottom:10px;border-left:4px solid #FFA500"><div style="display:flex;justify-content:space-between"><div><b style="font-size:13px">'+o.id+' - '+o.payType+'</b><br><span style="font-size:11px;color:#888">'+o.area+' | '+o.items+'<br>Rs'+o.total+'</span></div><button onclick="delOrder(\''+o.id+'\')" style="background:#ff4444;color:#fff;padding:6px 12px;border-radius:8px;border:0">Delete</button></div></div>';
+}
+document.getElementById('ordersList').innerHTML=oh||'No orders yet';
+document.getElementById('visitCount').innerText=visits;
+document.getElementById('adminVisits').innerText=visits;
+document.getElementById('adminOrderCount').innerText=orders.length;
+}
+function showTab(t){
+if(t!==currentPage){
+history.pushState({page:t},'', '#'+t);
+}
+currentPage=t;
+var pages=document.querySelectorAll('.page');
+for(var i=0;i<pages.length;i++){pages[i].classList.remove('active');}
+document.getElementById(t).classList.add('active');
+var navs=document.querySelectorAll('.nav');
+for(var i=0;i<navs.length;i++){navs[i].classList.remove('active');}
+var nav=document.getElementById('nav-'+t);
+if(nav)nav.classList.add('active');
+window.scrollTo(0,0);
+updateCart();
+}
+function closeAdmin(){history.back();}
+window.addEventListener('popstate',function(e){
+if(document.getElementById('admin').classList.contains('open')){
+document.getElementById('admin').classList.remove('open');
+return;
+}
+if(e.state&&e.state.page){
+currentPage=e.state.page;
+var pages=document.querySelectorAll('.page');
+for(var i=0;i<pages.length;i++){pages[i].classList.remove('active');}
+var pg=document.getElementById(currentPage);
+if(pg)pg.classList.add('active');
+var navs=document.querySelectorAll('.nav');
+for(var i=0;i<navs.length;i++){navs[i].classList.remove('active');}
+var nav=document.getElementById('nav-'+currentPage);
+if(nav)nav.classList.add('active');
+updateCart();
+}else{
+if(currentPage!=='home'){
+showTab('home');
+history.pushState({page:'home'},'','#home');
+}else{
+history.pushState({page:'home'},'','#home');
+}
+}
+});
+function filterCat(c,el){
+var chips=document.querySelectorAll('.chip');
+for(var i=0;i<chips.length;i++){chips[i].classList.remove('a');}
+if(el)el.classList.add('a');
+currentCat=c;
+render();
+}
+function doSearch(){
+var q=document.getElementById('se').value.toLowerCase().trim();
+var q2=document.getElementById('se2');
+if(q2)q2.value=q;
+if(!q){render();return;}
+var f=[];
+for(var i=0;i<products.length;i++){if(products[i].name.toLowerCase().indexOf(q)>-1||products[i].cat.toLowerCase().indexOf(q)>-1)f.push(products[i]);}
+var h='';
+for(var i=0;i<f.length;i++){var p=f[i];h+='<div class="card"><div class="badge">'+p.tag+'</div><img src="'+p.img+'"><div style="padding:12px"><b>'+p.name+'</b> Rs'+p.price+'</div></div>';}
+document.getElementById('list').innerHTML=h;
+}
+function doSearch2(){
+var q=document.getElementById('se2').value.toLowerCase().trim();
+var q1=document.getElementById('se');
+if(q1)q1.value=q;
+if(!q){document.getElementById('searchList').innerHTML='';render();return;}
+var f=[];
+for(var i=0;i<products.length;i++){if(products[i].name.toLowerCase().indexOf(q)>-1||products[i].cat.toLowerCase().indexOf(q)>-1)f.push(products[i]);}
+var h='';
+for(var i=0;i<f.length;i++){var p=f[i];h+='<div class="card"><div class="badge">'+p.tag+'</div><img src="'+p.img+'"><div style="padding:12px"><b>'+p.name+'</b> Rs'+p.price+'</div></div>';}
+document.getElementById('searchList').innerHTML=h;
+}
+function placeOrder(){
+var n=document.getElementById('n').value.trim();
+var ph=document.getElementById('ph').value.trim();
+var area=document.getElementById('area').value;
+var addr=document.getElementById('addr').value.trim();
+var pay=document.getElementById('pay').value;
+if(n.length<2){toast('Name bharo','error');return;}
+if(ph.length!==10){toast('Phone 10 digit bharo','error');return;}
+if(addr.length<5){toast('Address bharo','error');return;}
+if(cart.length===0){toast('Cart me item add karo','error');return;}
+var total=0;
+var items='';
+for(var i=0;i<cart.length;i++){total+=cart[i].price*cart[i].qty;items+=cart[i].name+' x'+cart[i].qty+', ';}
+var id='BSH'+Date.now().toString().slice(-6);
+var otp=Math.floor(1000+Math.random()*9000);
+var payType='Cash on Delivery';
+if(pay==='Online')payType='Online Payment';
+var lat=29.4425;var lng=78.4365;
+if(userLocation){lat=userLocation.lat;lng=userLocation.lng;}
+var map='https://www.google.com/maps?q='+lat+','+lng;
+var order={id:id,name:n,phone:ph,addr:addr,area:area,items:items,total:total,pay:pay,payType:payType,time:new Date().toLocaleString(),otp:otp,lat:lat,lng:lng,map:map};
+orders.unshift(order);
+localStorage.setItem('orders_v2',JSON.stringify(orders));
+cart=[];
+render();
+showTab('donePage');
+document.getElementById('oid').innerText='#'+id+' - '+area;
+document.getElementById('otp').innerText=otp;
+document.getElementById('payLabel').innerText=payType;
+document.getElementById('payLabel').style.background='#222';
+document.getElementById('payLabel').style.color='#fff';
+document.getElementById('odetails').innerText='Name: '+n+'\nPhone: '+ph+'\nArea: '+area+'\nAddress: '+addr+'\nLive: '+lat.toFixed(6)+','+lng.toFixed(6)+'\n\nItems: '+items+'\nTotal: Rs'+total+'\nPayment: '+payType+'\nOTP: '+otp+'\nMap: '+map;
+startTimer();
+toast('Order Confirmed - '+id);
+try{
+var msg='NEW ORDER '+id+'%0A'+n+' - '+ph+'%0A'+items+'%0ARs'+total+' - '+payType+'%0A'+area+' Live: '+lat.toFixed(4)+','+lng.toFixed(4)+'%0A'+addr+'%0A'+map;
+var waUrl='https://wa.me/919106557703?text='+msg;
+window.open(waUrl,'_blank');
+}catch(e){}
+if(pay==='Online'){
+try{
+var upi='upi://pay?pa='+UPI_ID+'&pn=Bake%20Super%20Hub&am='+total+'&cu=INR&tn=Order%20'+id;
+window.location.href=upi;
+}catch(e){}
+}
+}
+function startTimer(){
+var t=30*60;
+if(timerInt)clearInterval(timerInt);
+timerInt=setInterval(function(){
+t--;
+var m=Math.floor(t/60);
+var s=t%60;
+var mm=m<10?'0'+m:m;
+var ss=s<10?'0'+s:s;
+document.getElementById('timer').innerText=mm+':'+ss;
+if(t<=0)clearInterval(timerInt);
+},1000);
+}
+function addProduct(){
+var n=document.getElementById('pName').value.trim();
+var pr=parseInt(document.getElementById('pPrice').value);
+var cat=document.getElementById('pCat').value;
+var file=document.getElementById('pFile').files[0];
+var url=document.getElementById('pImg').value.trim();
+if(!n||!pr){toast('Enter name and price','error');return;}
+function save(img){
+var ex=null;
+for(var i=0;i<products.length;i++){if(products[i].name.toLowerCase()===n.toLowerCase())ex=products[i];}
+if(ex){ex.price=pr;ex.cat=cat;ex.img=img;}else{products.push({id:Date.now(),name:n,price:pr,cat:cat,img:img,tag:cat.toUpperCase()+' Rs'+pr});}
+localStorage.setItem('pro_v2',JSON.stringify(products));
+localStorage.setItem('pro_version',CURRENT_VERSION);
+document.getElementById('pName').value='';
+document.getElementById('pPrice').value='';
+document.getElementById('pImg').value='';
+document.getElementById('pFile').value='';
+render();
+toast('Product Added');
+}
+if(file){
+var r=new FileReader();
+r.onload=function(e){save(e.target.result);};
+r.readAsDataURL(file);
+}else{
+save(url||'./sandwich.png');
+}
+}
+function delProd(id){
+if(!confirm('Delete?'))return;
+var newP=[];
+for(var i=0;i<products.length;i++){if(products[i].id!=id)newP.push(products[i]);}
+products=newP;
+localStorage.setItem('pro_v2',JSON.stringify(products));
+render();
+}
+function delOrder(id){
+if(!confirm('Delete '+id+'?'))return;
+var newO=[];
+for(var i=0;i<orders.length;i++){if(orders[i].id!=id)newO.push(orders[i]);}
+orders=newO;
+localStorage.setItem('orders_v2',JSON.stringify(orders));
+updateCart();
+toast('Deleted');
+}
+function showATab(t){
+document.getElementById('a-orders').style.display=t=='orders'?'block':'none';
+document.getElementById('a-products').style.display=t=='products'?'block':'none';
+}
+function toast(msg,type){
+var cont=document.getElementById('toast');
+var div=document.createElement('div');
+var bg='#00c853';
+if(type=='error')bg='#ff4444';
+div.style.cssText='background:'+bg+';color:#fff;padding:12px 16px;border-radius:12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;';
+div.innerHTML='<span style="flex:1">'+msg+'</span><span onclick="this.parentElement.remove()" style="cursor:pointer">x</span>';
+cont.appendChild(div);
+setTimeout(function(){if(div.parentElement)div.remove();},4000);
+}
+function fetchLocation(){
+var info=document.getElementById('distInfo');
+if(!navigator.geolocation){
+if(info)info.innerText='Location not supported';
+return;
+}
+if(info)info.innerText='Fetching live location...';
+navigator.geolocation.getCurrentPosition(function(pos){
+userLocation={lat:pos.coords.latitude,lng:pos.coords.longitude};
+if(info)info.innerText='Live Location: '+pos.coords.latitude.toFixed(4)+','+pos.coords.longitude.toFixed(4)+' - Add 3 for FREE';
+updateCart();
+},function(){
+if(info)info.innerText='Location denied';
+userLocation={lat:29.4425,lng:78.4365};
+},{enableHighAccuracy:true});
+}
+function tapAdmin(){
+var now=Date.now();
+if(now-last>2000)taps=0;
+taps++;
+last=now;
+if(taps>=5){
+var pw=prompt('Password');
+if(pw==='5060'){
+document.getElementById('admin').classList.add('open');
+history.pushState({page:'admin'},'','#admin');
+taps=0;
+}
+}
+}
+document.getElementById('logoBtn').addEventListener('click',tapAdmin);
+render();
+fetchLocation();
+history.pushState({page:'home'},'','#home');
+window.addEventListener('beforeinstallprompt',function(e){
+e.preventDefault();
+deferredPrompt=e;
+document.getElementById('installBar').style.display='flex';
+var dlBtn=document.getElementById('dlHeader');
+if(dlBtn){dlBtn.style.background='#00c853';dlBtn.innerText='Install Now';}
+});
+function handleInstall(){
+if(deferredPrompt){
+deferredPrompt.prompt();
+deferredPrompt.userChoice.then(function(c){
+if(c.outcome==='accepted'){toast('App Installed');}
+deferredPrompt=null;
+document.getElementById('installBar').style.display='none';
+});
+}else{
+toast('3 dots > Install App > Install');
+}
+}
+document.getElementById('dlHeader').addEventListener('click',handleInstall);
+document.getElementById('installNowBtn').addEventListener('click',handleInstall);
+document.getElementById('installBtn').addEventListener('click',handleInstall);
+</script>
+</body></html>
